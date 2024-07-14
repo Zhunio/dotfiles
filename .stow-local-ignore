@@ -1,0 +1,13 @@
+.git
+.gitignore
+
+README.md
+
+Brewfile
+Brewfile.lock.json
+
+scripts
+themes
+
+install.sh
+uninstall.sh
