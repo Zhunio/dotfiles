@@ -438,6 +438,7 @@ return {
 		event = "InsertEnter",
 		config = true,
 	},
+	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	{
 		"numToStr/Comment.nvim",
 		config = function()
