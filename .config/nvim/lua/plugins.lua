@@ -452,7 +452,7 @@ return {
 		event = "VeryLazy",
 		opts = {
 			modes = {
-				search = { enabled = true },
+				search = { enabled = true, highlight = { backdrop = true } },
 			},
 		},
 		keys = {
