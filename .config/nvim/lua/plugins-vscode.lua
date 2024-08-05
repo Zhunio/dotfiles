@@ -32,10 +32,10 @@ return {
 			modes = {
 				search = {
 					enabled = true,
-					highlight = { backdrop = false },
+					highlight = { backdrop = true },
 				},
 				char = {
-					highlight = { backdrop = false },
+					highlight = { backdrop = true },
 				},
 			},
 		},
