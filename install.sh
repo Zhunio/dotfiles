@@ -1,10 +1,14 @@
 #!/bin/bash
 
 # Clone https://github.com/Zhunio/dotfiles repository
+echo "Cloning http://github.com/Zhunio/dotfiles..."
 if [[ ! -d $HOME/dotfiles ]]; then
   git clone https://github.com/Zhunio/dotfiles $HOME/dotfiles
   echo ""
 fi
+
+# save current working directory
+cwd=$(pwd)
 
 # Changing to $HOME/dotfiles directory
 cd $HOME/dotfiles
@@ -18,6 +22,9 @@ echo ""
 echo "Creating symlinks using GNU Stow..."
 stow .
 
+# go back to current working directory
+cd $cwd
+
 # Source dotfiles
 echo ""
 read -p 'Do you want to source dotfiles in the $HOME/.zshrc file? [Y/n] ' -n 1 -r yesNo
@@ -25,6 +32,27 @@ if [[ $yesNo =~ ^[Yy]$ ]]; then
   echo ""
   echo 'Sourcing dotfiles in $HOME/.zshrc file...'
   echo 'source $HOME/dotfiles.sh' >> $HOME/.zshrc
+fi
+
+# Prompt to add bin folder
+echo ""
+read -p 'Do you want to add $HOME/bin folder? [Y/n]' -n 1 -r yesNo
+if [[ $yesNo =~ ^[Yy]$ ]]; then
+  echo ""
+  if [[ ! -d $HOME/bin  ]]; then
+    mkdir $HOME/bin
+  fi
+fi
+
+echo ""
+read -p 'Do you want to install cheat.sh? [Y/n]' -n 1 -r yesNo
+if [[ $yesNo =~ ^[Yy]$ ]]; then
+  echo ""
+  echo "Installing cheat.sh..."
+  if [[ ! -f $HOME/bin/cht.sh  ]]; then
+   curl https://cht.sh/:cht.sh > $HOME/bin/cht.sh 
+   chmod +x $HOME/bin/cht.sh
+  fi
 fi
 
 # Prompt to install Tmux Plugin Manager

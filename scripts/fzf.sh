@@ -26,6 +26,9 @@ _fzf_comprun() {
     cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
     export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    cht.sh)       cht.sh :list | fzf                     \
+                    --preview 'cht.sh {1}' \
+                    --preview-window=right,70%             "$@" ;;
     *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
   esac
 }

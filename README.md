@@ -12,3 +12,9 @@
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/main/install.sh)"
 ```
+
+## Unisntall
+
+```bash
+/bin/bash ~/dotfiles/uninstall.sh
+```
