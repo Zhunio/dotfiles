@@ -8,7 +8,7 @@ return {
 	},
 	config = function()
 		require("neo-tree").setup({})
-		vim.keymap.set("n", "<leader>ee", ":Neotree reveal=true toggle=true<CR>")
+		vim.keymap.set("n", "<leader>ee", ":Neotree reveal=true position=left toggle=true<CR>")
 		vim.keymap.set("n", "<leader>ef", ":Neotree reveal=true position=float toggle=true<CR>")
 		vim.keymap.set("n", "<leader>ed", ":DBUIToggle<CR>")
 	end,
