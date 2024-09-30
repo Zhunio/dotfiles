@@ -1,0 +1,42 @@
+return {
+	-- {
+	-- 	"olimorris/persisted.nvim",
+	-- 	lazy = false,
+	-- 	config = function()
+	-- 		local persisted = require("persisted")
+	--
+	-- 		local function should_save()
+	-- 			local isAlpha = vim.bo.filetype == "alpha"
+	-- 			if isAlpha then
+	-- 				return false
+	-- 			else
+	-- 			end
+	--
+	-- 			local isEmptyBuffer = vim.api.nvim_buf_get_name(0) == ""
+	-- 			if isEmptyBuffer then
+	-- 				persisted.delete()
+	-- 				return false
+	-- 			end
+	--
+	-- 			return true
+	-- 		end
+	--
+	-- 		vim.api.nvim_create_autocmd("User", {
+	-- 			pattern = "PersistedSavePre",
+	-- 			callback = function()
+	-- 				for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+	-- 					for _, filetype in ipairs({ "octo" }) do
+	-- 						if vim.bo[buf].filetype == filetype then
+	-- 							vim.api.nvim_buf_delete(buf, { force = true })
+	-- 						end
+	-- 					end
+	-- 				end
+	-- 			end,
+	-- 		})
+	-- 		persisted.setup({
+	-- 			autoload = true,
+	-- 			should_save = should_save,
+	-- 		})
+	-- 	end,
+	-- },
+}

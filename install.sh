@@ -1,10 +1,11 @@
 #!/bin/bash
 
 # Clone https://github.com/Zhunio/dotfiles repository
-echo "Cloning http://github.com/Zhunio/dotfiles..."
-if [[ ! -d $HOME/dotfiles ]]; then
+if [[ -d $HOME/dotfiles ]]; then
+  echo "Cloning http://github.com/Zhunio/dotfiles (skipped) since it's already cloned"
+else
+  echo "Cloning http://github.com/Zhunio/dotfiles..."
   git clone https://github.com/Zhunio/dotfiles $HOME/dotfiles
-  echo ""
 fi
 
 # save current working directory
@@ -14,16 +15,47 @@ cwd=$(pwd)
 cd $HOME/dotfiles
 
 # Install Brewfile
+echo ""
 echo "Installing Brew dependencies..."
 brew bundle install
 
 # Use GNU Stow to create symlinks
 echo ""
-echo "Creating symlinks using GNU Stow..."
-stow .
+read -p 'Do you want to use GNU Stow to create symlinks? [Y/n]' -n 1 -r yesNo
+if [[ $yesNo =~ ^[Yy]$ ]]; then
+  echo ""
+  echo "Creating symlinks using GNU Stow..."
+  stow .
+fi
 
 # go back to current working directory
 cd $cwd
+
+# Install nvm
+echo ""
+read -p 'Do you want to install nvm? [Y/n]' -n 1 -r yesNo
+if [[ $yesNo =~ ^[Yy]$ ]]; then
+  echo ""
+  if [[ -d $HOME/.nvm ]]; then
+    echo 'Installing nvm (skipped) since nvm is already installed'
+  else
+    echo 'Installing nvm...'
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+  fi
+fi
+
+# Install sdkman
+echo ""
+read -p 'Do you want to install sdkman? [Y/n]' -n 1 -r yesNo
+if [[ $yesNo =~ ^[Yy]$ ]]; then
+  echo ""
+  if [[ -d $HOME/.sdkman ]]; then
+    echo 'Installing sdkman (skipped) since sdkman is already installed'
+  else
+    echo 'Installing sdkman...'
+    curl -s "https://get.sdkman.io" | bash
+  fi
+fi
 
 # Source dotfiles
 echo ""
@@ -31,7 +63,7 @@ read -p 'Do you want to source dotfiles in the $HOME/.zshrc file? [Y/n] ' -n 1 -
 if [[ $yesNo =~ ^[Yy]$ ]]; then
   echo ""
   echo 'Sourcing dotfiles in $HOME/.zshrc file...'
-  echo 'source $HOME/dotfiles.sh' >> $HOME/.zshrc
+  echo 'source $HOME/dotfiles.sh' >>$HOME/.zshrc
 fi
 
 # Prompt to add bin folder
@@ -39,19 +71,11 @@ echo ""
 read -p 'Do you want to add $HOME/bin folder? [Y/n]' -n 1 -r yesNo
 if [[ $yesNo =~ ^[Yy]$ ]]; then
   echo ""
-  if [[ ! -d $HOME/bin  ]]; then
+  if [[ -d $HOME/bin ]]; then
+    echo 'Creating $HOME/bin folder (skipped) since it already exists'
+  else
+    echo 'Creating $HOME/bin folder...'
     mkdir $HOME/bin
-  fi
-fi
-
-echo ""
-read -p 'Do you want to install cheat.sh? [Y/n]' -n 1 -r yesNo
-if [[ $yesNo =~ ^[Yy]$ ]]; then
-  echo ""
-  echo "Installing cheat.sh..."
-  if [[ ! -f $HOME/bin/cht.sh  ]]; then
-   curl https://cht.sh/:cht.sh > $HOME/bin/cht.sh 
-   chmod +x $HOME/bin/cht.sh
   fi
 fi
 
@@ -60,8 +84,10 @@ echo ""
 read -p "Do you want to install Tmux Plugin Manager? [Y/n] " -n 1 -r yesNo
 if [[ $yesNo =~ ^[Yy]$ ]]; then
   echo ""
-  echo "Installing Tmux Plugin Manager..."
-  if [[ ! -d $HOME/bin/tmux-plugins/tpm  ]]; then
+  if [[ -d $HOME/bin/tmux-plugins/tpm ]]; then
+    echo "Installing Tmux Plugin Manager (skipped) since it is already installed"
+  else
+    echo "Installing Tmux Plugin Manager..."
     git clone https://github.com/tmux-plugins/tpm $HOME/bin/tmux-plugins/tpm
   fi
 

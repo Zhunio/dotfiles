@@ -1,0 +1,12 @@
+theme = catppuccin-mocha
+font-family = "MesloLGL Nerd Font"
+font-thicken = true
+
+shell-integration-features = no-cursor
+cursor-style = block
+cursor-style-blink = false
+adjust-underline-position = 3
+adjust-underline-thickness = 1
+
+background = 011627 
+

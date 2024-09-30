@@ -6,6 +6,13 @@
 
 - Install [git](https://git-scm.com/downloads)
 - Install [brew](https://brew.sh/)
+- Install [oh-my-zsh](https://ohmyz.sh/)
+- Install [ghostty](https://ghostty.org/)
+- Install [vscode](https://code.visualstudio.com/)
+- Install [raycast](https://www.raycast.com/)
+- Install [shottr](https://shottr.cc/)
+- Install [MesloLGL Nerd Font](https://www.nerdfonts.com/)
+- [Connect to GitHub over SSH](./connect-to-github-over-ssh.md)
 
 ## Install
 
@@ -13,8 +20,32 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/main/install.sh)"
 ```
 
-## Unisntall
+## Uninstall
 
 ```bash
 /bin/bash ~/dotfiles/uninstall.sh
+```
+
+# FAQ
+
+## tmux-sessionx zoxide session manager not opening?
+
+Go to tmux-sessionx
+
+```bash
+cd ~/bin/tmux-plugins/tmux-sessionx
+```
+
+Checkout the following commit
+
+```bash
+git checkout 0711d03
+```
+
+## How to enable GitHub Copilot and GitHub Copilot Chat?
+
+Authenticate using the GitHub CLI
+
+```bash
+gh auth login
 ```

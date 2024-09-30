@@ -1,3 +1,7 @@
+# gh cli
+.config/gh
+.config/gh-copilot
+.config/github-copilot
 # tmux plugins
 .config/tmux/plugins
 # nvim
