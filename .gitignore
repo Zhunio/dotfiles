@@ -1,3 +1,5 @@
+# gh cli
+.config/gh
 # tmux plugins
 .config/tmux/plugins
 # nvim

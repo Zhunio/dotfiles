@@ -44,17 +44,6 @@ if [[ $yesNo =~ ^[Yy]$ ]]; then
   fi
 fi
 
-echo ""
-read -p 'Do you want to install cheat.sh? [Y/n]' -n 1 -r yesNo
-if [[ $yesNo =~ ^[Yy]$ ]]; then
-  echo ""
-  echo "Installing cheat.sh..."
-  if [[ ! -f $HOME/bin/cht.sh  ]]; then
-   curl https://cht.sh/:cht.sh > $HOME/bin/cht.sh 
-   chmod +x $HOME/bin/cht.sh
-  fi
-fi
-
 # Prompt to install Tmux Plugin Manager
 echo ""
 read -p "Do you want to install Tmux Plugin Manager? [Y/n] " -n 1 -r yesNo
