@@ -17,6 +17,9 @@ return {
 							typescriptImport = { link = "Keyword" },
 							typescriptVariable = { link = "Keyword" },
 							typescriptExport = { link = "Keyword" },
+							htmlTag = { link = "Function" },
+							htmlTagN = { link = "Function" },
+							htmlTagName = { link = "Function" },
 						}
 					end,
 				},
