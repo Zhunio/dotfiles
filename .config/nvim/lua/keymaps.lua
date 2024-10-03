@@ -56,6 +56,14 @@ vim.keymap.set("n", "<C-down>", ":resize +2<CR>")
 vim.keymap.set("n", "<C-left>", ":vertical resize -2<CR>")
 vim.keymap.set("n", "<C-up>", ":resize -2<CR>")
 
+-- toggle split full size
+vim.keymap.set("n", "<C-f>", "<C-w>_<C-w>|")
+
+-- toggle diagnostics
+vim.keymap.set("n", "<leader>dd", function()
+	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end)
+
 -- Override pasting
 vim.keymap.set("v", "p", '"_dP')
 
