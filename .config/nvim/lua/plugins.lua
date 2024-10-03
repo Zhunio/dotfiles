@@ -18,7 +18,7 @@ return {
 		opts = {},
 		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
 	},
-	{ "mg979/vim-visual-multi" },
+	-- { "mg979/vim-visual-multi" },
 	{ "christoomey/vim-tmux-navigator" },
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl" },
 }
