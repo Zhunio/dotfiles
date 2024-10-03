@@ -1,7 +1,7 @@
 # Setup fzf
 source <(fzf --zsh)
 # Options to fzf command
-export FZF_DEFAULT_OPTS='--border --info=inline --height=~100%'
+export FZF_DEFAULT_OPTS='--prompt=" " --pointer="" --marker="" --info=inline --height=~100%'
 
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
@@ -26,10 +26,11 @@ _fzf_comprun() {
     cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
     export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    cht.sh)       cht.sh :list | fzf                     \
-                    --preview 'cht.sh {1}' \
-                    --preview-window=right,70%             "$@" ;;
-    *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
+    cht.sh)       cht.sh :list | fzf                        \
+                    --preview 'cht.sh {1}'                  \
+                    --preview-window=top,90%,border-none  "$@" ;;
+    *)            fzf --preview 'bat -n --color=always {}'  \
+                    --preview-window=top,90%,border-none  "$@" ;;
   esac
 }
 
