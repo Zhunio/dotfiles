@@ -20,5 +20,12 @@ return {
 				}),
 			},
 		})
+
+		-- testing
+		vim.keymap.set("n", "<leader>te", ":Neotest summary<CR>")
+		vim.keymap.set("n", "<leader>to", ":Neotest output<CR>")
+		vim.keymap.set("n", "<leader>tp", ":Neotest output-panel toggle<CR>")
+		vim.keymap.set("n", "<leader>tt", ":lua require('neotest').run.run(vim.fn.expand('%'))<CR>")
+		vim.keymap.set("n", "<leader>tc", ":lua require('neotest').run.run()<CR>")
 	end,
 }

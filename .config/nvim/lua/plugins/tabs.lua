@@ -17,9 +17,17 @@ return {
 					},
 				},
 			})
+
+			vim.keymap.set("n", "<leader><left>", ":BufferLineMovePrev<CR>")
+			vim.keymap.set("n", "<leader><right>", ":BufferLineMoveNext<CR>")
 		end,
 	},
 	{
 		"kazhala/close-buffers.nvim",
+		config = function()
+			vim.keymap.set("n", "<leader>q", function()
+				require("close_buffers").delete({ type = "this" })
+			end)
+		end,
 	},
 }
