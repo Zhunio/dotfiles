@@ -68,7 +68,14 @@ return {
 		config = function()
 			local neogit = require("neogit")
 
-			neogit.setup({ graph_style = "unicode" })
+			neogit.setup({
+				graph_style = "unicode",
+				signs = {
+					hunk = { "", "" },
+					item = { "", "" },
+					section = { "", "" },
+				},
+			})
 			vim.keymap.set("n", "gg", ":Neogit<CR>")
 		end,
 	},
