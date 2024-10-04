@@ -76,7 +76,7 @@ return {
 					section = { "", "" },
 				},
 			})
-			vim.keymap.set("n", "gg", ":Neogit<CR>")
+			-- vim.keymap.set("n", "gg", ":Neogit<CR>")
 		end,
 	},
 }
