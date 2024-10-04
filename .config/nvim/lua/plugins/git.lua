@@ -2,7 +2,9 @@ return {
 	{
 		"lewis6991/gitsigns.nvim",
 		config = function()
-			require("gitsigns").setup({
+			local gitsigns = require("gitsigns")
+
+			gitsigns.setup({
 				signs = {
 					add = { text = "┃" },
 					change = { text = "┃" },
@@ -43,22 +45,31 @@ return {
 					col = 1,
 				},
 			})
+
+			vim.keymap.set("n", "gS", gitsigns.stage_hunk)
+			vim.keymap.set("n", "gU", gitsigns.undo_stage_hunk)
+			vim.keymap.set("n", "gC", gitsigns.reset_hunk)
+			vim.keymap.set("n", "gs", gitsigns.stage_buffer)
+			vim.keymap.set("n", "gu", gitsigns.reset_buffer_index)
+			vim.keymap.set("n", "gc", gitsigns.reset_buffer)
+			vim.keymap.set("n", "gj", gitsigns.next_hunk)
+			vim.keymap.set("n", "gk", gitsigns.prev_hunk)
+			vim.keymap.set("n", "gK", gitsigns.preview_hunk)
+			vim.keymap.set("n", "gt", gitsigns.toggle_current_line_blame)
 		end,
 	},
 	{
 		"NeogitOrg/neogit",
 		dependencies = {
-			"nvim-lua/plenary.nvim", -- required
-			"sindrets/diffview.nvim", -- optional - Diff integration
-
-			-- Only one of these is needed, not both.
-			"nvim-telescope/telescope.nvim", -- optional
-			-- "ibhagwan/fzf-lua", -- optional
+			"nvim-lua/plenary.nvim",
+			"sindrets/diffview.nvim",
+			"nvim-telescope/telescope.nvim",
 		},
 		config = function()
-			require("neogit").setup({
-				graph_style = "unicode",
-			})
+			local neogit = require("neogit")
+
+			neogit.setup({ graph_style = "unicode" })
+			vim.keymap.set("n", "gg", ":Neogit<CR>")
 		end,
 	},
 }

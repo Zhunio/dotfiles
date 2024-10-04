@@ -38,18 +38,6 @@ vim.keymap.set("n", "<leader>q", function()
 	require("close_buffers").delete({ type = "this" })
 end)
 
--- git actions
-vim.keymap.set("n", "gS", ":Gitsigns stage_hunk<CR>")
-vim.keymap.set("n", "gU", ":Gitsigns undo_stage_hunk<CR>")
-vim.keymap.set("n", "gC", ":Gitsigns reset_hunk<CR>")
-vim.keymap.set("n", "gs", ":Gitsigns stage_buffer<CR>")
-vim.keymap.set("n", "gu", ":Gitsigns reset_buffer_index<CR>")
-vim.keymap.set("n", "gc", ":Gitsigns reset_buffer<CR>")
-vim.keymap.set("n", "gj", ":Gitsigns next_hunk<CR>")
-vim.keymap.set("n", "gk", ":Gitsigns prev_hunk<CR>")
-vim.keymap.set("n", "gK", ":Gitsigns preview_hunk<CR>")
-vim.keymap.set("n", "gt", ":Gitsigns toggle_current_line_blame<CR>")
-
 --  resize windows
 vim.keymap.set("n", "<C-right>", ":vertical resize +2<CR>")
 vim.keymap.set("n", "<C-down>", ":resize +2<CR>")
