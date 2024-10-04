@@ -12,6 +12,7 @@ return {
 				highlight_overrides = {
 					mocha = function(mocha)
 						return {
+							sqlKeyword = { link = "Statement" },
 							yamlBlockMappingKey = { fg = mocha.lavender },
 							yamlPlainScalar = { fg = mocha.green },
 							typescriptImport = { link = "Keyword" },
