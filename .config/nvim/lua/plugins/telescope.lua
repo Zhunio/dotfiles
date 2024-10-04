@@ -7,10 +7,28 @@ return {
 	config = function()
 		local pickers = {}
 
+		-- short pickers
 		for _, picker in ipairs({ "git_branches", "find_files", "buffers" }) do
 			pickers[picker] = {
 				layout_config = {
 					preview_height = 0.80,
+				},
+			}
+		end
+
+		-- tall pickers
+		for _, picker in ipairs({
+			"commands",
+			"diagnostics",
+			"lsp_document_symbols",
+			"live_grep",
+			"current_buffer_fuzzy_find",
+			"registers",
+			"quickfix",
+		}) do
+			pickers[picker] = {
+				layout_config = {
+					preview_height = 0.20,
 				},
 			}
 		end
@@ -25,7 +43,6 @@ return {
 				layout_config = {
 					width = 0.99,
 					height = 0.99,
-					preview_height = 0.20,
 					preview_cutoff = 0,
 				},
 			},
