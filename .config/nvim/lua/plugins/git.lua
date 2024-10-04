@@ -79,8 +79,11 @@ return {
 					item = { "", "" },
 					section = { "", "" },
 				},
+				commit_editor = {
+					staged_diff_split_kind = "auto",
+				},
 			})
-			-- vim.keymap.set("n", "gg", ":Neogit<CR>")
+			vim.keymap.set("n", "<leader>g", ":Neogit<CR>")
 		end,
 	},
 }
