@@ -60,6 +60,7 @@ return {
 	},
 	{
 		"NeogitOrg/neogit",
+		cmd = "Neogit",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"sindrets/diffview.nvim",
@@ -83,7 +84,6 @@ return {
 					staged_diff_split_kind = "auto",
 				},
 			})
-			vim.keymap.set("n", "<leader>g", ":Neogit<CR>")
 		end,
 	},
 }
