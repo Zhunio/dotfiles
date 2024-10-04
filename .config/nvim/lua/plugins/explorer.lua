@@ -2,7 +2,14 @@ return {
 	{
 		"nvim-tree/nvim-tree.lua",
 		config = function()
-			require("nvim-tree").setup()
+			require("nvim-tree").setup({
+				renderer = {
+					indent_markers = { enable = true },
+				},
+				git = {
+					ignore = false,
+				},
+			})
 			vim.keymap.set("n", "<leader>ee", ":NvimTreeFindFileToggle<CR>")
 		end,
 	},
