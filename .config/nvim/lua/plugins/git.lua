@@ -68,6 +68,10 @@ return {
 		config = function()
 			local neogit = require("neogit")
 
+			-- Fix dash lines in diff view (https://github.com/sindrets/diffview.nvim/issues/35)
+			-- vim.opt.fillchars = vim.opt.fillchars + "diff:╱"
+			vim.opt.fillchars = vim.opt.fillchars + "diff: "
+
 			neogit.setup({
 				graph_style = "unicode",
 				signs = {
