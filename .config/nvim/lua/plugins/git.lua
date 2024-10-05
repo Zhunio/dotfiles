@@ -1,7 +1,7 @@
 return {
 	{
 		"lewis6991/gitsigns.nvim",
-    event = { "BufReadPre", 'BufNewFile' }, 
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			local gitsigns = require("gitsigns")
 
@@ -61,7 +61,7 @@ return {
 	},
 	{
 		"NeogitOrg/neogit",
-    cmd = { "Neogit" },
+		cmd = { "Neogit" },
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
