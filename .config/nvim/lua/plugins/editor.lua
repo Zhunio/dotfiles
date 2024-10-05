@@ -126,17 +126,19 @@ return {
 		end,
 	},
 	{
-		"folke/noice.nvim",
+		"echasnovski/mini.notify",
 		event = "VeryLazy",
-		opts = {},
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
-		},
 		config = function()
-			require("notify").setup({
+			require("mini.notify").setup({
 				background_colour = "#000000",
 			})
+		end,
+	},
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		dependencies = { "MunifTanjim/nui.nvim" },
+		config = function()
 			require("noice").setup({
 				presets = {
 					bottom_search = true, -- use a classic bottom cmdline for search
