@@ -44,6 +44,8 @@ return {
 					lualine_c = { "macro_recording", "%S" },
 				},
 			})
+
+			vim.cmd("set cmdheight=1")
 		end,
 	},
 	{
