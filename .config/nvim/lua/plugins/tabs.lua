@@ -1,7 +1,7 @@
 return {
 	{
 		"akinsho/bufferline.nvim",
-		version = "*",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = "nvim-tree/nvim-web-devicons",
 		config = function()
 			require("bufferline").setup({
@@ -24,10 +24,9 @@ return {
 	},
 	{
 		"kazhala/close-buffers.nvim",
-		config = function()
-			vim.keymap.set("n", "<leader>q", function()
-				require("close_buffers").delete({ type = "this" })
-			end)
-		end,
+  -- stylua: ignore
+		keys = {
+			{ "<leader>q", function() require("close_buffers").delete({ type = "this" }) end },
+		},
 	},
 }
