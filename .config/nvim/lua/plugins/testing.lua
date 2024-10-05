@@ -1,5 +1,13 @@
 return {
 	"nvim-neotest/neotest",
+  --stylua: ignore
+  keys = {
+    { "<leader>te", function() vim.api.nvim_command(":Neotest summary<CR>") end },
+    { "<leader>to", function() vim.api.nvim_command(":Neotest output<CR>") end },
+    { "<leader>tp", function() vim.api.nvim_command(":Neotest output-panel toggle<CR>") end },
+    { "<leader>tt", function() vim.api.nvim_command(":lua require('neotest').run.run(vim.fn.expand('%'))<CR>") end },
+    { "<leader>tc", function() vim.api.nvim_command(":lua require('neotest').run.run()<CR>") end },
+  },
 	dependencies = {
 		"nvim-neotest/nvim-nio",
 		"nvim-lua/plenary.nvim",
@@ -20,12 +28,5 @@ return {
 				}),
 			},
 		})
-
-		-- testing
-		vim.keymap.set("n", "<leader>te", ":Neotest summary<CR>")
-		vim.keymap.set("n", "<leader>to", ":Neotest output<CR>")
-		vim.keymap.set("n", "<leader>tp", ":Neotest output-panel toggle<CR>")
-		vim.keymap.set("n", "<leader>tt", ":lua require('neotest').run.run(vim.fn.expand('%'))<CR>")
-		vim.keymap.set("n", "<leader>tc", ":lua require('neotest').run.run()<CR>")
 	end,
 }
