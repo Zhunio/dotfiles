@@ -10,13 +10,16 @@ return {
 		end,
 	},
 	{
-		"windwp/nvim-autopairs",
+		"echasnovski/mini.pairs",
 		event = "InsertEnter",
-		config = true,
+		version = "*",
+    config = function ()
+      require('mini.pairs').setup()
+    end
 	},
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
-    ft = { "markdown" },
+		ft = { "markdown" },
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	-- { "mg979/vim-visual-multi" },
