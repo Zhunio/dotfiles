@@ -2,6 +2,7 @@ return {
 	{
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPre", "BufNewFile" },
+    cmd = { 'DiffViewOpen', 'NeoGit' },
 		config = function()
 			local gitsigns = require("gitsigns")
 
@@ -60,12 +61,15 @@ return {
 		end,
 	},
 	{
+		"sindrets/diffview.nvim",
+		cmd = { "DiffViewOpen" },
+	},
+	{
 		"NeogitOrg/neogit",
 		cmd = { "Neogit" },
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
-			"sindrets/diffview.nvim",
 		},
 		config = function()
 			local neogit = require("neogit")
