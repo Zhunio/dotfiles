@@ -1,9 +1,23 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	tag = "0.1.5",
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-	},
+  -- stylua: ignore
+  keys = {
+    { "<leader>ff", require('telescope.builtin').find_files },
+    { "<leader>fp", require('telescope.builtin').commands },
+    { "<leader>fd", require('telescope.builtin').diagnostics },
+    { "<leader>f@", require('telescope.builtin').lsp_document_symbols },
+    { "<leader>ft", require('telescope.builtin').buffers },
+
+    { "<leader>fg", require('telescope.builtin').live_grep },
+    { "<leader>f?", require('telescope.builtin').current_buffer_fuzzy_find },
+
+    { "<leader>fb", require('telescope.builtin').git_branches },
+
+    { "<leader>fr", require('telescope.builtin').registers },
+    { "<leader>fq", require('telescope.builtin').quickfix },
+  },
+	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
 		local colors = require("catppuccin.palettes").get_palette("mocha")
 		vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = colors.green })
@@ -56,20 +70,5 @@ return {
 			},
 			pickers = pickers,
 		})
-
-		local builtin = require("telescope.builtin")
-		vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-		vim.keymap.set("n", "<leader>fp", builtin.commands, {})
-		vim.keymap.set("n", "<leader>fd", builtin.diagnostics, {})
-		vim.keymap.set("n", "<leader>f@", builtin.lsp_document_symbols, {})
-		vim.keymap.set("n", "<leader>ft", builtin.buffers, {})
-
-		vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-		vim.keymap.set("n", "<leader>f?", builtin.current_buffer_fuzzy_find, {})
-
-		vim.keymap.set("n", "<leader>fb", builtin.git_branches, {})
-
-		vim.keymap.set("n", "<leader>fr", builtin.registers, {})
-		vim.keymap.set("n", "<leader>fq", builtin.quickfix, {})
 	end,
 }
