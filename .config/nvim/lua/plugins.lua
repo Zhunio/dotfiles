@@ -1,6 +1,7 @@
 return {
 	{
 		"numToStr/Comment.nvim",
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("Comment").setup({
 				toggler = { line = "<leader>c" },
@@ -15,8 +16,8 @@ return {
 	},
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
-		opts = {},
-		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+    ft = { "markdown" },
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	-- { "mg979/vim-visual-multi" },
 	{ "christoomey/vim-tmux-navigator" },
