@@ -1,25 +1,10 @@
 return {
 	{
-		"akinsho/bufferline.nvim",
+		"echasnovski/mini.tabline",
 		event = { "BufReadPre", "BufNewFile" },
-		dependencies = "nvim-tree/nvim-web-devicons",
+		version = "*",
 		config = function()
-			require("bufferline").setup({
-				options = {
-					truncate_names = false,
-					mode = "buffers",
-					offsets = {
-						{
-							filetype = "NvimTree",
-							highlight = "Directory",
-							separator = true,
-						},
-					},
-				},
-			})
-
-			vim.keymap.set("n", "<leader><left>", ":BufferLineMovePrev<CR>")
-			vim.keymap.set("n", "<leader><right>", ":BufferLineMoveNext<CR>")
+			require("mini.tabline").setup()
 		end,
 	},
 	{
