@@ -1,22 +1,23 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	tag = "0.1.5",
-  -- stylua: ignore
-  keys = {
-    { "<leader>ff", require('telescope.builtin').find_files },
-    { "<leader>fp", require('telescope.builtin').commands },
-    { "<leader>fd", require('telescope.builtin').diagnostics },
-    { "<leader>f@", require('telescope.builtin').lsp_document_symbols },
-    { "<leader>ft", require('telescope.builtin').buffers },
+  --stylua: ignore
+	keys = {
+	  { "<leader>ff", require('telescope.builtin').find_files },
+	  { "<leader>fp", require('telescope.builtin').commands },
+	  { "<leader>fd", require('telescope.builtin').diagnostics },
+	  { "<leader>f@", require('telescope.builtin').lsp_document_symbols },
+	  { "<leader>ft", require('telescope.builtin').buffers },
 
-    { "<leader>fg", require('telescope.builtin').live_grep },
-    { "<leader>f?", require('telescope.builtin').current_buffer_fuzzy_find },
+	  { "<leader>fg", require('telescope.builtin').live_grep },
+	  { "<leader>f?", require('telescope.builtin').current_buffer_fuzzy_find },
 
-    { "<leader>fb", require('telescope.builtin').git_branches },
+	  { "<leader>fb", require('telescope.builtin').git_branches },
 
-    { "<leader>fr", require('telescope.builtin').registers },
-    { "<leader>fq", require('telescope.builtin').quickfix },
-  },
+	  { "<leader>fr", require('telescope.builtin').registers },
+	  { "<leader>fq", require('telescope.builtin').quickfix },
+	  { '<leader>f:', require('telescope.builtin').command_history }
+	},
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
 		local colors = require("catppuccin.palettes").get_palette("mocha")
