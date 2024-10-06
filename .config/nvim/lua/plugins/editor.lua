@@ -109,9 +109,9 @@ return {
 	{
 		"stevearc/conform.nvim",
   -- stylua: ignore
-	keys = {
-		{ "<leader>f", function() require("conform").format({ lsp_fallback = true, async = false, timeout_ms = 500 }) end },
-	},
+    keys = {
+      { "gf", function() require("conform").format() end },
+    },
 		config = function()
 			require("conform").setup({
 				formatters_by_ft = {
