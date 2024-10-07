@@ -1,8 +1,12 @@
 return {
 	{
+		"sindrets/diffview.nvim",
+		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+	},
+	{
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPre", "BufNewFile" },
-		cmd = { "DiffViewOpen", "NeoGit" },
+		cmd = { "NeoGit" },
 		config = function()
 			local gitsigns = require("gitsigns")
 
@@ -59,10 +63,6 @@ return {
 			vim.keymap.set("n", "gK", gitsigns.preview_hunk)
 			vim.keymap.set("n", "gt", gitsigns.toggle_current_line_blame)
 		end,
-	},
-	{
-		"sindrets/diffview.nvim",
-		cmd = { "DiffViewOpen" },
 	},
 	{
 		"NeogitOrg/neogit",
