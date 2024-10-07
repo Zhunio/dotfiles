@@ -6,7 +6,18 @@ return {
 	{
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPre", "BufNewFile" },
-		cmd = { "NeoGit" },
+    keys = {
+      { "gS", function() require('gitsigns').stage_hunk() end },
+      { "gU", function() require('gitsigns').undo_stage_hunk() end },
+      { "gC", function() require('gitsigns').reset_hunk() end },
+      { "gs", function() require('gitsigns').stage_buffer() end },
+      { "gu", function() require('gitsigns').reset_buffer_index() end },
+      { "gc", function() require('gitsigns').reset_buffer() end },
+      { "gj", function() require('gitsigns').next_hunk() end },
+      { "gk", function() require('gitsigns').prev_hunk() end },
+      { "gK", function() require('gitsigns').preview_hunk() end },
+      { "gt", function() require('gitsigns').toggle_current_line_blame() end },
+    },
 		config = function()
 			local gitsigns = require("gitsigns")
 
@@ -51,22 +62,14 @@ return {
 					col = 1,
 				},
 			})
-
-			vim.keymap.set("n", "gS", gitsigns.stage_hunk)
-			vim.keymap.set("n", "gU", gitsigns.undo_stage_hunk)
-			vim.keymap.set("n", "gC", gitsigns.reset_hunk)
-			vim.keymap.set("n", "gs", gitsigns.stage_buffer)
-			vim.keymap.set("n", "gu", gitsigns.reset_buffer_index)
-			vim.keymap.set("n", "gc", gitsigns.reset_buffer)
-			vim.keymap.set("n", "gj", gitsigns.next_hunk)
-			vim.keymap.set("n", "gk", gitsigns.prev_hunk)
-			vim.keymap.set("n", "gK", gitsigns.preview_hunk)
-			vim.keymap.set("n", "gt", gitsigns.toggle_current_line_blame)
 		end,
 	},
 	{
 		"NeogitOrg/neogit",
 		cmd = { "Neogit" },
+    keys = {
+      { "gn", function() require('neogit').open() end },
+    },
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
