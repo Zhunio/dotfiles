@@ -2,7 +2,6 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-    lazy = true,
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
@@ -13,6 +12,7 @@ return {
 				highlight_overrides = {
 					mocha = function(mocha)
 						return {
+              LineNr = { fg = mocha.overlay1 },
 							sqlKeyword = { link = "Statement" },
 							yamlBlockMappingKey = { fg = mocha.lavender },
 							yamlPlainScalar = { fg = mocha.green },
