@@ -2,11 +2,12 @@ return {
 	"nvim-neotest/neotest",
   --stylua: ignore
   keys = {
-    { "<leader>te", function() vim.api.nvim_command(":Neotest summary<CR>") end },
-    { "<leader>to", function() vim.api.nvim_command(":Neotest output<CR>") end },
-    { "<leader>tp", function() vim.api.nvim_command(":Neotest output-panel toggle<CR>") end },
-    { "<leader>tt", function() vim.api.nvim_command(":lua require('neotest').run.run(vim.fn.expand('%'))<CR>") end },
-    { "<leader>tc", function() vim.api.nvim_command(":lua require('neotest').run.run()<CR>") end },
+    { "<leader>te", function() require('neotest').summary.toggle() end },
+    { "<leader>to", function() require('neotest').output.open({ auto_close = true }) end },
+    { "<leader>tp", function() require('neotest').output_panel.toggle() end },
+    { "<leader>tt", function() require('neotest').run.run(vim.fn.expand('%')) end },
+    { "<leader>td", function() require('neotest').run.run({ strategy = 'dap' }) end },
+    { "<leader>tc", function() require('neotest').run.run() end },
   },
 	dependencies = {
 		"nvim-neotest/nvim-nio",
