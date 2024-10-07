@@ -4,7 +4,7 @@ return {
 		"kristijanhusak/vim-dadbod-ui",
 		cmd = { "DBUI", "DBUIToggle", "DBUIAddConnection", "DBUIFindBuffer" },
 		keys = {
-			{ "<leader>ed", ":DBUIToggle<CR>", desc = "DBUI Toggle" },
+			{ "<leader>dd", ":DBUIToggle<CR>", desc = "DBUI Toggle" },
 		},
 		dependencies = { "tpope/vim-dadbod" },
 		init = function()

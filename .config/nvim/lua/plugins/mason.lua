@@ -54,8 +54,8 @@ return {
 		end
 
 		-- toggle diagnostics
-		vim.keymap.set("n", "<leader>dd", function()
-			vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-		end)
+		-- vim.keymap.set("n", "<leader>dd", function()
+			-- vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+		-- end)
 	end,
 }
