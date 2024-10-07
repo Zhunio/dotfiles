@@ -8,6 +8,7 @@ return {
 	  { "<leader>fd", require('telescope.builtin').diagnostics },
 	  { "<leader>f@", require('telescope.builtin').lsp_document_symbols },
 	  { "<leader>ft", require('telescope.builtin').buffers },
+	  { "<leader>fh", require('telescope.builtin').highlights },
 
 	  { "<leader>fg", require('telescope.builtin').live_grep },
 	  { "<leader>f?", require('telescope.builtin').current_buffer_fuzzy_find },
