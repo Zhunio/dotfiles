@@ -78,5 +78,9 @@ vim.keymap.set({ "n", "x" }, "<leader>c", function() require("vscode-neovim").ac
 vim.keymap.set({ "n", "x" }, "<leader>p", '"_dP')
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+-- Zoom
+vim.keymap.set("n", "zr", function() require("vscode-neovim").action("workbench.action.zoomReset") end)
+vim.keymap.set("n", "zi", function() require("vscode-neovim").action("workbench.action.zoomIn") end)
+vim.keymap.set("n", "zo", function() require("vscode-neovim").action("workbench.action.zoomOut") end)
 
 -- stylua: ignore end
