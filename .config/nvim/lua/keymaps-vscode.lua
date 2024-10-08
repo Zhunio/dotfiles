@@ -62,8 +62,8 @@ vim.keymap.set("n", "gR", function()
 	vim.api.nvim_command(":registers")
 end)
 -- git pull requests
-vim.keymap.set("n", "<leader>pa", function() require("vscode-neovim").action("pr:github.focus") end)
 vim.keymap.set("n", "<leader>pp", function() require("vscode-neovim").action("prStatus:github.focus") end)
+vim.keymap.set("n", "<leader>po", function() require("vscode-neovim").action("pr.openPullRequestOnGitHub") end)
 -- fold actions
 vim.keymap.set("n", "zp", function() require("vscode-neovim").action("editor.gotoParentFold") end)
 vim.keymap.set("n", "zC", function() require("vscode-neovim").action("editor.foldAll") end)
