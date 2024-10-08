@@ -35,7 +35,7 @@ return {
 		for _, picker in ipairs({ "git_branches", "find_files", "buffers" }) do
 			pickers[picker] = {
 				layout_config = {
-					preview_height = 0.80,
+					preview_height = 0.70,
 				},
 			}
 		end
