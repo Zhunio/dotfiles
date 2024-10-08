@@ -69,16 +69,16 @@ return {
 		})
 
 		-- setup vim-dadbod-completion
-		vim.api.nvim_create_autocmd("FileType", {
-			pattern = { "sql", "mysql", "pslsql" },
-			callback = function()
-				cmp.setup.buffer({
-					sources = {
-						{ name = "vim-dadbod-completion" },
-					},
-				})
-			end,
-		})
+		-- vim.api.nvim_create_autocmd("FileType", {
+		-- 	pattern = { "sql", "mysql", "pslsql" },
+		-- 	callback = function()
+		-- 		cmp.setup.buffer({
+		-- 			sources = {
+		-- 				{ name = "vim-dadbod-completion" },
+		-- 			},
+		-- 		})
+		-- 	end,
+		-- })
 
 		-- Transparent window
 		vim.cmd("highlight Pmenu guibg=NONE")

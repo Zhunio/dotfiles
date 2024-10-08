@@ -37,15 +37,6 @@ return {
 			})
 		end
 
-		-- Typescript organize imports
-		vim.keymap.set("n", "<leader>o", function()
-			vim.lsp.buf.execute_command({
-				command = "_typescript.organizeImports",
-				arguments = { vim.api.nvim_buf_get_name(0) },
-				title = "Organize Imports",
-			})
-		end)
-
 		-- Change the Diagnostic symbols in the sign column (gutter)
 		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
 		for type, icon in pairs(signs) do
