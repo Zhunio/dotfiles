@@ -52,10 +52,5 @@ return {
 			local hl = "DiagnosticSign" .. type
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
-
-		-- toggle diagnostics
-		-- vim.keymap.set("n", "<leader>dd", function()
-			-- vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-		-- end)
 	end,
 }
