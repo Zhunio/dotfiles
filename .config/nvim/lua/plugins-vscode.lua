@@ -1,6 +1,7 @@
 return {
 	{
 		"vscode-neovim/vscode-multi-cursor.nvim",
+    event = "VeryLazy",
 		config = function()
 			local multi_cursor = require("vscode-multi-cursor")
 
