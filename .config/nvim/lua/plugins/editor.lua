@@ -84,12 +84,26 @@ return {
 		end,
 	},
 	{
-		"echasnovski/mini.tabline",
+		"romgrk/barbar.nvim",
 		event = { "BufReadPre", "BufNewFile" },
-		version = "*",
-		config = function()
-			require("mini.tabline").setup()
+    -- stylua: ignore
+    keys = {
+			{ "<leader>q", ":BufferClose<CR>" },
+			{ "<leader>h", ":BufferPrevious<CR>" },
+			{ "<leader>l", ":BufferNext<CR>" },
+			{ "<<", ":BufferMovePrevious<CR>" },
+			{ ">>", ":BufferMoveNext<CR>" },
+			{ "<leader>bp", ":BufferPick<CR>" },
+			{ "<leader>bx", ":BufferPickDelete<CR>" },
+    },
+		dependencies = {
+			"lewis6991/gitsigns.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
+		init = function()
+			vim.g.barbar_auto_setup = false
 		end,
+		opts = {},
 	},
 	{
 		"echasnovski/mini.pairs",
@@ -98,13 +112,6 @@ return {
 		config = function()
 			require("mini.pairs").setup()
 		end,
-	},
-	{
-		"kazhala/close-buffers.nvim",
-  -- stylua: ignore
-		keys = {
-			{ "<leader>q", function() require("close_buffers").delete({ type = "this" }) end },
-		},
 	},
 	{
 		"stevearc/conform.nvim",

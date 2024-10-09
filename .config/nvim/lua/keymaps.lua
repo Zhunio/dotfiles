@@ -15,10 +15,6 @@ vim.keymap.set("x", "K", ":move '<-2<CR>gv-gv")
 vim.keymap.set("n", "<leader>ss", ":split<CR>")
 vim.keymap.set("n", "<leader>sv", ":vsplit<CR>")
 
--- buffers
-vim.keymap.set("n", "<leader>h", ":bprevious<CR>")
-vim.keymap.set("n", "<leader>l", ":bnext<CR>")
-
 --  resize windows
 vim.keymap.set("n", "<C-right>", ":vertical resize +2<CR>")
 vim.keymap.set("n", "<C-down>", ":resize +2<CR>")
