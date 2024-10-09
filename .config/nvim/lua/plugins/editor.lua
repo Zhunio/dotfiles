@@ -175,4 +175,25 @@ return {
 			})
 		end,
 	},
+	{
+		"petertriho/nvim-scrollbar",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			local colors = require("catppuccin.palettes").get_palette("mocha")
+
+			require("scrollbar").setup({
+				handle = {
+					color = colors.overlay2,
+				},
+				marks = {
+					Search = { color = colors.maroon },
+					Error = { color = colors.red },
+					Warn = { color = colors.yellow },
+					Info = { color = colors.blue },
+					Hint = { color = colors.lavender },
+					Misc = { color = colors.mauve },
+				},
+			})
+		end,
+	},
 }
