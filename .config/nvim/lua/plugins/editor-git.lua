@@ -66,6 +66,7 @@ return {
 	},
 	{
 		"NeogitOrg/neogit",
+    commit = "d02038d7",
 		cmd = { "Neogit" },
     keys = {
       { "gn", function() require('neogit').open() end },
