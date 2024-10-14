@@ -12,14 +12,14 @@ return {
 			"RainbowViolet",
 		}
 
-		local colors = require("catppuccin.palettes").get_palette("mocha")
+		local C = require("catppuccin.palettes").get_palette("mocha")
 		local hightlight_colors = {
-			RainbowRed = colors.red,
-			RainbowOrange = colors.peach,
-			RainbowYellow = colors.yellow,
-			RainbowGreen = colors.green,
-			RainbowBlue = colors.blue,
-			RainbowViolet = colors.mauve,
+			RainbowRed = C.red,
+			RainbowOrange = C.peach,
+			RainbowYellow = C.yellow,
+			RainbowGreen = C.green,
+			RainbowBlue = C.blue,
+			RainbowViolet = C.mauve,
 		}
 
 		local hooks = require("ibl.hooks")
@@ -33,7 +33,7 @@ return {
 		local indent = require("ibl")
 		indent.setup({
 			indent = {
-				char = "▏", --"│"
+				char = "▏",
 				highlight = highlight,
 			},
 			scope = {

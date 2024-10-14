@@ -106,14 +106,6 @@ return {
 		opts = {},
 	},
 	{
-		"echasnovski/mini.pairs",
-		event = "InsertEnter",
-		version = "*",
-		config = function()
-			require("mini.pairs").setup()
-		end,
-	},
-	{
 		"stevearc/conform.nvim",
   -- stylua: ignore
     keys = {
@@ -183,29 +175,43 @@ return {
 		end,
 	},
 	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
+	},
+	{
 		"petertriho/nvim-scrollbar",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
-			local colors = require("catppuccin.palettes").get_palette("mocha")
+			local C = require("catppuccin.palettes").get_palette("mocha")
 
 			require("scrollbar").setup({
 				handle = {
-					color = colors.overlay2,
+					color = C.overlay2,
 				},
 				marks = {
-					Search = { color = colors.maroon },
-					Error = { color = colors.red },
-					Warn = { color = colors.yellow },
-					Info = { color = colors.blue },
-					Hint = { color = colors.lavender },
-					Misc = { color = colors.mauve },
+					Search = { color = C.maroon },
+					Error = { color = C.red },
+					Warn = { color = C.yellow },
+					Info = { color = C.blue },
+					Hint = { color = C.lavender },
+					Misc = { color = C.mauve },
 				},
 			})
 		end,
 	},
 	{
+		"kylechui/nvim-surround",
+		event = "InsertEnter",
+		config = function()
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
+		end,
+	},
+	{
 		"norcalli/nvim-colorizer.lua",
-		event = { "BufReadPre", "BufNewFile" },
+		event = "BufReadPre", "BufNewFile",
 		config = function()
 			require("colorizer").setup()
 		end,

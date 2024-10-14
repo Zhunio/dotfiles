@@ -21,13 +21,13 @@ return {
 	},
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
-		local colors = require("catppuccin.palettes").get_palette("mocha")
-		vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = colors.green })
-		vim.api.nvim_set_hl(0, "TelescopeSelection", { fg = colors.green })
-		vim.api.nvim_set_hl(0, "TelescopeSelectionCaret", { fg = colors.green })
-		vim.api.nvim_set_hl(0, "TelescopeMultiIcon", { fg = colors.green })
-		vim.api.nvim_set_hl(0, "TelescopePromptPrefix", { fg = colors.green })
-		vim.api.nvim_set_hl(0, "TelescopeResultsIdentifier", { fg = colors.text })
+		local C = require("catppuccin.palettes").get_palette("mocha")
+		vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = C.green })
+		vim.api.nvim_set_hl(0, "TelescopeSelection", { fg = C.green })
+		vim.api.nvim_set_hl(0, "TelescopeSelectionCaret", { fg = C.green })
+		vim.api.nvim_set_hl(0, "TelescopeMultiIcon", { fg = C.green })
+		vim.api.nvim_set_hl(0, "TelescopePromptPrefix", { fg = C.green })
+		vim.api.nvim_set_hl(0, "TelescopeResultsIdentifier", { fg = C.text })
 
 		local pickers = {}
 
