@@ -205,12 +205,14 @@ return {
 	},
 	{
 		"norcalli/nvim-colorizer.lua",
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("colorizer").setup()
 		end,
 	},
 	{
 		"karb94/neoscroll.nvim",
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("neoscroll").setup({})
 		end,
