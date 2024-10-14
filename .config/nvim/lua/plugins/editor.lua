@@ -222,4 +222,12 @@ return {
 			require("neoscroll").setup({})
 		end,
 	},
+	{
+		"mistweaverco/kulala.nvim",
+    -- stylua: ignore
+    keys = {
+      { "<leader>kk", function () require('kulala').run() end },
+    },
+		opts = {},
+	},
 }
