@@ -31,8 +31,8 @@ return {
 					vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 					vim.keymap.set("n", "g=", vim.lsp.buf.code_action, {})
 
-					local builtin = require("telescope.builtin")
-					vim.keymap.set("n", "gr", builtin.lsp_references, {})
+          --stylua: ignore
+					vim.keymap.set("n", "gr", function() require("telescope.builtin").lsp_references({ fname_width = 50 }) end, {})
 				end,
 			})
 		end

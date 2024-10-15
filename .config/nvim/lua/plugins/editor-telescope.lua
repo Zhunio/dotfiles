@@ -6,7 +6,7 @@ return {
 	  { "<leader>ff", require('telescope.builtin').find_files },
 	  { "<leader>fp", require('telescope.builtin').commands },
 	  { "<leader>fd", require('telescope.builtin').diagnostics },
-	  { "<leader>f@", require('telescope.builtin').lsp_document_symbols },
+	  { "<leader>f@", function() require('telescope.builtin').lsp_document_symbols({ symbol_width = 100 }) end },
 	  { "<leader>ft", require('telescope.builtin').buffers },
 	  { "<leader>fh", require('telescope.builtin').highlights },
 
@@ -16,7 +16,7 @@ return {
 	  { "<leader>fb", require('telescope.builtin').git_branches },
 
 	  { "<leader>fr", require('telescope.builtin').registers },
-	  { "<leader>fq", require('telescope.builtin').quickfix },
+	  { "<leader>fq", function() require('telescope.builtin').quickfix({ fname_width = 50 }) end },
 	  { '<leader>f:', require('telescope.builtin').command_history }
 	},
 	dependencies = { "nvim-lua/plenary.nvim" },
@@ -59,6 +59,7 @@ return {
 
 		require("telescope").setup({
 			defaults = {
+				path_display = { "tail" },
 				prompt_prefix = " ",
 				selection_caret = " ",
 				multi_icon = " ",
