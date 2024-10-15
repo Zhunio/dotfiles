@@ -29,5 +29,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- disable diagnostics
-vim.diagnostic.disable()

@@ -29,8 +29,8 @@ return {
 					vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {})
 					vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 					vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+					vim.keymap.set("n", "gD", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled())  end)
 					vim.keymap.set("n", "g=", vim.lsp.buf.code_action, {})
-
           --stylua: ignore
 					vim.keymap.set("n", "gr", function() require("telescope.builtin").lsp_references({ fname_width = 50 }) end, {})
 				end,
@@ -38,7 +38,7 @@ return {
 		end
 
 		-- Change the Diagnostic symbols in the sign column (gutter)
-		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+		local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 		for type, icon in pairs(signs) do
 			local hl = "DiagnosticSign" .. type
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
