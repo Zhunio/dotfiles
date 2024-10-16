@@ -28,6 +28,17 @@ return {
 		end,
 	},
 	{
+		"romgrk/barbar.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		keys = {
+			{ "<leader>h", ":BufferPrevious<CR>" },
+			{ "<leader>l", ":BufferNext<CR>" },
+			{ "<leader><left>", ":BufferMovePrevious<CR>" },
+			{ "<leader><right>", ":BufferMoveNext<CR>" },
+		},
+		opts = {},
+	},
+	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "yavorski/lualine-macro-recording.nvim" },
 		opts = {
