@@ -1,19 +1,17 @@
 return {
 	"hrsh7th/nvim-cmp",
-	event = { "BufReadPre", "BufNewFile" },
+	event = "InsertEnter",
 	dependencies = {
-		"hrsh7th/cmp-buffer",
-		"hrsh7th/cmp-path",
-		"hrsh7th/cmp-nvim-lsp",
-		"saadparwaiz1/cmp_luasnip",
-		"onsails/lspkind.nvim",
-		"L3MON4D3/LuaSnip",
-		"rafamadriz/friendly-snippets",
+		{ "L3MON4D3/LuaSnip" },
+		{ "hrsh7th/cmp-nvim-lsp" },
+		{ "hrsh7th/cmp-path" },
+		{ "hrsh7th/cmp-buffer" },
+		{ "saadparwaiz1/cmp_luasnip" },
+		{ "rafamadriz/friendly-snippets" },
 	},
 	config = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
-		local lspkind = require("lspkind")
 
 		require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -49,30 +47,9 @@ return {
 				{ name = "buffer" },
 				{ name = "luasnip" },
 			}),
-			-- formatting = {
-			-- 	fields = { "kind", "abbr", "menu" },
-			-- 	format = function(entry, vim_item)
-			-- 		vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-			-- 		vim_item.menu = ({})[entry.source.name]
-			--
-			-- 		return vim_item
-			-- 	end,
-			-- },
-			-- formatting = {
-			-- 	fields = { "kind", "abbr", "menu" },
-			-- 	format = lspkind.cmp_format({
-			-- 		mode = "symbol",
-			-- 		maxwidth = 300,
-			-- 		ellipsis_char = "...",
-			-- 	}),
-			-- },
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
 				format = function(entry, vim_item)
-					-- vim_item.menu = ({
-					-- 	nvim_lsp = "",
-					-- 	buffer = "",
-					-- })[entry.source.name]
 					vim_item.kind = ({
 						Text = "󰉿",
 						Method = "󰆧",
@@ -104,18 +81,6 @@ return {
 				end,
 			},
 		})
-
-		-- setup vim-dadbod-completion
-		-- vim.api.nvim_create_autocmd("FileType", {
-		-- 	pattern = { "sql", "mysql", "pslsql" },
-		-- 	callback = function()
-		-- 		cmp.setup.buffer({
-		-- 			sources = {
-		-- 				{ name = "vim-dadbod-completion" },
-		-- 			},
-		-- 		})
-		-- 	end,
-		-- })
 
 		-- Transparent window
 		vim.cmd("highlight Pmenu guibg=NONE")

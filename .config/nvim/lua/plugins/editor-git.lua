@@ -1,11 +1,9 @@
 return {
 	{
-		"sindrets/diffview.nvim",
-		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
-	},
-	{
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPre", "BufNewFile" },
+		dependencies = { "sindrets/diffview.nvim" },
+    --stylua: ignore
     keys = {
       { "gS", function() require('gitsigns').stage_hunk() end },
       { "gU", function() require('gitsigns').undo_stage_hunk() end },
@@ -66,13 +64,17 @@ return {
 	},
 	{
 		"NeogitOrg/neogit",
-    commit = "d02038d7",
+		commit = "d02038d7",
 		cmd = { "Neogit" },
-    keys = {
-      { "gn", function() require('neogit').open() end },
-    },
+		keys = {
+			{
+				"gn",
+				function()
+					require("neogit").open()
+				end,
+			},
+		},
 		dependencies = {
-			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
 		},
 		config = function()

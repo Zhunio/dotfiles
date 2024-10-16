@@ -2,7 +2,6 @@ return {
 	{ "christoomey/vim-tmux-navigator" },
 	{
 		"goolord/alpha-nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			local alpha = require("alpha")
 			local dashboard = require("alpha.themes.startify")
@@ -30,23 +29,15 @@ return {
 	},
 	{
 		"nvim-lualine/lualine.nvim",
-		event = { "BufReadPost", "BufNewFile" },
-		dependencies = {
-			{ "nvim-tree/nvim-web-devicons" },
-			{ "yavorski/lualine-macro-recording.nvim" },
+		dependencies = { "yavorski/lualine-macro-recording.nvim" },
+		opts = {
+			options = {
+				theme = "catppuccin",
+			},
+			sections = {
+				lualine_c = { "macro_recording", "%S" },
+			},
 		},
-		config = function()
-			require("lualine").setup({
-				options = {
-					theme = "catppuccin",
-				},
-				sections = {
-					lualine_c = { "macro_recording", "%S" },
-				},
-			})
-
-			vim.cmd("set cmdheight=1")
-		end,
 	},
 	{
 		"nvim-neo-tree/neo-tree.nvim",
@@ -55,11 +46,6 @@ return {
 		keys = {
 			{ "<leader>ef", ":Neotree reveal=true position=float toggle=true<CR>" },
 			{ "<leader>ee", ":Neotree reveal=true position=left toggle=true<CR>" },
-		},
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons",
-			"MunifTanjim/nui.nvim",
 		},
 	},
 	{
@@ -84,28 +70,6 @@ return {
 		end,
 	},
 	{
-		"romgrk/barbar.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-    -- stylua: ignore
-    keys = {
-			{ "<leader>q", ":BufferClose<CR>" },
-			{ "<leader>h", ":BufferPrevious<CR>" },
-			{ "<leader>l", ":BufferNext<CR>" },
-			{ "<leader><left>", ":BufferMovePrevious<CR>" },
-			{ "<leader><right>", ":BufferMoveNext<CR>" },
-			{ "<leader>bp", ":BufferPick<CR>" },
-			{ "<leader>bx", ":BufferPickDelete<CR>" },
-    },
-		dependencies = {
-			"lewis6991/gitsigns.nvim",
-			"nvim-tree/nvim-web-devicons",
-		},
-		init = function()
-			vim.g.barbar_auto_setup = false
-		end,
-		opts = {},
-	},
-	{
 		"stevearc/conform.nvim",
   -- stylua: ignore
     keys = {
@@ -127,36 +91,24 @@ return {
 		end,
 	},
 	{
-		"echasnovski/mini.notify",
-		event = "VeryLazy",
-		config = function()
-			require("mini.notify").setup({
-				background_colour = "#000000",
-			})
-		end,
-	},
-	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
-		dependencies = { "MunifTanjim/nui.nvim" },
-		config = function()
-			require("noice").setup({
-				presets = {
-					bottom_search = true, -- use a classic bottom cmdline for search
-					long_message_to_split = true, -- long messages will be sent to a split
-					inc_rename = false, -- enables an input dialog for inc-rename.nvim
-					lsp_doc_border = false, -- add a border to hover docs and signature help
-				},
-			})
-		end,
+		opts = {
+			presets = {
+				bottom_search = true, -- use a classic bottom cmdline for search
+				long_message_to_split = true, -- long messages will be sent to a split
+				inc_rename = false, -- enables an input dialog for inc-rename.nvim
+				lsp_doc_border = false, -- add a border to hover docs and signature help
+			},
+		},
 	},
 	{
 		"folke/flash.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-  -- stylua: ignore
-  keys = {
-    { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-  },
+    -- stylua: ignore
+    keys = {
+      { "/" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+    },
 		opts = {
 			modes = {
 				search = { enabled = true, highlight = { backdrop = true } },
@@ -165,13 +117,13 @@ return {
 	},
 	{
 		"numToStr/Comment.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			require("Comment").setup({
-				toggler = { line = "<leader>c" },
-				opleader = { line = "<leader>c" },
-			})
-		end,
+		keys = {
+			{ "<leader>c", mode = { "n", "x", "o" } },
+		},
+		opts = {
+			toggler = { line = "<leader>c" },
+			opleader = { line = "<leader>c" },
+		},
 	},
 	{
 		"windwp/nvim-autopairs",
@@ -206,13 +158,6 @@ return {
 			require("nvim-surround").setup({
 				-- Configuration here, or leave empty to use defaults
 			})
-		end,
-	},
-	{
-		"norcalli/nvim-colorizer.lua",
-		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			require("colorizer").setup()
 		end,
 	},
 	{
