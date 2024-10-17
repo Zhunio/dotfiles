@@ -137,7 +137,7 @@ return {
 	},
 	{
 		"arnamak/stay-centered.nvim",
-    opts = {},
+		opts = {},
 	},
 	{
 		"mistweaverco/kulala.nvim",
