@@ -127,27 +127,6 @@ return {
 		config = true,
 	},
 	{
-		"petertriho/nvim-scrollbar",
-		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			local C = require("catppuccin.palettes").get_palette("mocha")
-
-			require("scrollbar").setup({
-				handle = {
-					color = C.overlay2,
-				},
-				marks = {
-					Search = { color = C.maroon },
-					Error = { color = C.red },
-					Warn = { color = C.yellow },
-					Info = { color = C.blue },
-					Hint = { color = C.lavender },
-					Misc = { color = C.mauve },
-				},
-			})
-		end,
-	},
-	{
 		"kylechui/nvim-surround",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
@@ -157,11 +136,8 @@ return {
 		end,
 	},
 	{
-		"karb94/neoscroll.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			require("neoscroll").setup({})
-		end,
+		"arnamak/stay-centered.nvim",
+    opts = {},
 	},
 	{
 		"mistweaverco/kulala.nvim",
