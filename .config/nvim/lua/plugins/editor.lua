@@ -41,13 +41,9 @@ return {
 	},
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "yavorski/lualine-macro-recording.nvim" },
 		opts = {
 			options = {
 				theme = "catppuccin",
-			},
-			sections = {
-				lualine_c = { "macro_recording", "%S" },
 			},
 		},
 	},
