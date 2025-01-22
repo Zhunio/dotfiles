@@ -62,6 +62,9 @@ return {
 				NeogitDiffContextHighlight = { bg = backgroung },
 				NeogitDiffAddHighlight = { bg = backgroung },
 				NeogitDiffDeleteHighlight = { bg = backgroung },
+				-- Markdown
+				RenderMarkdownCode = { bg = backgroung },
+				RenderMarkdownCodeInline = { bg = backgroung },
 			}
 
 			require("catppuccin").setup({

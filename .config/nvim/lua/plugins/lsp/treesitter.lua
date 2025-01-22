@@ -20,6 +20,11 @@ return {
 			})
 
 			vim.treesitter.language.register("markdown", "octo")
+
+			vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+				pattern = "*.md",
+				command = "TSEnable highlight",
+			})
 		end,
 	},
 }
