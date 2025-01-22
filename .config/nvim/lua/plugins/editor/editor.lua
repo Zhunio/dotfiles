@@ -1,4 +1,12 @@
 return {
+	{
+		"olimorris/persisted.nvim",
+		lazy = false,
+		config = {
+			autostart = true,
+			autoload = true,
+		},
+	},
 	{ "christoomey/vim-tmux-navigator" },
 	{
 		"romgrk/barbar.nvim",
