@@ -4,6 +4,7 @@ return {
 		name = "catppuccin",
 		priority = 1000,
 		config = function()
+			local backgroung = "#011627"
 			local C = require("catppuccin.palettes").get_palette("mocha")
 			local custom_highlights = {
 				-- Default
@@ -50,6 +51,17 @@ return {
 				AlphaGroupTitle = { fg = C.peach },
 				AlphaButton = { fg = C.text },
 				AlphaButtonShortcut = { fg = C.mauve, style = { "bold" } },
+				-- Neogit
+				NeogitDiffHeader = { bg = backgroung },
+				NeogitDiffContext = { bg = backgroung },
+				NeogitDiffAdd = { bg = backgroung },
+				NeogitDiffDelete = { bg = backgroung },
+				NeogitHunkHeader = { bg = backgroung },
+				NeogitActiveItem = { bg = backgroung },
+				NeogitHunkHeaderHighlight = { fg = C.surface0, bg = C.mauve, style = { "bold" } },
+				NeogitDiffContextHighlight = { bg = backgroung },
+				NeogitDiffAddHighlight = { bg = backgroung },
+				NeogitDiffDeleteHighlight = { bg = backgroung },
 			}
 
 			require("catppuccin").setup({
