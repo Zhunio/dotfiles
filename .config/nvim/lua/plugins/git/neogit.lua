@@ -26,6 +26,11 @@ return {
 					staged_diff_split_kind = "auto",
 					spell_check = false,
 				},
+				sections = {
+					recent = {
+						folded = false,
+					},
+				},
 			})
 		end,
 	},
