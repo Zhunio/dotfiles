@@ -3,7 +3,9 @@ return {
 		"olimorris/persisted.nvim",
 		lazy = false,
 		config = function()
-			require("persisted").setup({})
+			require("persisted").setup({
+				autoload = true,
+			})
 		end,
 	},
 	{ "christoomey/vim-tmux-navigator" },
