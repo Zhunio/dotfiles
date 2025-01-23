@@ -2,10 +2,9 @@ return {
 	{
 		"olimorris/persisted.nvim",
 		lazy = false,
-		config = {
-			autostart = true,
-			autoload = true,
-		},
+		config = function()
+			require("persisted").setup({})
+		end,
 	},
 	{ "christoomey/vim-tmux-navigator" },
 	{
