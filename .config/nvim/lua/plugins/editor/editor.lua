@@ -27,6 +27,7 @@ return {
 			})
 		end,
 	},
+	{ "github/copilot.vim" },
 	{ "christoomey/vim-tmux-navigator" },
 	{
 		"romgrk/barbar.nvim",
