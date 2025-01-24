@@ -59,7 +59,7 @@ return {
 		},
 		init = function()
 			local ft = require("Comment.ft")
-      -- set only line comment
+			-- set only line comment
 			ft.set("http", "#%s")
 		end,
 	},
