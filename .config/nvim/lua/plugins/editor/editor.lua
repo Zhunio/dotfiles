@@ -57,6 +57,11 @@ return {
 			toggler = { line = "<leader>c" },
 			opleader = { line = "<leader>c" },
 		},
+		init = function()
+			local ft = require("Comment.ft")
+      -- set only line comment
+			ft.set("http", "#%s")
+		end,
 	},
 	{
 		"kylechui/nvim-surround",
