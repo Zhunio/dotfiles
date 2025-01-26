@@ -27,7 +27,13 @@ return {
 			})
 		end,
 	},
-	{ "github/copilot.vim" },
+	{
+		"github/copilot.vim",
+		init = function()
+			vim.keymap.set("i", "<M-w>", "<Plug>(copilot-accept-word)")
+			vim.keymap.set("i", "<M-e>", "<Plug>(copilot-accept-line)")
+		end,
+	},
 	{ "christoomey/vim-tmux-navigator" },
 	{
 		"romgrk/barbar.nvim",
