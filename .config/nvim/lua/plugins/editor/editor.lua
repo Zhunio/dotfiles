@@ -59,7 +59,7 @@ return {
 	{
 		"arnamak/stay-centered.nvim",
 		opts = {
-			skip_filetypes = { "alpha" },
+			skip_filetypes = { "alpha", "neo-tree", "floggraph" },
 		},
 	},
 	{
