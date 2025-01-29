@@ -1,5 +1,19 @@
 return {
 	{
+		"echasnovski/mini.ai",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("mini.ai").setup({})
+		end,
+	},
+	{
+		"echasnovski/mini.surround",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("mini.surround").setup({})
+		end,
+	},
+	{
 		"github/copilot.vim",
 		init = function()
 			vim.keymap.set("i", "<M-w>", "<Plug>(copilot-accept-word)")
@@ -40,15 +54,6 @@ return {
 			local ft = require("Comment.ft")
 			-- set only line comment
 			ft.set("http", "#%s")
-		end,
-	},
-	{
-		"kylechui/nvim-surround",
-		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			require("nvim-surround").setup({
-				-- Configuration here, or leave empty to use defaults
-			})
 		end,
 	},
 	{
