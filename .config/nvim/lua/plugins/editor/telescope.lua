@@ -9,6 +9,7 @@ return {
       { "<leader>fp", require('telescope.builtin').commands },
       { "<leader>fd", require('telescope.builtin').diagnostics },
       { "<leader>f@", function() require('telescope.builtin').lsp_document_symbols({ symbol_width = 100 }) end },
+      { "<leader>f#", function() require('telescope.builtin').lsp_dynamic_workspace_symbols({ symbol_width = 100 }) end },
       { "<leader>t", require('telescope.builtin').buffers },
       { "<leader>fh", require('telescope.builtin').highlights },
 
