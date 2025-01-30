@@ -47,11 +47,12 @@ return {
 		keys = {
 			{ "<leader>c", mode = { "n", "x", "o" } },
 		},
-		opts = {
-			toggler = { line = "<leader>c" },
-			opleader = { line = "<leader>c" },
-		},
-		init = function()
+		config = function()
+			require("Comment").setup({
+				toggler = { line = "<leader>c" },
+				opleader = { line = "<leader>c" },
+			})
+
 			local ft = require("Comment.ft")
 			-- set only line comment
 			ft.set("http", "#%s")
