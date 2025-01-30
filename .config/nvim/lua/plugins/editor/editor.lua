@@ -15,6 +15,7 @@ return {
 	},
 	{
 		"github/copilot.vim",
+		ft = { "python", "lua", "typescript" },
 		init = function()
 			vim.keymap.set("i", "<M-w>", "<Plug>(copilot-accept-word)")
 			vim.keymap.set("i", "<M-e>", "<Plug>(copilot-accept-line)")
