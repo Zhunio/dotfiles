@@ -16,15 +16,10 @@ return {
 			},
 		})
 
-		local formatters = { "prettier", "stylua" }
-		for _, formatter in ipairs(formatters) do
-			require("mason-registry").get_package(formatter):install()
-		end
-
 		local mason_lspconfig = require("mason-lspconfig")
 		local lspconfig = require("lspconfig")
 
-		local ensure_installed_servers = { "lua_ls", "html", "cssls", "ts_ls", "angularls", "jdtls" }
+		local ensure_installed_servers = { "lua_ls", "html", "cssls", "ts_ls", "angularls" }
 
 		mason_lspconfig.setup({
 			ensure_installed = ensure_installed_servers,
