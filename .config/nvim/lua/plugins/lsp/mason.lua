@@ -16,6 +16,11 @@ return {
 			},
 		})
 
+		local formatters = { "prettier", "stylua" }
+		for _, formatter in ipairs(formatters) do
+			require("mason-registry").get_package(formatter):install()
+		end
+
 		local mason_lspconfig = require("mason-lspconfig")
 		local lspconfig = require("lspconfig")
 
@@ -46,9 +51,9 @@ return {
 					on_attach = on_attach,
 					settings = {
 						Lua = {
-              workspace = {
-                library = { vim.env.VIMRUNTIME }
-              },
+							workspace = {
+								library = { vim.env.VIMRUNTIME },
+							},
 							diagnostics = {
 								globals = { "vim" },
 							},
