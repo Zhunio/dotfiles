@@ -5,11 +5,6 @@ vim.keymap.set("n", "<leader>w", function() require("vscode-neovim").call("workb
 vim.keymap.set("n", "<leader>q", function() require("vscode-neovim").action("workbench.action.closeActiveEditor") end)
 vim.keymap.set("n", "gf", function() require("vscode-neovim").call("editor.action.formatDocument") end)
 vim.keymap.set("n", "gO", function() require("vscode-neovim").call("editor.action.organizeImports") end)
-vim.keymap.set("n", "gw", function()
-	require("vscode-neovim").call("editor.action.organizeImports")
-	require("vscode-neovim").call("editor.action.formatDocument")
-	require("vscode-neovim").call("workbench.action.files.save")
-end)
 -- indentation
 vim.keymap.set({ "n", "x" }, ">", function() require("vscode-neovim").action("editor.action.indentLines") end)
 vim.keymap.set({ "n", "x" }, "<", function() require("vscode-neovim").action("editor.action.outdentLines") end)

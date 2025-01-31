@@ -17,9 +17,6 @@ local lazy = require("lazy")
 
 if vim.g.vscode then
 	require("keymaps-vscode")
-	lazy.setup({
-		{ import = "plugins.vscode" },
-	})
 else
 	require("keymaps")
 	lazy.setup({
