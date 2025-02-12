@@ -7,5 +7,12 @@ return {
 			{ "<leader>ef", ":Neotree reveal=true position=float toggle=true<CR>" },
 			{ "<leader>ee", ":Neotree reveal=true position=left toggle=true<CR>" },
 		},
+		opts = {
+			filesystem = {
+				filtered_items = {
+					visible = true,
+				},
+			},
+		},
 	},
 }
