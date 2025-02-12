@@ -62,7 +62,13 @@ return {
 			{ "nvim-lua/plenary.nvim", branch = "master" },
 		},
 		build = "make tiktoken", -- Only on MacOS or Linux
-		opts = {},
+		opts = {
+			mappings = {
+				complete = {
+					insert = "<C-p>",
+				},
+			},
+		},
 	},
 	{ "christoomey/vim-tmux-navigator" },
 	{
