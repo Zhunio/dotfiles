@@ -67,6 +67,10 @@ return {
 				complete = {
 					insert = "<C-p>",
 				},
+				reset = {
+					normal = "<C-r>",
+					insert = "<C-r>",
+				},
 			},
 		},
 	},
@@ -111,7 +115,7 @@ return {
 		"arnamak/stay-centered.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {
-			skip_filetypes = { "alpha", "neo-tree", "floggraph" },
+			skip_filetypes = { "alpha", "neo-tree", "floggraph", "copilot-chat" },
 		},
 	},
 	{
