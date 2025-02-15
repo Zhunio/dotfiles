@@ -63,6 +63,8 @@ return {
 		},
 		build = "make tiktoken", -- Only on MacOS or Linux
 		opts = {
+			highlight_headers = false,
+			error_header = "> [!ERROR] Error",
 			mappings = {
 				complete = {
 					insert = "<C-p>",

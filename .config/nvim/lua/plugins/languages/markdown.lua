@@ -1,7 +1,7 @@
 return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
-		ft = { "markdown", "octo" },
+		ft = { "markdown", "octo", 'copilot-chat' },
 		opts = {
 			code = {
 				width = "block",
