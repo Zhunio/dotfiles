@@ -8,8 +8,7 @@ return {
 				enabled = false,
 			},
 			code = {
-				width = "block",
-				left_pad = 4,
+				left_pad = 2,
 			},
 		},
 	},
