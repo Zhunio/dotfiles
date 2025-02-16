@@ -18,7 +18,6 @@ return {
 				-- bash
 				"bashls",
 				"shfmt",
-				"shellcheck",
 
 				-- lua
 				"lua_ls",
@@ -43,7 +42,7 @@ return {
 				-- java
 				"java-test",
 				"java-debug-adapter",
-				"lombok-nightly",
+				-- "lombok-nightly",
 				"jdtls",
 				"google-java-format",
 
