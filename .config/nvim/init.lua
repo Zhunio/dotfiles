@@ -31,6 +31,7 @@ else
 			{ import = "plugins.git" },
 			{ import = "plugins.languages" },
 			{ import = "plugins.lsp" },
+			{ import = "plugins.testing" },
 			{ import = "plugins.theming" },
 		},
 	})
