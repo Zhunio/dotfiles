@@ -10,7 +10,6 @@ return {
     -- stylua: ignore
 		keys = {
 			-- Buffers & Files
-			{ "<leader>t", function () require('fzf-lua').buffers({ winopts = { preview = Preview.short } }) end },
 			{ "<leader>ff", function() require('fzf-lua').files() end },
 			{ "<leader>fh", function() require("fzf-lua").highlights({ winopts = { preview = Preview.short } }) end },
 			{ "<leader>fq", function() require("fzf-lua").quickfix({ winopts = { preview = Preview.short } }) end },
