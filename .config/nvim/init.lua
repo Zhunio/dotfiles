@@ -26,6 +26,7 @@ else
 		},
 		spec = {
 			{ import = "plugins" },
+			{ import = "plugins.debugging" },
 			{ import = "plugins.editor" },
 			{ import = "plugins.git" },
 			{ import = "plugins.languages" },

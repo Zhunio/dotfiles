@@ -63,12 +63,12 @@ return {
 
 			local keymapOptions = { noremap = true, silent = true }
       --stylua: ignore
-      vim.keymap.set('n', '<leader>dd', function() diff_branches() end, keymapOptions)
+      -- vim.keymap.set('n', '<leader>dd', function() diff_branches() end, keymapOptions)
       --stylua: ignore
-      vim.keymap.set('n', '<leader>ds', function() diff_branches({ is_simmetric = true}) end, keymapOptions)
+      -- vim.keymap.set('n', '<leader>ds', function() diff_branches({ is_simmetric = true}) end, keymapOptions)
       --stylua: ignore
-      vim.keymap.set('n', '<leader>dd', ':DiffviewFileHistory<CR>', keymapOptions)
-			vim.keymap.set("n", "<leader>df", ":DiffviewFileHistory %<CR>", keymapOptions)
+   --    vim.keymap.set('n', '<leader>dd', ':DiffviewFileHistory<CR>', keymapOptions)
+			-- vim.keymap.set("n", "<leader>df", ":DiffviewFileHistory %<CR>", keymapOptions)
 
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = "Diffview*",
