@@ -29,6 +29,7 @@ return {
 				"ts_ls",
 				-- sass
 				"some-sass-language-server",
+        "js-debug-adapter",
 
 				-- markdown
 				"marksman",
