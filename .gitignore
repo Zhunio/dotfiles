@@ -9,3 +9,5 @@
 .config/nvim/lua/.luarc.json
 # brew
 Brewfile.lock.json
+# btop
+.config/btop/*.log
