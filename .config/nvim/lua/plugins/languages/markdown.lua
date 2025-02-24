@@ -15,6 +15,10 @@ return {
 				render_modes = true,
 				sign = { enabled = false },
 				code = { left_pad = 2 },
+				checkbox = {
+					unchecked = { icon = "󰄯 " },
+					checked = { icon = "󰄳 " },
+				},
 			})
 		end,
 	},
