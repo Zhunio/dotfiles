@@ -1,6 +1,9 @@
 return {
 	"mfussenegger/nvim-jdtls",
 	ft = "java",
+	dependencies = {
+		{ "microsoft/vscode-java-test", build = "npm install && npm run build-plugin" },
+	},
 	-- "nvim-java/nvim-java",
 	-- ft = "java",
 	-- dependencies = {

@@ -2,6 +2,12 @@
 local jdtls_path = require("mason-registry").get_package("jdtls"):get_install_path()
 local java_debug_path = require("mason-registry").get_package("java-debug-adapter"):get_install_path()
 
+local bundles = {
+	vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar"),
+}
+
+vim.list_extend(bundles, vim.split(vim.fn.glob(vim.fn.stdpath("data") .. "/lazy/vscode-java-test/server/*.jar"), "\n"))
+
 local config = {
 	-- The command that starts the language server
 	-- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
@@ -86,9 +92,7 @@ local config = {
 	--
 	-- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
 	init_options = {
-		bundles = {
-			vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar"),
-		},
+		bundles = bundles,
 	},
 }
 -- This starts a new client & server,
