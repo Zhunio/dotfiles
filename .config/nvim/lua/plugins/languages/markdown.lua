@@ -18,6 +18,9 @@ return {
 				checkbox = {
 					unchecked = { icon = "󰄯 " },
 					checked = { icon = "󰄳 " },
+          custom = {
+            important = { raw = "[~]", rendered = '󰥔  ~', highlight = 'DiagnosticWarn', scope_highlight = '@markup.strong' }
+          }
 				},
 			})
 		end,
