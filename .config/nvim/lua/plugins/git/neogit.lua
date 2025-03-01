@@ -15,6 +15,7 @@ return {
 			local neogit = require("neogit")
 
 			neogit.setup({
+				kind = "auto",
 				graph_style = "unicode",
 				signs = {
 					hunk = { "", "" },

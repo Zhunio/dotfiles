@@ -3,7 +3,7 @@ return {
 		"rbong/vim-flog",
 		cmd = { "Flog", "Flogsplit", "Floggit" },
 		keys = {
-			{ "gl", ":Flog<CR>" },
+			{ "gl", ":Flog -all -auto-update -sort=date<CR>" },
 		},
 		dependencies = {
 			"tpope/vim-fugitive",
@@ -14,7 +14,7 @@ return {
 			vim.g.flog_enable_dynamic_branch_hl = 1
 			vim.g.flog_default_opts = {
 				["date"] = "short",
-				["format"] = "%h %d %s {%an} (%ar)",
+				["format"] = "%d %h %ar %s %an",
 			}
 
 			local function diff_open_commit(commit)

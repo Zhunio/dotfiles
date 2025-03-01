@@ -65,6 +65,16 @@ return {
 				-- Markdown
 				RenderMarkdownCode = { bg = backgroung },
 				RenderMarkdownCodeInline = { bg = backgroung },
+				-- VimFlog
+				flogHash = { fg = C.mauve },
+				flogDate = { fg = C.maroon },
+				flogAuthor = { fg = C.peach },
+				flogRef = { fg = "Orange1" },
+				flogRefRemote = { link = "flogRef" },
+				flogRefTag = { link = "flogRef" },
+				flogRefHead = { fg = "Green1" },
+				flogRefHeadArrow = { link = "flogRefHead" },
+				flogRefHeadBranch = { link = "flogRefHead" },
 			}
 
 			require("catppuccin").setup({
