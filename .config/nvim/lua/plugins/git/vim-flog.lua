@@ -17,17 +17,21 @@ return {
 				["format"] = "%d %h %ar %s %an",
 			}
 
-			local function diff_open_commit(commit)
-				local cmd = ":DiffviewOpen " .. commit .. "^!"
-
-				vim.cmd(cmd)
-				print(cmd)
+			local function commit_under_cursor()
+				vim.cmd('call flog#floggraph#yank#Hashes(v:register, ".", v:count1)')
+				local commit = vim.fn.getreg("+")
+				return commit
 			end
 
 			local function diff_commit_under_cursor()
-				vim.cmd('call flog#floggraph#yank#Hashes(v:register, ".", v:count1)')
-				local commit = vim.fn.getreg("+")
-				diff_open_commit(commit)
+				local commit = commit_under_cursor()
+				local cmd = ":DiffviewOpen " .. commit .. "^!"
+				vim.cmd(cmd)
+			end
+
+			local function cherrypick_commit_under_cursor()
+				local commit = commit_under_cursor()
+        require('flog').exec('Git cherry-pick ' .. commit)
 			end
 
 			local function set_flog_keymaps()
@@ -35,6 +39,7 @@ return {
 
 				vim.keymap.set("n", "q", ":quit<CR>", keymapOptions)
 				vim.keymap.set("n", "<CR>", diff_commit_under_cursor, keymapOptions)
+				vim.keymap.set("n", "cp", cherrypick_commit_under_cursor, keymapOptions)
 			end
 
 			vim.api.nvim_create_autocmd("FileType", {
