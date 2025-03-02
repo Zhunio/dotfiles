@@ -18,7 +18,7 @@ return {
 			"antoinemadec/FixCursorHold.nvim",
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-neotest/neotest-jest",
-			"Zhunio/neotest-karma",
+			-- "Zhunio/neotest-karma",
 		},
 		config = function()
 			require("neotest").setup({
@@ -33,7 +33,7 @@ return {
 							return vim.fn.getcwd()
 						end,
 					}),
-					require("neotest-karma")({}),
+					-- require("neotest-karma")({}),
 				},
 			})
 		end,
