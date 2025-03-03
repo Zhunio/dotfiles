@@ -4,7 +4,7 @@ return {
 		cmd = { "Neogit" },
     --stylua: ignore
 		keys = {
-			{ "gn", function() require("neogit").open() end },
+			{ "gn", function() require("neogit").open({ kind = vim.bo.filetype == "alpha" and "tab" or "auto" }) end },
 		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -15,7 +15,6 @@ return {
 			local neogit = require("neogit")
 
 			neogit.setup({
-				kind = "auto",
 				graph_style = "unicode",
 				signs = {
 					hunk = { "", "" },
