@@ -3,7 +3,7 @@ return {
 		"rbong/vim-flog",
 		cmd = { "Flog", "Flogsplit", "Floggit" },
 		keys = {
-			{ "gl", ":Flog -all -auto-update -sort=date<CR>" },
+			{ "gl", ":Flog -auto-update -sort=date<CR>" },
 		},
 		dependencies = {
 			"tpope/vim-fugitive",
