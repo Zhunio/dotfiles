@@ -1,4 +1,5 @@
 return {
+	{ "christoomey/vim-tmux-navigator" },
 	{
 		"echasnovski/mini.nvim",
 		config = function()
@@ -12,7 +13,6 @@ return {
 			vim.keymap.set("n", "[t", ":tabprevious<CR>")
 		end,
 	},
-	{ "christoomey/vim-tmux-navigator" },
 	{
 		"romgrk/barbar.nvim",
 		event = { "BufReadPre", "BufNewFile" },
