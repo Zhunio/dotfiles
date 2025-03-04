@@ -1,16 +1,10 @@
 return {
 	{
-		"echasnovski/mini.ai",
-		event = { "BufReadPre", "BufNewFile" },
+		"echasnovski/mini.nvim",
 		config = function()
 			require("mini.ai").setup({})
-		end,
-	},
-	{
-		"echasnovski/mini.surround",
-		event = { "BufReadPre", "BufNewFile" },
-		config = function()
 			require("mini.surround").setup({})
+			require("mini.bracketed").setup({})
 		end,
 	},
 	{ "christoomey/vim-tmux-navigator" },
