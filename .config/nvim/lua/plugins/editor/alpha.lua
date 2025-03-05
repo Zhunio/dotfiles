@@ -25,6 +25,8 @@ return {
 				theta.buttons.val = {
 					{ type = "text", val = "Quick links", opts = { hl = "AlphaGroupTitle", position = "center" } },
 					{ type = "padding", val = 1 },
+					dashboard.button("l", "󰒲  lazy", ":Lazy<CR>"),
+					dashboard.button("m", "󱥒  mason", ":Mason<CR>"),
 					dashboard.button("u", "  update", ":Lazy sync<CR>"),
 					dashboard.button("q", "  quit", ":qa<CR>"),
 				}
@@ -38,13 +40,15 @@ return {
 				local header_height = #theta.header.val
 				local header_padding = slices * 25 - (header_height / 2)
 
-				local section_mru_height = 10
-				local section_mru_padding = slices * 70 - header_padding - header_height - (section_mru_height / 2)
+				-- local section_mru_height = 10
+				-- local section_mru_padding = slices * 70 - header_padding - header_height - (section_mru_height / 2)
 
-				local buttons_padding = 1
+				local buttons_height = #theta.buttons.val
+				local buttons_padding = slices * 70 - header_padding - header_height - (buttons_height / 2)
 
 				theta.header_padding.val = math.floor(header_padding)
-				theta.section_mru_padding.val = math.floor(section_mru_padding)
+				theta.section_mru_padding.val = {}
+				theta.section_mru.val = {}
 				theta.buttons_padding.val = math.floor(buttons_padding)
 			end
 
