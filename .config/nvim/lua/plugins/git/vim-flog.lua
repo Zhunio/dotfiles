@@ -14,7 +14,7 @@ return {
 			vim.g.flog_enable_dynamic_branch_hl = 1
 			vim.g.flog_default_opts = {
 				["date"] = "short",
-				["format"] = "%d %h %ar %s %an",
+				["format"] = "%h %d %s %ar %an",
 			}
 
 			local function commit_under_cursor()

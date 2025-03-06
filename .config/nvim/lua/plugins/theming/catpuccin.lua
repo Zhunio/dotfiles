@@ -67,8 +67,8 @@ return {
 				RenderMarkdownCodeInline = { bg = backgroung },
 				-- VimFlog
 				flogHash = { fg = C.mauve },
-				flogDate = { fg = C.maroon },
-				flogAuthor = { fg = C.peach },
+				flogDate = { fg = C.peach },
+				flogAuthor = { fg = C.maroon },
 				flogRef = { fg = "Orange1" },
 				flogRefRemote = { link = "flogRef" },
 				flogRefTag = { link = "flogRef" },
