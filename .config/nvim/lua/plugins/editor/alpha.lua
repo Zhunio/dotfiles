@@ -28,6 +28,7 @@ return {
 					dashboard.button("l", "󰒲  lazy", ":Lazy<CR>"),
 					dashboard.button("m", "󱥒  mason", ":Mason<CR>"),
 					dashboard.button("u", "  update", ":Lazy sync<CR>"),
+					dashboard.button("a", "󰀫  toggle", ":Alpha<CR>"),
 					dashboard.button("q", "  quit", ":qa<CR>"),
 				}
 			end
