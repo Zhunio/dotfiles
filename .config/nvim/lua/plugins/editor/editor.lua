@@ -7,6 +7,7 @@ return {
 			require("mini.surround").setup({})
 			require("mini.bracketed").setup({
 				treesitter = { suffix = "", options = {} },
+				comment = { suffix = "", options = {} },
 			})
 
 			vim.keymap.set("n", "]t", ":tabnext<CR>")
