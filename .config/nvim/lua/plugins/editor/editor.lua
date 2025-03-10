@@ -1,14 +1,6 @@
 return {
 	{ "christoomey/vim-tmux-navigator" },
 	{
-		"nvim-lualine/lualine.nvim",
-		opts = {
-			options = {
-				theme = "catppuccin",
-			},
-		},
-	},
-	{
 		"numToStr/Comment.nvim",
 		keys = {
 			{ "<leader>c", mode = { "n", "x", "o" } },
