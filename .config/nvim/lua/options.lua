@@ -11,6 +11,7 @@ vim.opt.signcolumn = "yes"
 if vim.g.vscode then
 -- no special options for now
 else
+	vim.opt.cursorline = true
 	vim.opt.relativenumber = true
 	vim.opt.expandtab = true
 	vim.opt.tabstop = 2
