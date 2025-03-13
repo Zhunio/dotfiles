@@ -11,5 +11,6 @@ return {
 		bg_x_padding = 50,
 		bg_y_padding = 50,
 		bg_padding = nil,
+		watermark = "",
 	},
 }
