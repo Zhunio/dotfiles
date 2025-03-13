@@ -5,7 +5,7 @@ font-thicken = true
 shell-integration-features = no-cursor
 cursor-style = block
 cursor-style-blink = false
-adjust-underline-position = 10
+adjust-underline-position = 16
 adjust-underline-thickness = 1
 
 background = 011627 
