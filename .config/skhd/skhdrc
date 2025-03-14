@@ -1,5 +1,5 @@
 # create/destroy windows
-alt - n : yabai -m space --create && \
+shift + alt - n : yabai -m space --create && \
   index="$(yabai -m query --spaces --display | jq '.[-1]'.index)" && \
   yabai -m window --space "${index}" && \
   yabai -m space --focus "${index}"
