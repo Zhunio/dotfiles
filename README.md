@@ -12,7 +12,7 @@
 - Install [raycast](https://www.raycast.com/)
 - Install [shottr](https://shottr.cc/)
 - Install [MesloLGL Nerd Font](https://www.nerdfonts.com/)
-- [Connect to GitHub over SSH](./connect-to-github-over-ssh.md)
+- [Connect to GitHub over SSH](https://github.com/Zhunio/notes/blob/main/git/connect-to-github-over-ssh.md)
 
 ## Clone the repo
 
