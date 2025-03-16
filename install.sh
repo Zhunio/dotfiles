@@ -1,13 +1,5 @@
 #!/bin/bash
 
-# Clone https://github.com/Zhunio/dotfiles repository
-if [[ -d $HOME/dotfiles ]]; then
-  echo "Cloning http://github.com/Zhunio/dotfiles (skipped) since it's already cloned"
-else
-  echo "Cloning http://github.com/Zhunio/dotfiles..."
-  git clone https://github.com/Zhunio/dotfiles $HOME/dotfiles
-fi
-
 # save current working directory
 cwd=$(pwd)
 

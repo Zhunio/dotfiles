@@ -14,10 +14,16 @@
 - Install [MesloLGL Nerd Font](https://www.nerdfonts.com/)
 - [Connect to GitHub over SSH](./connect-to-github-over-ssh.md)
 
+## Clone the repo
+
+```bash
+git clone https://github.com/Zhunio/dotfiles ~/dotfiles
+```
+
 ## Install
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/main/install.sh)"
+/bin/bash ~/dotfiles/install.sh
 ```
 
 ## Uninstall
