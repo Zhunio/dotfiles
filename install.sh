@@ -55,6 +55,14 @@ if [[ $yesNo =~ ^[Yy]$ ]]; then
     echo 'Installing sdkman...'
     curl -s "https://get.sdkman.io" | bash
   fi
+
+  # Source sdkman so we can access `sdk` command
+  source $HOME/.sdkman/bin/sdkman-init.sh
+
+  sdk install java 17.0.12-oracle
+  sdk install java 21.0.6-oracle
+
+  sdk default java 21.0.6-oracle
 fi
 
 # Source dotfiles
