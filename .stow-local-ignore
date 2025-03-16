@@ -11,3 +11,5 @@ themes
 
 install.sh
 uninstall.sh
+
+connect-to-github-over-ssh.md
