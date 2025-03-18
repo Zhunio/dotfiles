@@ -29,7 +29,7 @@ return {
 				"ts_ls",
 				-- sass
 				"some-sass-language-server",
-        "js-debug-adapter",
+				"js-debug-adapter",
 
 				-- markdown
 				"marksman",
@@ -80,6 +80,16 @@ return {
 						on_attach = on_attach,
 					})
 				end,
+				["ts_ls"] = function()
+					local angular_root = require("lspconfig.util").root_pattern("angular.json")(vim.fn.getcwd())
+					if angular_root then
+						return
+					end
+
+					require("lspconfig").ts_ls.setup({
+						on_attach = on_attach,
+					})
+				end,
 				["angularls"] = function()
 					local angularls_path =
 						require("mason-registry").get_package("angular-language-server"):get_install_path()
@@ -95,6 +105,7 @@ return {
 
 					require("lspconfig").angularls.setup({
 						cmd = cmd,
+						on_attach = on_attach,
 						on_new_config = function(new_config, new_root_dir)
 							new_config.cmd = cmd
 						end,
