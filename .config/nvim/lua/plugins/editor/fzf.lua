@@ -7,6 +7,7 @@ return {
 	{
 		"ibhagwan/fzf-lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		cmd = { "FzfLua" },
     -- stylua: ignore
 		keys = {
 			-- Buffers & Files
