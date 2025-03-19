@@ -51,8 +51,12 @@ if [[ $yesNo =~ ^[Yy]$ ]]; then
   # Source sdkman so we can access `sdk` command
   source $HOME/.sdkman/bin/sdkman-init.sh
 
+  # Istall Java versions: 17, 21
   sdk install java 17.0.12-oracle
   sdk install java 21.0.6-oracle
+
+  # Install maven
+  sdk install maven 3.9.9
 
   sdk default java 21.0.6-oracle
 fi
