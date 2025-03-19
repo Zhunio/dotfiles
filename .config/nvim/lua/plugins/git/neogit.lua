@@ -28,7 +28,7 @@ return {
 				},
 				sections = {
 					recent = {
-						folded = false,
+						hidden = true,
 					},
 				},
 			})
