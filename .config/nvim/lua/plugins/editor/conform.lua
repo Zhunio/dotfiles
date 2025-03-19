@@ -21,6 +21,7 @@ return {
 					bash = { "shfmt" },
 					zsh = { "shfmt" },
 					sql = { "sqlfmt" },
+					python = { "black" },
 				},
 			})
 		end,
