@@ -22,6 +22,7 @@ return {
 					zsh = { "shfmt" },
 					sql = { "sqlfmt" },
 					python = { "black" },
+					terraform = { "terraform_fmt" },
 				},
 			})
 		end,
