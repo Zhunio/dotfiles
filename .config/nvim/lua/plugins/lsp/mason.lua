@@ -56,6 +56,9 @@ return {
 				"docker-compose-language-service",
 				"dockerfile-language-server",
 
+				-- terraform
+				"terraform-ls",
+
 				-- SQL
 				"sqlls",
 				"sqlfmt",
@@ -78,6 +81,13 @@ return {
 				function(server_name)
 					require("lspconfig")[server_name].setup({
 						on_attach = on_attach,
+					})
+				end,
+				["terraformls"] = function()
+					require("lspconfig").terraformls.setup({
+						on_attach = on_attach,
+						cmd = { "terraform-ls", "serve" },
+						filetypes = { "terraform", "terraform-vars" },
 					})
 				end,
 				["ts_ls"] = function()
