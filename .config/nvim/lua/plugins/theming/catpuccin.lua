@@ -47,6 +47,8 @@ return {
 				-- YAML
 				yamlBlockMappingKey = { fg = C.blue },
 				yamlPlainScalar = { fg = C.green },
+				-- Terraform
+				["@lsp.type.type.terraform"] = { link = "Keyword" },
 				-- Alpha
 				AlphaHeader = { fg = C.peach },
 				AlphaGroupTitle = { fg = C.peach },
