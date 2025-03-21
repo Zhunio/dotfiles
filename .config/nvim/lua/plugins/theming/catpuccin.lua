@@ -17,6 +17,7 @@ return {
 				-- lsp
 				["@property"] = { fg = C.text },
 				["@module"] = { fg = C.yellow },
+				["@variable.member"] = { fg = C.text },
 				["@lsp.type.interface"] = { fg = C.yellow },
 				-- Typescript
 				typescriptTry = { link = "Exception" },
