@@ -49,6 +49,7 @@ return {
 				yamlPlainScalar = { fg = C.green },
 				-- Terraform
 				["@lsp.type.type.terraform"] = { link = "Keyword" },
+        ['@variable.member.terraform'] = { fg = C.blue },
 				-- Alpha
 				AlphaHeader = { fg = C.peach },
 				AlphaGroupTitle = { fg = C.peach },
