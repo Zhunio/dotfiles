@@ -90,16 +90,6 @@ return {
 						filetypes = { "terraform", "terraform-vars" },
 					})
 				end,
-				["ts_ls"] = function()
-					local angular_root = require("lspconfig.util").root_pattern("angular.json")(vim.fn.getcwd())
-					if angular_root then
-						return
-					end
-
-					require("lspconfig").ts_ls.setup({
-						on_attach = on_attach,
-					})
-				end,
 				["angularls"] = function()
 					local angularls_path =
 						require("mason-registry").get_package("angular-language-server"):get_install_path()
