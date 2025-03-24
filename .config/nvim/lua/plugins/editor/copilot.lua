@@ -18,8 +18,8 @@ return {
 		end,
     --stylua: ignore
 		keys = {
-			{ "<leader>gg", function() require("CopilotChat").open({ window = { layout = "vertical" } }) end },
-			{ "<leader>gv", function() require("CopilotChat").open({ window = { layout = "horizontal" } }) end },
+			{ "<leader>gg", function() require("CopilotChat").open({ window = { layout = "vertical" } }) end, mode = { "n", "v" } },
+			{ "<leader>gv", function() require("CopilotChat").open({ window = { layout = "horizontal" } }) end, mode = { "n", "v" } },
 			{ "<leader>gx", ":CopilotChatClose<CR>", mode = { "n", "v" } },
 			{ "<leader>gs", ":CopilotChatStop<CR>", mode = { "n", "v" } },
 			{ "<leader>gr", ":CopilotChatReset<CR>", mode = { "n", "v" } },
