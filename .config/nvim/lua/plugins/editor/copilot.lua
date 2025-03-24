@@ -16,21 +16,10 @@ return {
 		cond = function()
 			return vim.fn.executable("gh") == 1
 		end,
+    --stylua: ignore
 		keys = {
-			{
-				"<leader>gg",
-				function()
-					local current_win = vim.api.nvim_get_current_win()
-					local win_width = vim.api.nvim_win_get_width(current_win)
-
-					if win_width < 160 then
-						require("CopilotChat").open({ window = { layout = "horizontal" } })
-					else
-						require("CopilotChat").open({ window = { layout = "vertical" } })
-					end
-				end,
-				mode = { "n", "v" },
-			},
+			{ "<leader>gg", function() require("CopilotChat").open({ window = { layout = "vertical" } }) end },
+			{ "<leader>gv", function() require("CopilotChat").open({ window = { layout = "horizontal" } }) end },
 			{ "<leader>gx", ":CopilotChatClose<CR>", mode = { "n", "v" } },
 			{ "<leader>gs", ":CopilotChatStop<CR>", mode = { "n", "v" } },
 			{ "<leader>gr", ":CopilotChatReset<CR>", mode = { "n", "v" } },
