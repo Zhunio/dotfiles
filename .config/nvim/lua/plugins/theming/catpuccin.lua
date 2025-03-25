@@ -55,6 +55,7 @@ return {
 				typescriptPredefinedType = { link = "Keyword" },
 				typescriptOperator = { link = "Keyword" },
 				typescriptEnumKeyword = { link = "Keyword" },
+				typescriptMethodAccessor = { link = "Keyword" },
 				["@lsp.type.member.typescript"] = { link = "Function" },
 				-- HTML
 				htmlTag = { fg = C.blue },
