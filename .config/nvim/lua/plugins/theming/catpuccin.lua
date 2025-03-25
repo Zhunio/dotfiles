@@ -26,6 +26,7 @@ return {
 				typescriptVariable = { link = "Keyword" },
 				typescriptPredefinedType = { link = "Keyword" },
 				typescriptOperator = { link = "Keyword" },
+				typescriptEnumKeyword = { link = "Keyword" },
 				["@lsp.type.member.typescript"] = { link = "Function" },
 				-- HTML
 				htmlTag = { fg = C.blue },
@@ -49,7 +50,9 @@ return {
 				yamlPlainScalar = { fg = C.green },
 				-- Terraform
 				["@lsp.type.type.terraform"] = { link = "Keyword" },
-        ['@variable.member.terraform'] = { fg = C.blue },
+				["@lsp.type.parameter.terraform"] = { fg = C.text },
+				["@lsp.type.enumMember.terraform"] = { fg = C.red },
+				["@variable.member.terraform"] = { fg = C.teal },
 				-- Alpha
 				AlphaHeader = { fg = C.peach },
 				AlphaGroupTitle = { fg = C.peach },
