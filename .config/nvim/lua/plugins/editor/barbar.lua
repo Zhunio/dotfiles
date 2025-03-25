@@ -17,6 +17,7 @@ return {
 			sidebar_filetypes = {
 				["neo-tree"] = true,
 			},
+      maximum_padding = 1,
 		},
 	},
 }
