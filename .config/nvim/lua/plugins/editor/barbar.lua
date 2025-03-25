@@ -9,6 +9,14 @@ return {
 			{ "<leader><left>", ":BufferMovePrevious<CR>" },
 			{ "<leader><right>", ":BufferMoveNext<CR>" },
 		},
-		opts = {},
+		opts = {
+			icons = {
+				button = false,
+				separator_at_end = false,
+			},
+			sidebar_filetypes = {
+				["neo-tree"] = true,
+			},
+		},
 	},
 }
