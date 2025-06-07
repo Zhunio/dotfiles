@@ -1,6 +1,6 @@
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
-local jdtls_path = require("mason-registry").get_package("jdtls"):get_install_path()
-local java_debug_path = require("mason-registry").get_package("java-debug-adapter"):get_install_path()
+local jdtls_path = vim.fn.expand("$MASON/packages/jdtls")
+local java_debug_path = vim.fn.expand("$MASON/packages/java-debug-adapter")
 
 local bundles = {
 	vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar"),
