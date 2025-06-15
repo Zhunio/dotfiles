@@ -1,5 +1,5 @@
 return {
-	"3rd/image.nvim",
-	opts = {},
-	lazy = true,
+	-- "3rd/image.nvim",
+	-- opts = {},
+	-- lazy = true,
 }
