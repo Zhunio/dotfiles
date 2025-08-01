@@ -105,7 +105,7 @@ return {
 			end
 
 			local function angularls()
-				local angularls_path = vim.fn.expand("$HOME") .. "$MASON/packages/angular-language-server"
+				local angularls_path = vim.fn.stdpath("data") .. "/mason/packages/angular-language-server"
 				local cmd = {
 					"ngserver",
 					"--stdio",
