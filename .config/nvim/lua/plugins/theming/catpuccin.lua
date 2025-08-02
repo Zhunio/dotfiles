@@ -42,6 +42,7 @@ return {
 				Exception = { fg = C.mauve },
 				Structure = { fg = C.mauve },
 				Special = { fg = C.mauve },
+				NormalFloat = { bg = backgroung },
 				-- lsp
 				["@property"] = { fg = C.text },
 				["@module"] = { fg = C.yellow },
