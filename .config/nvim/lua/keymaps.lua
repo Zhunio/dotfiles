@@ -1,3 +1,7 @@
+-- Escape insert mode with 'jj' or 'jk'
+vim.keymap.set('i', 'jj', '<Esc>')
+vim.keymap.set('i', 'jk', '<Esc>')
+
 -- file
 vim.keymap.set("n", "<leader>w", ":w<CR>")
 
