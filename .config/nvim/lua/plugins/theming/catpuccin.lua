@@ -111,6 +111,8 @@ return {
 				flogRefHead = { fg = "Green1" },
 				flogRefHeadArrow = { link = "flogRefHead" },
 				flogRefHeadBranch = { link = "flogRefHead" },
+				-- FzfLua
+				FzfLuaNormal = { bg = backgroung },
 			}
 
 			require("catppuccin").setup({
