@@ -7,7 +7,7 @@ return {
 			{ "<leader>ef", ":Neotree reveal=true position=float toggle=true<CR>" },
 			{ "<leader>ee", ":Neotree reveal=true position=left toggle=true<CR>" },
 		},
-		-- dependencies = { { "3rd/image.nvim", lazy = true } },
+		dependencies = { { "3rd/image.nvim", lazy = true } },
 		opts = {
 			filesystem = {
 				filtered_items = {
@@ -16,7 +16,7 @@ return {
 			},
 			window = {
 				mappings = {
-					-- ["P"] = { "toggle_preview", config = { use_image_nvim = true } },
+					["P"] = { "toggle_preview", config = { use_image_nvim = true } }, -- Add this mapping so that pressing 'P' toggles the preview using image.nvim
 				},
 			},
 		},
