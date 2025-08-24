@@ -5,6 +5,7 @@ return {
 		opts = {
 			backend = "kitty", -- Use 'kitty' backend for image display
 			processor = "magick_cli", -- Use ImageMagick CLI for image processing
+			tmux_show_only_in_active_window = true,
 		},
 	},
 }
