@@ -9,6 +9,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-vim.diagnostic.config({
-	virtual_text = true,
-})
