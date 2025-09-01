@@ -55,8 +55,8 @@ if [[ $yesNo =~ ^[Yy]$ ]]; then
   sdk install java 17.0.12-oracle
   sdk install java 21.0.6-oracle
 
-  # Install maven
-  sdk install maven 3.9.9
+  sdk install maven 3.9.10
+  sdk install gradle 9.0.0
 
   sdk default java 21.0.6-oracle
 fi
