@@ -1,11 +1,5 @@
-require("config.options")
-require("config.lazy")
-
-vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highligh when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-})
-
+require("core.options")
+require("core.lazy")
+require("core.autocmds")
+require("core.diagnostics")
+require("core.keymaps")

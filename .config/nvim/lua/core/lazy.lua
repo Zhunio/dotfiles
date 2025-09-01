@@ -14,10 +14,7 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-if vim.g.vscode then
-	require("config.keymaps-vscode")
-else
-	require("config.keymaps")
+if not vim.g.vscode then
 	require("lazy").setup({
 		change_detection = {
 			enabled = true,
