@@ -32,7 +32,7 @@ return {
 				-- "java-test",
 				-- "java-debug-adapter",
 				-- "lombok-nightly",
-				-- "jdtls",
+				"jdtls",
 				-- "google-java-format",
 
 				-- python

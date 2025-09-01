@@ -1,4 +1,5 @@
 return {
+	{ "mfussenegger/nvim-jdtls", ft = { "java" } },
 	{
 		"williamboman/mason-lspconfig.nvim",
 		event = { "BufReadPost", "BufNewFile" },
@@ -7,6 +8,7 @@ return {
 			local servers = {
 				"angularls",
 				"bashls",
+				"jdtls",
 				"lua_ls",
 				"terraformls",
 			}
