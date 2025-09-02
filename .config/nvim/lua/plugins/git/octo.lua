@@ -7,7 +7,6 @@ return {
 		-- commit = "da764ce",
 		dependencies = {
 			"ibhagwan/fzf-lua",
-			"nvim-tree/nvim-web-devicons",
 		},
 		config = function()
 			require("octo").setup({
