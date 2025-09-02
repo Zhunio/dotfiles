@@ -7,7 +7,6 @@ return {
 			{ "gn", function() require("neogit").open({ kind = vim.bo.filetype == "alpha" and "tab" or "auto" }) end },
 		},
 		dependencies = {
-			"nvim-lua/plenary.nvim",
 			"sindrets/diffview.nvim",
 			"nvim-telescope/telescope.nvim",
 		},

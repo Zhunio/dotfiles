@@ -23,7 +23,6 @@ return {
 			"nvim-neotest/nvim-nio",
 			"theHamsta/nvim-dap-virtual-text",
 			"ibhagwan/fzf-lua",
-			"nvim-lua/plenary.nvim",
 		},
 		config = function()
 			require("fzf-lua").register_ui_select()
