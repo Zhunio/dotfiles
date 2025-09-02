@@ -1,5 +1,9 @@
 return {
 	{
+		"rcasia/neotest-java",
+		ft = "java",
+	},
+	{
 		"nvim-neotest/neotest",
     --stylua: ignore
 		keys = {
@@ -13,10 +17,7 @@ return {
 			{ "<leader>tp", function() require("neotest").output_panel.toggle() end },
 		},
 		dependencies = {
-			"nvim-neotest/nvim-nio",
-			"nvim-lua/plenary.nvim",
 			"antoinemadec/FixCursorHold.nvim",
-			"nvim-treesitter/nvim-treesitter",
 			"nvim-neotest/neotest-jest",
 			-- "Zhunio/neotest-karma",
 		},
@@ -26,6 +27,7 @@ return {
 					open = "botright vsplit | vertical resize 100",
 				},
 				adapters = {
+					require("neotest-java")({}),
 					require("neotest-jest")({
 						jestCommand = "npm run test --",
 						env = { CI = true },
