@@ -1,14 +1,12 @@
 return {
+	{ "sindrets/diffview.nvim", lazy = true },
+	{ "nvim-telescope/telescope.nvim", lazy = true },
 	{
 		"NeogitOrg/neogit",
 		cmd = { "Neogit" },
     --stylua: ignore
 		keys = {
 			{ "gn", function() require("neogit").open({ kind = vim.bo.filetype == "alpha" and "tab" or "auto" }) end },
-		},
-		dependencies = {
-			"sindrets/diffview.nvim",
-			"nvim-telescope/telescope.nvim",
 		},
 		config = function()
 			local neogit = require("neogit")
