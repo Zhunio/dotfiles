@@ -1,8 +1,7 @@
 return {
-	{
-		"rcasia/neotest-java",
-		ft = "java",
-	},
+	{ "rcasia/neotest-java", ft = "java" },
+	{ "nvim-neotest/neotest-jest", ft = "javascript" },
+	-- { "Zhunio/neotest-karma", ft = "javascript" },
 	{
 		"nvim-neotest/neotest",
     --stylua: ignore
@@ -18,8 +17,6 @@ return {
 		},
 		dependencies = {
 			"antoinemadec/FixCursorHold.nvim",
-			"nvim-neotest/neotest-jest",
-			-- "Zhunio/neotest-karma",
 		},
 		config = function()
 			require("neotest").setup({
