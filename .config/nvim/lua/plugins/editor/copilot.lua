@@ -1,9 +1,10 @@
 return {
 	{
 		"github/copilot.vim",
-		ft = { "python", "lua", "typescript" },
+		event = "InsertEnter",
 		cond = function()
-			return vim.fn.executable("gh") == 1
+			local ft = { "python", "lua", "typescript" }
+			return vim.fn.executable("gh") == 1 and vim.tbl_contains(ft, vim.bo.filetype)
 		end,
 		init = function()
 			vim.keymap.set("i", "<M-w>", "<Plug>(copilot-accept-word)")
