@@ -10,6 +10,7 @@ return {
 				"bashls",
 				"jdtls",
 				"lua_ls",
+				"pylsp",
 				"terraformls",
 			}
 
