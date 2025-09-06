@@ -11,13 +11,18 @@ return {
 				"lua_ls",
 				"stylua",
 
-				-- html, css, js
+				-- html
 				"html",
+
+				-- css
 				"cssls",
+
+				-- typescript
 				"ts_ls",
+				"js-debug-adapter",
+
 				-- sass
 				"some-sass-language-server",
-				"js-debug-adapter",
 
 				-- markdown
 				"marksman",
