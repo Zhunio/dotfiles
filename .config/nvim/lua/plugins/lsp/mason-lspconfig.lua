@@ -11,7 +11,7 @@ return {
 				"jdtls",
 				"lua_ls",
 				"pylsp",
-				"terraformls",
+				-- "terraformls",
 			}
 
 			for _, server in ipairs(servers) do
