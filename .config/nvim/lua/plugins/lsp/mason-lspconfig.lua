@@ -1,6 +1,14 @@
 return {
 	{ "mfussenegger/nvim-jdtls", ft = { "java" } },
 	{
+		"pmizio/typescript-tools.nvim",
+		config = function()
+			require("typescript-tools").setup({
+				on_attach = require("config.lsp.on_attach"),
+			})
+		end,
+	},
+	{
 		"williamboman/mason-lspconfig.nvim",
 		event = { "BufReadPost", "BufNewFile" },
 		dependencies = { "neovim/nvim-lspconfig" },
