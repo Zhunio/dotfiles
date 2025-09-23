@@ -1,9 +1,7 @@
 return {
 	{
 		"pwntester/octo.nvim",
-		keys = {
-			{ "<leader>o", ":Octo pr list<CR>" },
-		},
+		cmd = { "Octo" },
 		-- commit = "da764ce",
 		dependencies = {
 			"ibhagwan/fzf-lua",
