@@ -16,6 +16,7 @@ return {
 			local servers = {
 				"angularls",
 				"bashls",
+				"emmet_language_server",
 				"jdtls",
 				"lua_ls",
 				"pylsp",

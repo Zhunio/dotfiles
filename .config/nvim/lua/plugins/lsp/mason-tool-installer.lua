@@ -14,6 +14,9 @@ return {
 				-- html
 				"html",
 
+				-- emmet
+				"emmet_language_server",
+
 				-- css
 				"cssls",
 
