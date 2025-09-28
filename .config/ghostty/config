@@ -5,7 +5,8 @@ font-thicken = true
 shell-integration-features = no-cursor
 cursor-style = block
 cursor-style-blink = false
-cursor-invert-fg-bg = true
+cursor-color = a6e3a1
+cursor-text = 011627
 adjust-underline-position = 16
 adjust-underline-thickness = 1
 
