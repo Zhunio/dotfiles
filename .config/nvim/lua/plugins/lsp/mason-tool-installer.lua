@@ -58,6 +58,11 @@ return {
 				-- SQL
 				"sqlls",
 				"sqlfmt",
+
+
+        -- go
+        "gopls",
+        "goimports",
 			},
 		},
 	},

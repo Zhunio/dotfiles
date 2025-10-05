@@ -23,6 +23,7 @@ return {
 					sql = { "sqlfmt" },
 					python = { "black" },
 					terraform = { "terraform_fmt" },
+					go = { "goimports", "gofmt" },
 				},
 			})
 		end,

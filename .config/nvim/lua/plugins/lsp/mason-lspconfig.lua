@@ -17,6 +17,7 @@ return {
 				"angularls",
 				"bashls",
 				"emmet_language_server",
+        "gopls",
 				"jdtls",
 				"lua_ls",
 				"pylsp",
