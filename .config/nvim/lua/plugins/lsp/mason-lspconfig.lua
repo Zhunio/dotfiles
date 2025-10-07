@@ -10,6 +10,7 @@ return {
 				"bashls",
 				"emmet_language_server",
         "gopls",
+        "html",
 				"jdtls",
 				"lua_ls",
 				"pylsp",
