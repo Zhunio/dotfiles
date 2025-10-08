@@ -7,10 +7,6 @@
 - Install [git](https://git-scm.com/downloads)
 - Install [brew](https://brew.sh/)
 - Install [oh-my-zsh](https://ohmyz.sh/)
-- Install [vscode](https://code.visualstudio.com/)
-- Install [raycast](https://www.raycast.com/)
-- Install [shottr](https://shottr.cc/)
-- Install [MesloLGL Nerd Font](https://www.nerdfonts.com/)
 - [Connect to GitHub over SSH](https://github.com/Zhunio/notes/blob/main/git/connect-to-github-over-ssh.md)
 
 ## Clone the repo
