@@ -7,7 +7,6 @@
 - Install [git](https://git-scm.com/downloads)
 - Install [brew](https://brew.sh/)
 - Install [oh-my-zsh](https://ohmyz.sh/)
-- Install [ghostty](https://ghostty.org/)
 - Install [vscode](https://code.visualstudio.com/)
 - Install [raycast](https://www.raycast.com/)
 - Install [shottr](https://shottr.cc/)
