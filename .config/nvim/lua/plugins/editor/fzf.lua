@@ -31,42 +31,46 @@ return {
 			{ "<leader>fk", function() require("fzf-lua").keymaps() end, desc = "Fzf: List keymaps" },
 			{ "<leader>fr", function() require("fzf-lua").registers() end, desc = "Fzf: Show registers" },
 		},
-		opts = {
-			lsp = {
-				symbols = {
-					symbol_style = 2,
-					symbol_fmt = function(s)
-						return s
-					end,
-					symbol_icons = {
-						Text = "󰉿",
-						Method = "󰆧",
-						Function = "󰆧",
-						Constructor = "󰆧",
-						Field = "",
-						Variable = "",
-						Class = "",
-						Interface = "",
-						Module = "󰅩",
-						Property = "",
-						Unit = "󰑭",
-						Value = "",
-						Enum = "",
-						Keyword = "󰌋",
-						Snippet = "",
-						Color = "",
-						File = "󰈙",
-						Reference = "",
-						Folder = "",
-						EnumMember = "",
-						Constant = "",
-						Struct = "",
-						Event = "",
-						Operator = "",
-						TypeParameter = "",
+		config = function()
+			require("fzf-lua").setup({
+				lsp = {
+					symbols = {
+						symbol_style = 2,
+						symbol_fmt = function(s)
+							return s
+						end,
+						symbol_icons = {
+							Text = "󰉿",
+							Method = "󰆧",
+							Function = "󰆧",
+							Constructor = "󰆧",
+							Field = "",
+							Variable = "",
+							Class = "",
+							Interface = "",
+							Module = "󰅩",
+							Property = "",
+							Unit = "󰑭",
+							Value = "",
+							Enum = "",
+							Keyword = "󰌋",
+							Snippet = "",
+							Color = "",
+							File = "󰈙",
+							Reference = "",
+							Folder = "",
+							EnumMember = "",
+							Constant = "",
+							Struct = "",
+							Event = "",
+							Operator = "",
+							TypeParameter = "",
+						},
 					},
 				},
-			},
-		},
+			})
+
+			vim.cmd([[FzfLua register_ui_select]])
+		end,
 	},
 }
