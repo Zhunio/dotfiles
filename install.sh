@@ -7,48 +7,30 @@ cwd=$(pwd)
 cd $HOME/dotfiles
 
 # Install Brewfile
+echo "1. Installing Brew dependencies"
 echo ""
-echo "Installing Brew dependencies..."
 brew bundle install
+echo ""
 
 # Use GNU Stow to create symlinks
-echo ""
-read -p 'Do you want to use GNU Stow to create symlinks? [Y/n]' -n 1 -r yesNo
-if [[ $yesNo =~ ^[Yy]$ ]]; then
-  echo ""
-  echo "Creating symlinks using GNU Stow..."
+if [[ -d $HOME/.config ]]; then
+  echo "2. Creating symlinks using GNU Stow (skipped)"
+else
+  echo "2. Creating symlinks using GNU Stow"
   stow .
 fi
 
 # go back to current working directory
 cd $cwd
 
-# Install nvm
-echo ""
-read -p 'Do you want to install nvm? [Y/n]' -n 1 -r yesNo
-if [[ $yesNo =~ ^[Yy]$ ]]; then
-  echo ""
-  if [[ -d $HOME/.nvm ]]; then
-    echo 'Installing nvm (skipped) since nvm is already installed'
-  else
-    echo 'Installing nvm...'
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-  fi
-fi
-
 # Install sdkman
-echo ""
-read -p 'Do you want to install sdkman? [Y/n]' -n 1 -r yesNo
-if [[ $yesNo =~ ^[Yy]$ ]]; then
-  echo ""
-  if [[ -d $HOME/.sdkman ]]; then
-    echo 'Installing sdkman (skipped) since sdkman is already installed'
-  else
-    echo 'Installing sdkman...'
-    curl -s "https://get.sdkman.io" | bash
-  fi
+if [[ -d $HOME/.sdkman ]]; then
+  echo '3. Installing sdkman (skipped)'
+else
+  echo '3. Installing sdkman'
+  curl -s "https://get.sdkman.io" | bash
 
-  # Source sdkman so we can access `sdk` command
+  # Source sdkman so we can access execute following commands
   source $HOME/.sdkman/bin/sdkman-init.sh
 
   # Istall Java versions: 17, 21
@@ -62,58 +44,46 @@ if [[ $yesNo =~ ^[Yy]$ ]]; then
 fi
 
 # Source dotfiles
-echo ""
-read -p 'Do you want to source dotfiles in the $HOME/.zshrc file? [Y/n] ' -n 1 -r yesNo
-if [[ $yesNo =~ ^[Yy]$ ]]; then
-  echo ""
-  echo 'Sourcing dotfiles in $HOME/.zshrc file...'
+if grep -q "source \$HOME/dotfiles\.sh" $HOME/.zshrc; then
+  echo '4. Sourcing dotfiles in $HOME/.zshrc file (skipped)'
+else
+  echo '4. Sourcing dotfiles in $HOME/.zshrc file...'
   echo 'source $HOME/dotfiles.sh' >>$HOME/.zshrc
 fi
 
 # Prompt to add bin folder
-echo ""
-read -p 'Do you want to add $HOME/bin folder? [Y/n]' -n 1 -r yesNo
-if [[ $yesNo =~ ^[Yy]$ ]]; then
-  echo ""
-  if [[ -d $HOME/bin ]]; then
-    echo 'Creating $HOME/bin folder (skipped) since it already exists'
-  else
-    echo 'Creating $HOME/bin folder...'
-    mkdir $HOME/bin
-  fi
+if [[ -d $HOME/bin ]]; then
+  echo '5. Creating $HOME/bin folder (skipped)'
+else
+  echo '5. Creating $HOME/bin folder...'
+  mkdir $HOME/bin
 fi
 
 # Prompt to install Tmux Plugin Manager
-echo ""
-read -p "Do you want to install Tmux Plugin Manager? [Y/n] " -n 1 -r yesNo
-if [[ $yesNo =~ ^[Yy]$ ]]; then
-  echo ""
-  if [[ -d $HOME/bin/tmux-plugins/tpm ]]; then
-    echo "Installing Tmux Plugin Manager (skipped) since it is already installed"
-  else
-    echo "Installing Tmux Plugin Manager..."
-    git clone https://github.com/tmux-plugins/tpm $HOME/bin/tmux-plugins/tpm
-  fi
+if [[ -d $HOME/bin/tmux-plugins/tpm ]]; then
+  echo "6. Installing Tmux Plugin Manager (skipped)"
+else
+  echo "6. Installing Tmux Plugin Manager"
+  git clone https://github.com/tmux-plugins/tpm $HOME/bin/tmux-plugins/tpm
 
-  echo ""
-  echo "Running Tmux Plugin Manager Install script..."
+  echo "6.1 Running Tmux Plugin Manager Install script"
   $HOME/bin/tmux-plugins/tpm/scripts/install_plugins.sh
 fi
 
 # Prompt to start yabai service
-echo ""
-read -p "Do you want to start yabai service? [Y/n] " -n 1 -r yesNo
-if [[ $yesNo =~ ^[Yy]$ ]]; then
-  echo ""
-  echo "Starting yabai service..."
+if pgrep -x yabai >/dev/null; then
+  echo "7. Restarting yabai service"
+  yabai --restart-service
+else
+  echo "7. Starting yabai service"
   yabai --start-service
 fi
 
 # Prompt to start skhd service
-echo ""
-read -p "Do you want to start skhd service? [Y/n] " -n 1 -r yesNo
-if [[ $yesNo =~ ^[Yy]$ ]]; then
-  echo ""
-  echo "Starting skhd service..."
+if pgrep -x skhd >/dev/null; then
+  echo "8. Restarting skhd service"
+  skhd --restart-service
+else
+  echo "8. Starting skhd service"
   skhd --start-service
 fi

@@ -40,7 +40,7 @@ cd ~/bin/tmux-plugins/tmux-sessionx
 Checkout the following commit
 
 ```bash
-git checkout 0711d03
+git checkout 3a1911e 
 ```
 
 ## How to enable GitHub Copilot and GitHub Copilot Chat?

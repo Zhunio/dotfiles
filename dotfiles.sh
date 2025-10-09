@@ -1,11 +1,11 @@
 # oh-my-zsh
-source $HOME/dotfiles/scripts/oh-my-zsh.sh
+source $HOME/dotfiles/dotfiles_oh-my-zsh.sh
 # fzf
-source $HOME/dotfiles/scripts/fzf.sh
+source $HOME/dotfiles/dotfiles_fzf.sh
 # nvm
-source $HOME/.nvm/nvm.sh
+source $HOMEBREW_PREFIX/opt/nvm/nvm.sh
 # nvm bash_completion
-source $HOME/.nvm/bash_completion
+source $HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm
 # sdkman
 source $HOME/.sdkman/bin/sdkman-init.sh
 # zoxide
@@ -18,4 +18,3 @@ git_dir=$(echo /usr/local/Cellar/git/*/bin | awk '{print $1}')
 if [[ -d "$git_dir" ]]; then
   export PATH="$git_dir:$PATH"
 fi
-
