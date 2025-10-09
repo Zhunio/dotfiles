@@ -41,6 +41,7 @@ else
   sdk install gradle 9.0.0
 
   sdk default java 21.0.6-oracle
+  echo ""
 fi
 
 # Source dotfiles
