@@ -24,23 +24,21 @@ fi
 cd $cwd
 
 # Install sdkman
-if [[ -d $HOME/.sdkman ]]; then
-  echo '3. Installing sdkman (skipped)'
-else
-  echo '3. Installing sdkman'
-  curl -s "https://get.sdkman.io" | bash
+if brew list | grep -q 'sdkman'; then
+  echo '3. Installing java 21, maven, and gradle'
 
   # Source sdkman so we can access execute following commands
-  source $HOME/.sdkman/bin/sdkman-init.sh
+  export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+  source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
-  # Istall Java versions: 17, 21
-  sdk install java 17.0.12-oracle
+  # Istall Java versions: 21
+  # sdk install java 17.0.12-oracle
   sdk install java 21.0.6-oracle
 
   sdk install maven 3.9.10
   sdk install gradle 9.0.0
 
-  sdk default java 21.0.6-oracle
+  # sdk default java 21.0.6-oracle
   echo ""
 fi
 

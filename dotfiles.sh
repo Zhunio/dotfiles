@@ -7,7 +7,8 @@ source $HOMEBREW_PREFIX/opt/nvm/nvm.sh
 # nvm bash_completion
 source $HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm
 # sdkman
-source $HOME/.sdkman/bin/sdkman-init.sh
+export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 # zoxide
 eval "$(zoxide init zsh)"
 # oh-my-posh theme
