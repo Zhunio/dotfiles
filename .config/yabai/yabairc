@@ -28,3 +28,4 @@ yabai -m rule --add app="^Mail$" title="^Rules$" manage=off
 yabai -m rule --add app="^MovieBoxPro$" manage=on opacity=1
 yabai -m rule --add app="^Google Chrome$" title="YouTube" manage=on opacity=1
 yabai -m rule --add app="^Google Chrome$" title="MovieBoxPro" manage=on opacity=1
+yabai -m rule --add app="^Google Chrome$" title="Netflix" manage=on opacity=1
