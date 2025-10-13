@@ -60,6 +60,7 @@ return {
 			})
 
 			vim.treesitter.language.register("markdown", { "octo", "copilot-chat" })
+			vim.treesitter.language.register("terraform", "hcl")
 
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = { "octo", "copilot-chat", "markdown" },
