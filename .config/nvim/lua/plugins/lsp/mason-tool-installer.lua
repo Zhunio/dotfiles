@@ -62,10 +62,9 @@ return {
 				"sqlls",
 				"sqlfmt",
 
-
-        -- go
-        "gopls",
-        "goimports",
+				-- go
+				"gopls",
+				"goimports",
 			},
 		},
 	},
