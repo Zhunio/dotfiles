@@ -24,3 +24,6 @@ git_dir=$(echo /usr/local/Cellar/git/*/bin | awk '{print $1}')
 if [[ -d "$git_dir" ]]; then
   export PATH="$git_dir:$PATH"
 fi
+
+# DYLD_FALLBACK_LIBRARY_PATH for imagemagick
+export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"
