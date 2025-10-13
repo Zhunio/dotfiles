@@ -33,6 +33,9 @@ return {
 				-- prettier
 				"prettier",
 
+				-- xml formatter
+				"xmlformatter",
+
 				-- angular
 				"angularls",
 

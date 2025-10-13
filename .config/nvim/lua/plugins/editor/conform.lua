@@ -24,6 +24,7 @@ return {
 					python = { "black" },
 					terraform = { "terraform_fmt" },
 					go = { "goimports", "gofmt" },
+					xml = { "xmlformatter" },
 				},
 			})
 		end,
