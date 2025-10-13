@@ -2,6 +2,8 @@
 source $HOME/dotfiles/dotfiles_oh-my-zsh.sh
 # fzf
 source $HOME/dotfiles/dotfiles_fzf.sh
+# 1Password
+source $HOME/dotfiles/dotfiles_1password.sh
 # nvm
 source $HOMEBREW_PREFIX/opt/nvm/nvm.sh
 # nvm bash_completion

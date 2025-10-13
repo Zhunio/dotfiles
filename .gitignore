@@ -11,3 +11,5 @@
 Brewfile.lock.json
 # btop
 .config/btop/*.log
+# 1password
+.config/op/*
