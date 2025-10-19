@@ -56,7 +56,7 @@ return {
 				"dockerfile-language-server",
 
 				-- terraform
-				-- "terraform-ls",
+				"terraform-ls",
 
 				-- SQL
 				"sqlls",

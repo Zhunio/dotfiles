@@ -9,12 +9,12 @@ return {
 				"angularls",
 				"bashls",
 				"emmet_language_server",
-        "gopls",
-        "html",
+				"gopls",
+				"html",
 				"jdtls",
 				"lua_ls",
 				"pylsp",
-				-- "terraformls",
+				"terraformls",
 			}
 
 			for _, server in ipairs(servers) do
