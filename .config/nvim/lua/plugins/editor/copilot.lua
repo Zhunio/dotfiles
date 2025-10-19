@@ -1,7 +1,7 @@
 return {
 	{
 		"github/copilot.vim",
-		ft = { "python", "lua", "typescript", "markdown" },
+		ft = { "python", "lua", "typescript", "markdown", "terraform" },
 		cond = function()
 			return vim.fn.executable("gh") == 1
 		end,
