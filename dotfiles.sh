@@ -4,6 +4,8 @@ source $HOME/dotfiles/dotfiles_oh-my-zsh.sh
 source $HOME/dotfiles/dotfiles_fzf.sh
 # 1Password
 source $HOME/dotfiles/dotfiles_1password.sh
+# 1Password bash_completion
+eval "$(op completion zsh)"; compdef _op op
 # fnm
 eval "$(fnm env --use-on-cd --shell zsh)"
 # fnm bash_completion
