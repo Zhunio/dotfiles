@@ -4,10 +4,10 @@ source $HOME/dotfiles/dotfiles_oh-my-zsh.sh
 source $HOME/dotfiles/dotfiles_fzf.sh
 # 1Password
 source $HOME/dotfiles/dotfiles_1password.sh
-# nvm
-source $HOMEBREW_PREFIX/opt/nvm/nvm.sh
-# nvm bash_completion
-source $HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm
+# fnm
+eval "$(fnm env --use-on-cd --shell zsh)"
+# fnm bash_completion
+eval "$(fnm completions --shell zsh)"
 # sdkman
 export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
 source "${SDKMAN_DIR}/bin/sdkman-init.sh"
