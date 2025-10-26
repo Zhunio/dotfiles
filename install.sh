@@ -42,20 +42,20 @@ if brew list | grep -q 'sdkman'; then
   echo ""
 fi
 
-# Source dotfiles
-if grep -q "source \$HOME/dotfiles\.sh" $HOME/.zshrc; then
-  echo '4. Sourcing dotfiles in $HOME/.zshrc file (skipped)'
-else
-  echo '4. Sourcing dotfiles in $HOME/.zshrc file...'
-  echo 'source $HOME/dotfiles.sh' >>$HOME/.zshrc
-fi
-
 # Prompt to add bin folder
 if [[ -d $HOME/bin ]]; then
-  echo '5. Creating $HOME/bin folder (skipped)'
+  echo '4. Creating $HOME/bin folder (skipped)'
 else
-  echo '5. Creating $HOME/bin folder...'
+  echo '4. Creating $HOME/bin folder...'
   mkdir $HOME/bin
+fi
+
+# Source dotfiles
+if grep -q "source \$HOME/dotfiles\.sh" $HOME/.zshrc; then
+  echo '5. Sourcing dotfiles in $HOME/.zshrc file (skipped)'
+else
+  echo '5. Sourcing dotfiles in $HOME/.zshrc file...'
+  echo 'source $HOME/dotfiles.sh' >>$HOME/.zshrc
 fi
 
 # Prompt to install Tmux Plugin Manager
