@@ -13,3 +13,7 @@ Brewfile.lock.json
 .config/btop/*.log
 # 1password
 .config/op/*
+# mutt-wizard
+.config/imapnotify
+.config/msmtp
+.config/mutt
