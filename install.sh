@@ -26,7 +26,7 @@ else
 fi
 
 # Update Homebrew
-# brew update
+brew update
 
 # List of Homebrew packages
 packages=(
@@ -53,9 +53,9 @@ packages=(
 )
 
 # Install packages
-# for package in "${packages[@]}"; do
-#   brew install "$package"
-# done
+ for package in "${packages[@]}"; do
+   brew install "$package"
+ done
 
 casks=(
   "1password-cli"
@@ -68,9 +68,9 @@ casks=(
 )
 
 # Install casks
-# for cask in "${casks[@]}"; do
-#   brew install --cask "$cask"
-# done
+ for cask in "${casks[@]}"; do
+   brew install --cask "$cask"
+ done
 
 # Source dotfiles
 echo ""
