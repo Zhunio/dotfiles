@@ -6,7 +6,6 @@
 
 - Install [git](https://git-scm.com/downloads)
 - Install [brew](https://brew.sh/)
-- Install [oh-my-zsh](https://ohmyz.sh/)
 - [Connect to GitHub over SSH](https://github.com/Zhunio/notes/blob/main/git/connect-to-github-over-ssh.md)
 
 ## Clone the repo

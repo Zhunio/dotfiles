@@ -4,6 +4,27 @@ BLUE='\033[0;34m'
 BOLD='\033[1m'
 RESET='\033[0m'
 
+# Create $HOME/bin folder if it doesn't exist
+if [[ -d $HOME/bin ]]; then
+  echo -e "${BLUE}==>${RESET} Creating \$HOME/bin folder ${BOLD}(skipped)${RESET}"
+else
+  echo -e "${BLUE}==>${RESET} ${BOLD}Creating \$HOME/bin folder${RESET}"
+  mkdir $HOME/bin
+fi
+
+# OH MY ZSH installation path
+export ZSH="$HOME/bin/.oh-my-zsh"
+# Keep existing .zshrc file
+export KEEP_ZSHRC=yes
+
+# Install Oh My Zsh
+if [[ -d $ZSH ]]; then
+  echo -e "${BLUE}==>${RESET} Installing Oh My Zsh ${BOLD}(skipped)${RESET}"
+else
+  echo -e "${BLUE}==>${RESET} ${BOLD}Installing Oh My Zsh...${RESET}"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+fi
+
 # Update Homebrew
 # brew update
 
@@ -89,14 +110,6 @@ if brew list | grep -q 'sdkman'; then
   sdk install gradle 9.0.0
 
   echo ""
-fi
-
-# Prompt to add bin folder
-if [[ -d $HOME/bin ]]; then
-  echo -e "${BLUE}==>${RESET} Creating \$HOME/bin folder ${BOLD}(skipped)${RESET}"
-else
-  echo -e "${BLUE}==>${RESET} ${BOLD}Creating \$HOME/bin folder${RESET}"
-  mkdir $HOME/bin
 fi
 
 # Prompt to install Tmux Plugin Manager
