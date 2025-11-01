@@ -40,10 +40,10 @@ return {
 				"angularls",
 
 				-- java
-				"java-test",
-				"java-debug-adapter",
+				-- "java-test",
+				-- "java-debug-adapter",
 				-- "lombok-nightly",
-				"jdtls",
+				-- "jdtls",
 				-- "google-java-format",
 
 				-- python
@@ -59,12 +59,12 @@ return {
 				"terraform-ls",
 
 				-- SQL
-				"sqlls",
-				"sqlfmt",
+				-- "sqlls",
+				-- "sqlfmt",
 
 				-- go
-				"gopls",
-				"goimports",
+				-- "gopls",
+				-- "goimports",
 			},
 		},
 	},

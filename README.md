@@ -5,26 +5,18 @@
 ## Prerequisites
 
 - Install [git](https://git-scm.com/downloads)
-- Install [brew](https://brew.sh/)
-- Install [oh-my-zsh](https://ohmyz.sh/)
 - [Connect to GitHub over SSH](https://github.com/Zhunio/notes/blob/main/git/connect-to-github-over-ssh.md)
-
-## Clone the repo
-
-```bash
-git clone https://github.com/Zhunio/dotfiles ~/dotfiles
-```
 
 ## Install
 
 ```bash
-/bin/bash ~/dotfiles/install.sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/refs/heads/main/install.sh)"
 ```
 
 ## Uninstall
 
 ```bash
-/bin/bash ~/dotfiles/uninstall.sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/refs/heads/main/uninstall.sh)"
 ```
 
 # FAQ
@@ -40,7 +32,7 @@ cd ~/bin/tmux-plugins/tmux-sessionx
 Checkout the following commit
 
 ```bash
-git checkout 3a1911e 
+git checkout 3a1911e
 ```
 
 ## How to enable GitHub Copilot and GitHub Copilot Chat?
@@ -49,4 +41,5 @@ Authenticate using the GitHub CLI
 
 ```bash
 gh auth login
+
 ```

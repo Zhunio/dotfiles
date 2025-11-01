@@ -9,7 +9,7 @@ return {
 				"angularls",
 				"bashls",
 				"emmet_language_server",
-				"gopls",
+				-- "gopls",
 				"html",
 				"jdtls",
 				"lua_ls",

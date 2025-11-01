@@ -1,8 +1,8 @@
 return {
-	{
-		"kawre/leetcode.nvim",
-		cmd = { "Leet" },
-		build = ":TSUpdate html",
-		opts = {},
-	},
+	-- {
+	-- 	"kawre/leetcode.nvim",
+	-- 	cmd = { "Leet" },
+	-- 	build = ":TSUpdate html",
+	-- 	opts = {},
+	-- },
 }

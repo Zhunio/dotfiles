@@ -3,12 +3,16 @@
 
 README.md
 
-Brewfile
-Brewfile.lock.json
+dotfiles.sh
+dotfiles_brew.sh
+dotfiles_1password.sh
+dotfiles_fzf.sh
+dotfiles_oh-my-zsh.sh
 
-scripts
 themes
 
 install.sh
+install_macOS.sh
+install_linux.sh
 uninstall.sh
 

@@ -1,88 +1,136 @@
 #!/bin/bash
 
-# save current working directory
-cwd=$(pwd)
+# Colors for output
+BLUE='\033[0;34m'
+BOLD='\033[1m'
+RESET='\033[0m'
 
-# Changing to $HOME/dotfiles directory
-cd $HOME/dotfiles
-
-# Install Brewfile
-echo "1. Installing Brew dependencies"
-echo ""
-brew bundle install
-echo ""
-
-# Use GNU Stow to create symlinks
-if [[ -d $HOME/.config ]]; then
-  echo "2. Creating symlinks using GNU Stow (skipped)"
+# --- Clone dotfiles repository ---
+if [[ -d $HOME/dotfiles ]]; then
+  echo -e "${BLUE}==>${RESET} Cloning https://github.com/Zhunio/dotfiles.git ${BOLD}(skipped)${RESET}"
 else
-  echo "2. Creating symlinks using GNU Stow"
-  stow .
+  echo -e "${BLUE}==>${RESET} ${BOLD}Cloning https://github.com/Zhunio/dotfiles.git${RESET}"
+  git clone https://github.com/Zhunio/dotfiles.git $HOME/dotfiles
 fi
 
-# go back to current working directory
-cd $cwd
-
-# Install sdkman
-if brew list | grep -q 'sdkman'; then
-  echo '3. Installing java 21, maven, and gradle'
-
-  # Source sdkman so we can access execute following commands
-  export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
-  source "${SDKMAN_DIR}/bin/sdkman-init.sh"
-
-  # Istall Java versions: 21
-  # sdk install java 17.0.12-oracle
-  sdk install java 21.0.6-oracle
-
-  sdk install maven 3.9.10
-  sdk install gradle 9.0.0
-
-  # sdk default java 21.0.6-oracle
-  echo ""
-fi
-
-# Prompt to add bin folder
+# --- Create $HOME/bin folder ---
 if [[ -d $HOME/bin ]]; then
-  echo '4. Creating $HOME/bin folder (skipped)'
+  echo -e "${BLUE}==>${RESET} Creating \$HOME/bin folder ${BOLD}(skipped)${RESET}"
 else
-  echo '4. Creating $HOME/bin folder...'
+  echo -e "${BLUE}==>${RESET} ${BOLD}Creating \$HOME/bin folder${RESET}"
   mkdir $HOME/bin
 fi
 
-# Source dotfiles
-if grep -q "source \$HOME/dotfiles\.sh" $HOME/.zshrc; then
-  echo '5. Sourcing dotfiles in $HOME/.zshrc file (skipped)'
+# --- Install Oh My Zsh ---
+export ZSH="$HOME/bin/.oh-my-zsh"
+export KEEP_ZSHRC=yes
+
+if [[ -d $ZSH ]]; then
+  echo -e "${BLUE}==>${RESET} Installing Oh My Zsh ${BOLD}(skipped)${RESET}"
 else
-  echo '5. Sourcing dotfiles in $HOME/.zshrc file...'
-  echo 'source $HOME/dotfiles.sh' >>$HOME/.zshrc
+  echo -e "${BLUE}==>${RESET} ${BOLD}Installing Oh My Zsh${RESET}"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
-# Prompt to install Tmux Plugin Manager
-if [[ -d $HOME/bin/tmux-plugins/tpm ]]; then
-  echo "6. Installing Tmux Plugin Manager (skipped)"
+# --- Install Homebrew ---
+export NONINTERACTIVE=1
+
+if command -v brew >/dev/null 2>&1; then
+  echo -e "${BLUE}==>${RESET} Installing Homebrew ${BOLD}(skipped)${RESET}"
 else
-  echo "6. Installing Tmux Plugin Manager"
+  echo -e "${BLUE}==>${RESET} ${BOLD}Installing Homebrew${RESET}"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  source $HOME/dotfiles/dotfiles_brew.sh
+fi
+
+# -- Update Homebrew ---
+brew update
+
+# --- Homebrew packages ---
+packages=(
+  "awscli"
+  "bat"
+  "btop"
+  "fd"
+  "fzf"
+  "fnm"
+  "git"
+  "gh"
+  "jq"
+  "neovim"
+  "ripgrep"
+  "stow"
+  "tmux"
+  "terraform"
+  "zoxide"
+  "zsh-autocomplete"
+  "starship"
+)
+
+# --- Homebrew casks ---
+casks=(
+  "font-meslo-lg-nerd-font"
+)
+
+# --- Install Homebrew packages ---
+for package in "${packages[@]}"; do
+  brew install "$package"
+done
+
+# --- Install Homebrew casks ---
+for cask in "${casks[@]}"; do
+  brew install --cask "$cask"
+done
+
+# --- Source dotfiles in .zshrc ---
+echo ""
+if grep -q "source \$HOME/dotfiles/dotfiles\.sh" $HOME/.zshrc; then
+  echo -e "${BLUE}==>${RESET} Sourcing dotfiles in \$HOME/.zshrc file. ${BOLD}(skipped)${RESET}"
+else
+  echo -e "${BLUE}==>${RESET} ${BOLD}Sourcing dotfiles in \$HOME/.zshrc file...${RESET}"
+  echo 'source $HOME/dotfiles/dotfiles.sh' >>$HOME/.zshrc
+fi
+
+# --- Create symlinks using GNU Stow ---
+if [[ -d $HOME/.config ]]; then
+  echo -e "${BLUE}==>${RESET} Creating symlinks using GNU Stow ${BOLD}(skipped)${RESET}"
+else
+  # save current working directory
+  cwd=$(pwd)
+
+  # Changing to $HOME/dotfiles directory
+  cd $HOME/dotfiles
+
+  echo -e "${BLUE}==>${RESET} ${BOLD}Creating symlinks using GNU Stow${RESET}"
+  stow .
+
+  # go back to current working directory
+  cd $cwd
+fi
+
+# --- Install Tmux Plugin Manager ---
+if [[ -d $HOME/bin/tmux-plugins/tpm ]]; then
+  echo -e "${BLUE}==>${RESET} Installing Tmux Plugin Manager ${BOLD}(skipped)${RESET}"
+else
+  echo -e "${BLUE}==>${RESET} ${BOLD}Installing Tmux Plugin Manager${RESET}"
   git clone https://github.com/tmux-plugins/tpm $HOME/bin/tmux-plugins/tpm
 
-  echo "6.1 Running Tmux Plugin Manager Install script"
+  echo "Running Tmux Plugin Manager Install script"
   $HOME/bin/tmux-plugins/tpm/scripts/install_plugins.sh
 fi
 
-# Prompt to start yabai service
-if pgrep -x yabai >/dev/null; then
-  echo "7. Restarting yabai service"
-  yabai --restart-service
+# -- Install Node v22
+if fnm list | grep -q v22; then
+  echo -e "${BLUE}==>${RESET} Installing Node v22 ${BOLD}(skipped)${RESET}"
 else
-  echo "7. Starting yabai service"
-  yabai --start-service
+  echo -e "${BLUE}==>${RESET} ${BOLD}Installing Node v22${RESET}"
+  fnm install 22
+  fnm default 22
 fi
 
-# Prompt to start skhd service
-if pgrep -x skhd >/dev/null; then
-  echo "8. Restarting skhd service"
-  skhd --restart-service
-else
-  echo "8. Starting skhd service"
-  skhd --start-service
+# --- macOS specific installations ---
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  source $HOME/dotfiles/install_macOS.sh
+elif [[ "$(uname -s)" == "Linux" ]]; then
+  source $HOME/dotfiles/install_linux.sh
 fi
