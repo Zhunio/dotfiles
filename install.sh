@@ -1,88 +1,129 @@
 #!/bin/bash
 
-# save current working directory
-cwd=$(pwd)
+BLUE='\033[0;34m'
+BOLD='\033[1m'
+RESET='\033[0m'
 
-# Changing to $HOME/dotfiles directory
-cd $HOME/dotfiles
+# Update Homebrew
+# brew update
 
-# Install Brewfile
-echo "1. Installing Brew dependencies"
+# List of Homebrew packages
+packages=(
+  "bat"
+  "btop"
+  "fd"
+  "fzf"
+  "fnm"
+  "git"
+  "gh"
+  "go"
+  "jq"
+  "neovim"
+  "ripgrep"
+  "stow"
+  "tmux"
+  "zoxide"
+  "zsh-autocomplete"
+  "oh-my-posh"
+  "koekeishiya/formulae/skhd"
+  "koekeishiya/formulae/yabai"
+  "sdkman/tap/sdkman-cli"
+  "tlk/imagemagick-x11/imagemagick"
+)
+
+# Install packages
+# for package in "${packages[@]}"; do
+#   brew install "$package"
+# done
+
+casks=(
+  "1password-cli"
+  "xquartz"
+  "ghostty"
+  "visual-studio-code"
+  "raycast"
+  "shottr"
+  "font-meslo-lg-nerd-font"
+)
+
+# Install casks
+# for cask in "${casks[@]}"; do
+#   brew install --cask "$cask"
+# done
+
+# Source dotfiles
 echo ""
-brew bundle install
-echo ""
+if grep -q "source \$HOME/dotfiles\.sh" $HOME/.zshrc; then
+  echo -e "${BLUE}==>${RESET} Sourcing dotfiles in \$HOME/.zshrc file. ${BOLD}(skipped)${RESET}"
+else
+  echo -e "${BLUE}==>${RESET} ${BOLD}Sourcing dotfiles in \$HOME/.zshrc file...${RESET}"
+  echo 'source $HOME/dotfiles.sh' >>$HOME/.zshrc
+fi
 
 # Use GNU Stow to create symlinks
 if [[ -d $HOME/.config ]]; then
-  echo "2. Creating symlinks using GNU Stow (skipped)"
+  echo -e "${BLUE}==>${RESET} Creating symlinks using GNU Stow ${BOLD}(skipped)${RESET}"
 else
-  echo "2. Creating symlinks using GNU Stow"
+  # save current working directory
+  cwd=$(pwd)
+
+  # Changing to $HOME/dotfiles directory
+  cd $HOME/dotfiles
+
+  echo -e "${BLUE}==>${RESET} ${BOLD}Creating symlinks using GNU Stow${RESET}"
   stow .
+
+  # go back to current working directory
+  cd $cwd
 fi
 
-# go back to current working directory
-cd $cwd
-
-# Install sdkman
+# Install Java 21 & Gradle via sdkman
 if brew list | grep -q 'sdkman'; then
-  echo '3. Installing java 21, maven, and gradle'
+  echo -e "${BLUE}==>${RESET} ${BOLD}Installing Java 21 & Gradle via sdkman${RESET}"
 
   # Source sdkman so we can access execute following commands
   export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
   source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
-  # Istall Java versions: 21
-  # sdk install java 17.0.12-oracle
   sdk install java 21.0.6-oracle
-
-  sdk install maven 3.9.10
   sdk install gradle 9.0.0
 
-  # sdk default java 21.0.6-oracle
   echo ""
 fi
 
 # Prompt to add bin folder
 if [[ -d $HOME/bin ]]; then
-  echo '4. Creating $HOME/bin folder (skipped)'
+  echo -e "${BLUE}==>${RESET} Creating \$HOME/bin folder ${BOLD}(skipped)${RESET}"
 else
-  echo '4. Creating $HOME/bin folder...'
+  echo -e "${BLUE}==>${RESET} ${BOLD}Creating \$HOME/bin folder${RESET}"
   mkdir $HOME/bin
-fi
-
-# Source dotfiles
-if grep -q "source \$HOME/dotfiles\.sh" $HOME/.zshrc; then
-  echo '5. Sourcing dotfiles in $HOME/.zshrc file (skipped)'
-else
-  echo '5. Sourcing dotfiles in $HOME/.zshrc file...'
-  echo 'source $HOME/dotfiles.sh' >>$HOME/.zshrc
 fi
 
 # Prompt to install Tmux Plugin Manager
 if [[ -d $HOME/bin/tmux-plugins/tpm ]]; then
-  echo "6. Installing Tmux Plugin Manager (skipped)"
+  echo -e "${BLUE}==>${RESET} Installing Tmux Plugin Manager ${BOLD}(skipped)${RESET}"
 else
-  echo "6. Installing Tmux Plugin Manager"
+  echo -e "${BLUE}==>${RESET} ${BOLD}Installing Tmux Plugin Manager${RESET}"
   git clone https://github.com/tmux-plugins/tpm $HOME/bin/tmux-plugins/tpm
 
-  echo "6.1 Running Tmux Plugin Manager Install script"
+  echo "Running Tmux Plugin Manager Install script"
   $HOME/bin/tmux-plugins/tpm/scripts/install_plugins.sh
 fi
 
 # Prompt to start yabai service
 if pgrep -x yabai >/dev/null; then
-  echo "7. Restarting yabai service"
+  echo -e "${BLUE}==>${RESET} ${BOLD}Restarting yabai service${RESET}"
   yabai --restart-service
 else
-  echo "7. Starting yabai service"
+  echo -e "${BLUE}==>${RESET} ${BOLD}Starting yabai service${RESET}"
   yabai --start-service
 fi
 
 # Prompt to start skhd service
 if pgrep -x skhd >/dev/null; then
-  echo "8. Restarting skhd service"
+  echo -e "${BLUE}==>${RESET} ${BOLD}Restarting skhd service${RESET}"
   skhd --restart-service
 else
-  echo "8. Starting skhd service"
+  echo -e "${BLUE}==>${RESET} ${BOLD}Starting skhd service${RESET}"
   skhd --start-service
 fi
