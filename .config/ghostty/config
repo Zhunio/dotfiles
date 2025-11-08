@@ -2,6 +2,8 @@ theme = catppuccin-mocha.conf
 font-family = "MesloLGL Nerd Font"
 font-thicken = true
 
+window-padding-x = 10
+
 shell-integration-features = no-cursor
 cursor-style = block
 cursor-style-blink = false
