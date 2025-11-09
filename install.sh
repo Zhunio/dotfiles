@@ -13,16 +13,7 @@ else
   git clone https://github.com/Zhunio/dotfiles.git $HOME/dotfiles
 fi
 
-# --- Create $HOME/bin folder ---
-if [[ -d $HOME/bin ]]; then
-  echo -e "${BLUE}==>${RESET} Creating \$HOME/bin folder ${BOLD}(skipped)${RESET}"
-else
-  echo -e "${BLUE}==>${RESET} ${BOLD}Creating \$HOME/bin folder${RESET}"
-  mkdir $HOME/bin
-fi
-
 # --- Install Oh My Zsh ---
-export ZSH="$HOME/bin/.oh-my-zsh"
 export KEEP_ZSHRC=yes
 
 if [[ -d $ZSH ]]; then
@@ -106,17 +97,6 @@ else
 
   # go back to current working directory
   cd $cwd
-fi
-
-# --- Install Tmux Plugin Manager ---
-if [[ -d $HOME/bin/tmux-plugins/tpm ]]; then
-  echo -e "${BLUE}==>${RESET} Installing Tmux Plugin Manager ${BOLD}(skipped)${RESET}"
-else
-  echo -e "${BLUE}==>${RESET} ${BOLD}Installing Tmux Plugin Manager${RESET}"
-  git clone https://github.com/tmux-plugins/tpm $HOME/bin/tmux-plugins/tpm
-
-  echo "Running Tmux Plugin Manager Install script"
-  $HOME/bin/tmux-plugins/tpm/scripts/install_plugins.sh
 fi
 
 # -- Install Node v22
