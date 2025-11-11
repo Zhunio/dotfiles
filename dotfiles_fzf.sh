@@ -54,7 +54,7 @@ o() {
       --bind 'ctrl-a:change-prompt(⚡ )+reload(sesh list --icons)' \
       --bind 'ctrl-t:change-prompt(  )+reload(sesh list --tmux --icons)' \
       --bind 'ctrl-f:change-prompt(  )+reload(sesh list --zoxide --icons)' \
-      --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡ )+reload(sesh list --icons)' \
+      --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡ )+reload(sesh list --tmux --icons)' \
       --preview-window 'right:55%' \
       --preview 'sesh preview {}'
   )"
