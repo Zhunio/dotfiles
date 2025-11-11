@@ -1,22 +1,3 @@
 [default_session]
 preview_command = "eza --all --git --icons --color=always {}"
 
-[[session]]
-name = "dotfiles"
-path = "~/dotfiles"
-preview_command = "eza --all --git --icons --color=always {}"
-
-[[session]]
-name = "dotfiles/config"
-path = "~/.config"
-preview_command = "eza --all --git --icons --color=always {}"
-
-[[session]]
-name = "notes"
-path = "~/Development/notes"
-preview_command = "bat --color=always ~/Development/notes/README.md"
-
-[[session]]
-name = "notes-private"
-path = "~/Development/notes-private"
-preview_command = "eza --all --git --icons --color=always {}"
