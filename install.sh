@@ -45,6 +45,7 @@ packages=(
   "fd"
   "fzf"
   "fnm"
+  "eza"
   "git"
   "gh"
   "jq"
