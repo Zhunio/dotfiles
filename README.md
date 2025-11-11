@@ -21,20 +21,6 @@
 
 # FAQ
 
-## tmux-sessionx zoxide session manager not opening?
-
-Go to tmux-sessionx
-
-```bash
-cd ~/.config/tmux/plugins/tmux-sessionx
-```
-
-Checkout the following commit
-
-```bash
-git checkout 3a1911e
-```
-
 ## How to enable GitHub Copilot and GitHub Copilot Chat?
 
 Authenticate using the GitHub CLI
