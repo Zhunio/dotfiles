@@ -47,16 +47,14 @@ o() {
     sesh list --icons --hide-duplicates | fzf --no-border \
       --ansi \
       --list-border \
-      --no-sort --prompt '⚡  ' \
+      --no-sort --prompt '⚡ ' \
       --color 'list-border:6,input-border:3,preview-border:4,header-bg:-1,header-border:6' \
       --input-border \
       --header-border \
-      --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
-      --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
-      --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c --icons)' \
-      --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z --icons)' \
-      --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
-      --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
+      --bind 'ctrl-a:change-prompt(⚡ )+reload(sesh list --icons)' \
+      --bind 'ctrl-t:change-prompt(  )+reload(sesh list --tmux --icons)' \
+      --bind 'ctrl-f:change-prompt(  )+reload(sesh list --zoxide --icons)' \
+      --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡ )+reload(sesh list --icons)' \
       --preview-window 'right:55%' \
       --preview 'sesh preview {}'
   )"
