@@ -57,6 +57,7 @@ packages=(
   "zoxide"
   "zsh-autocomplete"
   "starship"
+  "yazi"
 )
 
 # --- Homebrew casks ---
