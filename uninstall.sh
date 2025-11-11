@@ -20,14 +20,6 @@ stow -D .
 # go back to current working directory
 cd $cwd
 
-# Remove bin folder
-if [[ -d $HOME/bin ]]; then
-  echo -e "${BLUE}==>${RESET} 💀 ${BOLD}Removing bin folder: oh-my-zsh & Tmux Plugin Manager ${RESET}"
-  rm -rf $HOME/bin
-else
-  echo -e "${BLUE}==>${RESET} 💀 Removing bin folder ${BOLD}(skipped)${RESET}"
-fi
-
 # Removing Brew packages
 if command -v brew >/dev/null 2>&1; then
   echo -e "${BLUE}==>${RESET} 💀 ${BOLD}Uninstalling Homebrew packages${RESET}"
