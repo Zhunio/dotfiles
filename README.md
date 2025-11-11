@@ -26,7 +26,7 @@
 Go to tmux-sessionx
 
 ```bash
-cd ~/bin/tmux-plugins/tmux-sessionx
+cd ~/.config/tmux/plugins/tmux-sessionx
 ```
 
 Checkout the following commit
