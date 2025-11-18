@@ -7,6 +7,8 @@ export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 eval "$(starship init zsh)"
 # fzf
 source $HOME/dotfiles/dotfiles_fzf.sh
+# sesh
+source $HOME/dotfiles/dotfiles_sesh.sh
 # fnm
 eval "$(fnm env --use-on-cd --shell zsh)"
 # fnm bash_completion
