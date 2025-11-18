@@ -42,20 +42,3 @@ _fzf_comprun() {
   esac
 }
 
-o() {
-  sesh connect "$(
-    sesh list --icons --hide-duplicates | fzf --no-border \
-      --ansi \
-      --list-border \
-      --no-sort --prompt '⚡ ' \
-      --color 'list-border:6,input-border:3,preview-border:4,header-bg:-1,header-border:6' \
-      --input-border \
-      --header-border \
-      --bind 'ctrl-a:change-prompt(⚡ )+reload(sesh list --icons)' \
-      --bind 'ctrl-t:change-prompt(  )+reload(sesh list --tmux --icons)' \
-      --bind 'ctrl-f:change-prompt(  )+reload(sesh list --zoxide --icons)' \
-      --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡ )+reload(sesh list --tmux --icons)' \
-      --preview-window 'right:55%' \
-      --preview 'sesh preview {}'
-  )"
-}
