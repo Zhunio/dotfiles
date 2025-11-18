@@ -18,3 +18,5 @@ git=$(brew --prefix git)/bin
 if [[ -d "$git" ]]; then
   export PATH="$git_dir:$PATH"
 fi
+
+alias ls="eza  --icons --time-style='+%D %r'"
