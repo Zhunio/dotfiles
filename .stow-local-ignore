@@ -8,6 +8,7 @@ dotfiles_brew.sh
 dotfiles_1password.sh
 dotfiles_fzf.sh
 dotfiles_oh-my-zsh.sh
+dotfiles_sesh.sh
 
 themes
 
