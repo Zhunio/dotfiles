@@ -17,3 +17,5 @@ Brewfile.lock.json
 .config/imapnotify
 .config/msmtp
 .config/mutt
+# aerc
+.config/aerc/accounts.conf

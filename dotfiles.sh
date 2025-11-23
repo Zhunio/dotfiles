@@ -1,3 +1,5 @@
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # brew
 source $HOME/dotfiles/dotfiles_brew.sh
 # oh-my-zsh
