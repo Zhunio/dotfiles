@@ -10,8 +10,9 @@ o() {
       --input-border \
       --header-border \
       --bind 'ctrl-a:change-prompt(⚡ )+reload(sesh list --icons)' \
-      --bind 'ctrl-t:change-prompt(  )+reload(sesh list --tmux --icons)' \
-      --bind 'ctrl-f:change-prompt(  )+reload(sesh list --zoxide --icons)' \
+      --bind 'ctrl-g:change-prompt(  )+reload(sesh list --icons --config)' \
+      --bind 'ctrl-t:change-prompt(  )+reload(sesh list --icons --tmux)' \
+      --bind 'ctrl-f:change-prompt(  )+reload(sesh list --icons --zoxide)' \
       --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡ )+reload(sesh list --tmux --icons)' \
       --preview-window 'right:55%' \
       --preview 'sesh preview {}'
