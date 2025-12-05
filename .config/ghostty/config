@@ -14,3 +14,4 @@ adjust-underline-thickness = 3
 
 background = 011627 
 
+custom-shader = shaders/cursor_sweep.glsl
