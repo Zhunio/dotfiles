@@ -1,7 +1,7 @@
 return {
 	{
 		"github/copilot.vim",
-    cmd = { "Copilot" },
+		cmd = { "Copilot" },
 		ft = { "python", "lua", "typescript", "markdown", "terraform" },
 		cond = function()
 			return vim.fn.executable("gh") == 1
@@ -51,6 +51,7 @@ return {
 		},
 		build = "make tiktoken", -- Only on MacOS or Linux
 		opts = {
+			model = "gpt-5.1-codex",
 			highlight_headers = false,
 			error_header = "> [!ERROR] Error",
 			mappings = {
