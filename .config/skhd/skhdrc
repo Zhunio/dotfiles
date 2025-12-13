@@ -43,6 +43,7 @@ shift + alt - right : yabai -m window --resize right:20:0 ; yabai -m window --re
 
 # create space
 alt - n : yabai -m space --create
+
 # create space and move current window to it
 shift + alt - n : yabai -m space --create && \
   index="$(yabai -m query --spaces --display | jq '.[-1]'.index)" && \
