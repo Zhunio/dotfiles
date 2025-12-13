@@ -73,10 +73,10 @@ shift + alt - e : yabai -m window --toggle split
 alt - m : yabai -m window --toggle zoom-fullscreen
 
 # toggle window float
-alt - f : yabai -m window --toggle float --grid 12:12:8:0:4:11
+# alt - f : yabai -m window --toggle float --grid 12:12:8:0:4:11
 
 # toggle sticky(+float), picture-in-picture
-alt - s : yabai -m window --toggle sticky --grid 12:12:8:0:4:11
+# alt - s : yabai -m window --toggle sticky --grid 12:12:8:0:4:11
 
 # toggle window opacity
 alt - o : yabai -m config window_opacity on
