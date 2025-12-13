@@ -49,11 +49,11 @@ shift + alt - n : yabai -m space --create && \
   yabai -m window --space "${index}" && \
   yabai -m space --focus "${index}"
 
-# resize windows to initial size
-shift + alt - z : yabai -m space --balance
-
 # restart yabai/skhd
 shift + alt - r : yabai --restart-service; skhd --restart-service
+
+# resize windows to initial size
+shift + alt - z : yabai -m space --balance
 
 # rotate layout clockwise
 shift + alt - w : yabai -m space --rotate 270
