@@ -1,10 +1,13 @@
-# create/destroy windows
+# create space
+alt - n : yabai -m space --create
+# create space and move current window to it
 shift + alt - n : yabai -m space --create && \
   index="$(yabai -m query --spaces --display | jq '.[-1]'.index)" && \
   yabai -m window --space "${index}" && \
   yabai -m space --focus "${index}"
+
+# destroy space
 alt - d : yabai -m space --destroy
-alt - n : yabai -m space --create
 
 # focus windows
 alt - j : yabai -m window --focus south
