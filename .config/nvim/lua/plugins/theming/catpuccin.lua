@@ -100,6 +100,7 @@ return {
 				NeogitDiffAddHighlight = { bg = backgroung },
 				NeogitDiffDeleteHighlight = { bg = backgroung },
 				-- Markdown
+				RenderMarkdownTodo = { fg = C.blue },
 				RenderMarkdownCode = { bg = backgroung },
 				RenderMarkdownCodeInline = { bg = backgroung },
 				-- VimFlog

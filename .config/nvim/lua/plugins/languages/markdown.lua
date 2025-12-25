@@ -15,11 +15,14 @@ return {
 				render_modes = true,
 				sign = { enabled = false },
 				checkbox = {
-					unchecked = { icon = "󰄯 " },
+					unchecked = { icon = "󰄯 ",  },
 					checked = { icon = "󰄳 " },
-          custom = {
-            important = { raw = "[~]", rendered = '󰥔  ~', highlight = 'DiagnosticWarn', scope_highlight = '@markup.strong' }
-          }
+					custom = {
+            todo = {
+              raw = "[-]",
+              rendered = "󰄯 ",
+            }
+					},
 				},
 			})
 		end,
