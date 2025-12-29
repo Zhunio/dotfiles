@@ -15,6 +15,7 @@ return {
 				"lua_ls",
 				"pylsp",
 				"terraformls",
+        "ts_ls",
 			}
 
 			for _, server in ipairs(servers) do
