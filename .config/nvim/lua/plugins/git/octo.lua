@@ -2,6 +2,11 @@ return {
 	{
 		"pwntester/octo.nvim",
 		cmd = { "Octo" },
+    --stylua: ignore
+    keys = {
+      { "<leader>oi", ":Octo issue list<CR>", desc = "Octo Issue List" },
+      { "<leader>op", ":Octo pr list<CR>", desc = "Octo PR List" },
+    },
 		-- commit = "da764ce",
 		dependencies = {
 			"ibhagwan/fzf-lua",
