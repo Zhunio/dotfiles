@@ -59,8 +59,8 @@ return {
 				"terraform-ls",
 
 				-- SQL
-				-- "sqlls",
-				-- "sqlfmt",
+				"sqlls",
+				"sql-formatter",
 
 				-- go
 				-- "gopls",

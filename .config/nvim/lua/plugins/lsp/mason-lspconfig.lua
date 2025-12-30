@@ -14,6 +14,7 @@ return {
 				"jdtls",
 				"lua_ls",
 				"pylsp",
+				-- "sqlls",
 				"terraformls",
 				"ts_ls",
 			}

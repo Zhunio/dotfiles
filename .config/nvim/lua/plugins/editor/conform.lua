@@ -21,6 +21,7 @@ return {
 					bash = { "shfmt" },
 					zsh = { "shfmt" },
 					sql = { "sqlfmt" },
+					mysql = { "sql_formatter" },
 					python = { "black" },
 					terraform = { "terraform_fmt" },
 					go = { "goimports", "gofmt" },
