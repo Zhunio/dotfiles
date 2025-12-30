@@ -20,7 +20,7 @@ return {
 					sh = { "shfmt" },
 					bash = { "shfmt" },
 					zsh = { "shfmt" },
-					sql = { "sqlfmt" },
+					sql = { "sql_formatter" },
 					mysql = { "sql_formatter" },
 					python = { "black" },
 					terraform = { "terraform_fmt" },
