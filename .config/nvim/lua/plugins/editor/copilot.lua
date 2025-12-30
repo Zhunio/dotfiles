@@ -44,6 +44,7 @@ return {
 					end)
 				end,
 				mode = { "n", "v" },
+        desc = "Copilot: Prompt",
 			},
 		},
 		dependencies = {
