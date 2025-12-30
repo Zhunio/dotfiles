@@ -2,7 +2,7 @@ return {
 	{
 		"numToStr/Comment.nvim",
 		keys = {
-			{ "<leader>c", mode = { "n", "x", "o" } },
+			{ "<leader>c", mode = { "n", "x", "o" }, desc = "Comment: Toggle Line" },
 		},
 		config = function()
 			require("Comment").setup({
