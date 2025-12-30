@@ -6,14 +6,14 @@ return {
 		"nvim-neotest/neotest",
     --stylua: ignore
 		keys = {
-			{ "<leader>tt", function() require("neotest").run.run() end },
-			{ "<leader>tl", function() require("neotest").run.run_last() end },
-			{ "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end },
-			{ "<leader>ta", function() require("neotest").run.run({suite = true}) end },
-			{ "<leader>ts", function() require("neotest").run.stop() end },
-			{ "<leader>te", function() require("neotest").summary.toggle() end },
-			{ "<leader>to", function() require("neotest").output.open({ enter = true }) end },
-			{ "<leader>tp", function() require("neotest").output_panel.toggle() end },
+			{ "<leader>tt", function() require("neotest").run.run() end, desc = "Neotest: Run Test" },
+			{ "<leader>tl", function() require("neotest").run.run_last() end, desc = "Neotest: Run Last Test" },
+			{ "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Neotest: Run File" },
+			{ "<leader>ta", function() require("neotest").run.run({suite = true}) end, desc = "Neotest: Run All Tests" },
+			{ "<leader>ts", function() require("neotest").run.stop() end, desc = "Neotest: Stop Test" },
+			{ "<leader>te", function() require("neotest").summary.toggle() end, desc = "Neotest: Toggle Summary" },
+			{ "<leader>to", function() require("neotest").output.open({ enter = true }) end, desc = "Neotest: Open Output" },
+			{ "<leader>tp", function() require("neotest").output_panel.toggle() end, desc = "Neotest: Toggle Output Panel" },
 		},
 		dependencies = {
 			"antoinemadec/FixCursorHold.nvim",
