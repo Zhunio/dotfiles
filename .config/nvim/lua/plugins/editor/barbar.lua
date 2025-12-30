@@ -3,11 +3,11 @@ return {
 		"romgrk/barbar.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		keys = {
-			{ "<leader>q", ":BufferClose<CR>" },
-			{ "<leader>h", ":BufferPrevious<CR>" },
-			{ "<leader>l", ":BufferNext<CR>" },
-			{ "<leader><left>", ":BufferMovePrevious<CR>" },
-			{ "<leader><right>", ":BufferMoveNext<CR>" },
+			{ "<leader>q", ":BufferClose<CR>", desc = "Buffer: Close" },
+			{ "<leader>h", ":BufferPrevious<CR>", desc = "Buffer: Previous" },
+			{ "<leader>l", ":BufferNext<CR>", desc = "Buffer: Next" },
+			{ "<leader><left>", ":BufferMovePrevious<CR>", desc = "Buffer: Move to Previous" },
+			{ "<leader><right>", ":BufferMoveNext<CR>", desc = "Buffer: Move to Next" },
 		},
 		opts = {
 			icons = {
@@ -17,7 +17,7 @@ return {
 			sidebar_filetypes = {
 				["neo-tree"] = true,
 			},
-      maximum_padding = 1,
+			maximum_padding = 1,
 		},
 	},
 }
