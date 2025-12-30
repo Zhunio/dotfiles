@@ -4,16 +4,16 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
     --stylua: ignore
     keys = {
-      { "gS", function() require('gitsigns').stage_hunk() end },
-      { "gU", function() require('gitsigns').undo_stage_hunk() end },
-      { "gC", function() require('gitsigns').reset_hunk() end },
-      { "gs", function() require('gitsigns').stage_buffer() end },
-      { "gu", function() require('gitsigns').reset_buffer_index() end },
-      { "gc", function() require('gitsigns').reset_buffer() end },
-      { "gj", function() require('gitsigns').next_hunk() end },
-      { "gk", function() require('gitsigns').prev_hunk() end },
-      { "gK", function() require('gitsigns').preview_hunk() end },
-      { "gt", function() require('gitsigns').toggle_current_line_blame() end },
+      { "gS", function() require('gitsigns').stage_hunk() end, desc = "GitSigns: State Hunk" },
+      { "gU", function() require('gitsigns').undo_stage_hunk() end, desc = "GitSigns: Undo Stage Hunk" },
+      { "gC", function() require('gitsigns').reset_hunk() end, desc = "GitSigns: Reset Hunk" },
+      { "gs", function() require('gitsigns').stage_buffer() end, desc = "GitSigns: Stage Buffer" },
+      { "gu", function() require('gitsigns').reset_buffer_index() end, desc = "GitSigns: Reset Buffer Index" },
+      { "gc", function() require('gitsigns').reset_buffer() end, desc = "GitSigns: Reset Buffer" },
+      { "gj", function() require('gitsigns').next_hunk() end, desc = "GitSigns: Next Hunk" },
+      { "gk", function() require('gitsigns').prev_hunk() end, desc = "GitSigns: Previous Hunk" },
+      { "gK", function() require('gitsigns').preview_hunk() end, desc = "GitSigns: Preview Hunk" },
+      { "gt", function() require('gitsigns').toggle_current_line_blame() end, desc = "GitSigns: Toggle Current Line Blame" },
     },
 		config = function()
 			local gitsigns = require("gitsigns")
