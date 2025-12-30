@@ -4,8 +4,8 @@ return {
 		branch = "v3.x",
 		cmd = { "Neotree" },
 		keys = {
-			{ "<leader>ef", ":Neotree reveal=true position=float toggle=true<CR>" },
-			{ "<leader>ee", ":Neotree reveal=true position=left toggle=true<CR>" },
+			{ "<leader>ef", ":Neotree reveal=true position=float toggle=true<CR>", desc = "Neotree: Toggle Sidenav" },
+			{ "<leader>ee", ":Neotree reveal=true position=left toggle=true<CR>", desc = "Neotree: Open" },
 		},
 		-- dependencies = { { "3rd/image.nvim", lazy = true } },
 		opts = {
