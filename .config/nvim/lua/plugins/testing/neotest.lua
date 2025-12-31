@@ -6,6 +6,7 @@ return {
 		"nvim-neotest/neotest",
     --stylua: ignore
 		keys = {
+			{ "<leader>td", function() require("neotest").run.run({ strategy = "dap" }) end, desc = "Neotest: Debug Test" },
 			{ "<leader>tt", function() require("neotest").run.run() end, desc = "Neotest: Run Test" },
 			{ "<leader>tl", function() require("neotest").run.run_last() end, desc = "Neotest: Run Last Test" },
 			{ "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Neotest: Run File" },
