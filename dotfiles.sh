@@ -5,9 +5,8 @@ source $HOME/dotfiles/dotfiles_brew.sh
 # oh-my-zsh
 source $HOME/dotfiles/dotfiles_oh-my-zsh.sh
 # 1password
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  source $HOME/dotfiles/dotfiles_op-completion.sh
-fi
+source $HOME/dotfiles/dotfiles_op-completion.sh
+source $HOME/dotfiles/dotfiles_secrets.sh
 # starship
 export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 eval "$(starship init zsh)"

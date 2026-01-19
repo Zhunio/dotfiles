@@ -2,7 +2,6 @@
 macOS_packages=(
   "koekeishiya/formulae/skhd"
   "koekeishiya/formulae/yabai"
-  "1password-cli"
 )
 
 # macOS-only casks

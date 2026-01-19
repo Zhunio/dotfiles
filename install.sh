@@ -39,6 +39,7 @@ brew update
 
 # --- Homebrew packages ---
 packages=(
+  "aerc"
   "awscli"
   "bat"
   "btop"
@@ -50,6 +51,8 @@ packages=(
   "gh"
   "jq"
   "neovim"
+  "msmtp"
+  "offlineimap"
   "ripgrep"
   "stow"
   "tmux"
@@ -59,6 +62,7 @@ packages=(
   "starship"
   "sesh"
   "yazi"
+  "1password-cli"
 )
 
 # --- Homebrew casks ---
