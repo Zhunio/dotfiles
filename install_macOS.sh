@@ -3,8 +3,6 @@ macOS_packages=(
   "koekeishiya/formulae/skhd"
   "koekeishiya/formulae/yabai"
   "1password-cli"
-  "vdirsyncer"
-  "khal"
 )
 
 # macOS-only casks
