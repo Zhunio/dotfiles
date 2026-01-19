@@ -6,7 +6,6 @@ source $HOME/dotfiles/dotfiles_brew.sh
 source $HOME/dotfiles/dotfiles_oh-my-zsh.sh
 # 1password
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  source $HOME/dotfiles/dotfiles_op.sh
   source $HOME/dotfiles/dotfiles_op-completion.sh
 fi
 # starship
