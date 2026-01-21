@@ -1,8 +1,8 @@
 return {
 	{
 		"github/copilot.vim",
-		cmd = { "Copilot" },
-		ft = { "python", "lua", "typescript", "markdown", "terraform" },
+		-- cmd = { "Copilot" },
+		-- ft = { "python", "lua", "typescript", "markdown", "terraform" },
 		cond = function()
 			return vim.fn.executable("gh") == 1
 		end,
@@ -13,7 +13,7 @@ return {
 	},
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
-		cmd = { "CopilotChat" },
+		-- cmd = { "CopilotChat" },
 		cond = function()
 			return vim.fn.executable("gh") == 1
 		end,
