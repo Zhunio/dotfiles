@@ -6,7 +6,6 @@ source $HOME/dotfiles/dotfiles_brew.sh
 source $HOME/dotfiles/dotfiles_oh-my-zsh.sh
 # 1password
 source $HOME/dotfiles/dotfiles_op-completion.sh
-source $HOME/dotfiles/dotfiles_secrets.sh
 # starship
 export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 eval "$(starship init zsh)"
