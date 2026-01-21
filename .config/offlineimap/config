@@ -1,32 +1,15 @@
 [general]
-accounts = personal,work
+accounts = 1
 maxsyncaccounts = 1
 pythonfile = ~/.config/offlineimap/offlineimap.py
-
-[Account personal]
-localrepository = personal-local
-remoterepository = personal-remote
 
 [Account work]
 localrepository = work-local
 remoterepository = work-remote
 
-[Repository personal-local]
-type = Maildir
-localfolders = ~/.mail/personal
-
 [Repository work-local]
 type = Maildir
 localfolders = ~/.mail/work
-
-[Repository personal-remote]
-type = IMAP
-remotehost = imap.mail.me.com
-remoteusereval = getenv("MAIL_PERSONAL_USER")
-remotepasseval = getenv("MAIL_PERSONAL_PASS")
-ssl = yes
-sslcacertfile = /etc/ssl/cert.pem
-remoteport = 993
 
 [Repository work-remote]
 type = IMAP
