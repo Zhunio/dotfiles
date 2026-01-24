@@ -40,6 +40,7 @@ brew update
 # --- Homebrew packages ---
 packages=(
   "aerc"
+  "aichat"
   "awscli"
   "bat"
   "btop"

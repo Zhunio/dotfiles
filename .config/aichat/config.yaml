@@ -1,0 +1,6 @@
+# see https://github.com/sigoden/aichat/blob/main/config.example.yaml
+
+editor: nvim
+model: openai:gpt-5.2
+clients:
+  - type: openai
