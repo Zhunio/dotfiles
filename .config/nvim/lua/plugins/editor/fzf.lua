@@ -5,12 +5,12 @@ return {
     -- stylua: ignore
 		keys = {
 			-- File operations
-			{ "<leader>ff", function() require('fzf-lua').files() end, desc = "Fzf: Search and open files" },
+			{ "<leader>ff", function() require('fzf-lua').files({ formatter = "path.filename_first" }) end, desc = "Fzf: Search and open files" },
 			{ "<leader>fh", function() require("fzf-lua").helptags() end, desc = "Fzf: Search Neovim help tags" },
 			{ "<leader>fq", function() require("fzf-lua").quickfix() end, desc = "Fzf: Show quickfix list" },
 
 			-- Search
-			{ "<leader>fg", function() require('fzf-lua').live_grep() end, desc = "Fzf: Search text in project (live grep)" },
+			{ "<leader>fg", function() require('fzf-lua').live_grep({ formatter = "path.filename_first" }) end, desc = "Fzf: Search text in project (live grep)" },
 			{ "<leader>f?", function() require('fzf-lua').lgrep_curbuf() end, desc = "Fzf: Search text in current buffer" },
 
       -- Git integration
