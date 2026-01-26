@@ -50,7 +50,7 @@ directories=(
 for dir in "${directories[@]}"; do
   if [[ -d $HOME/$dir ]]; then
     echo -e "${BLUE}==>${RESET} 💀 ${BOLD}Removing $dir directory${RESET}"
-    # rm -rf $dir
+    rm -rf $dir
   else
     echo -e "${BLUE}==>${RESET} 💀 Removing $dir directory ${BOLD}(skipped)${RESET}"
   fi
