@@ -29,6 +29,14 @@ if command -v brew >/dev/null 2>&1; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)" -- --force
 fi
 
+# Remove nvim packages
+if [[ -d $HOME/.local/share/nvim ]]; then
+  echo -e "${BLUE}==>${RESET} 💀 ${BOLD}Removing ~/.local/share/nvim ${RESET}"
+  rm -rf $HOME/.local/share/nvim
+else
+  echo -e "${BLUE}==>${RESET} 💀 Removing ~/.local/share/nvim ${BOLD}(skipped)${RESET}"
+fi
+
 # Remove dotfiles
 if [[ -d $HOME/dotfiles ]]; then
   echo -e "${BLUE}==>${RESET} 💀 ${BOLD}Removing dotfiles ${RESET}"
