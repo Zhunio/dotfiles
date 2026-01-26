@@ -5,15 +5,16 @@ README.md
 
 dotfiles.sh
 dotfiles_brew.sh
-dotfiles_1password.sh
 dotfiles_fzf.sh
 dotfiles_oh-my-zsh.sh
+dotfiles_op-completion.sh
 dotfiles_sesh.sh
+
+install.sh
+install_linux.sh
+install_macOS.sh
 
 themes
 
-install.sh
-install_macOS.sh
-install_linux.sh
 uninstall.sh
 
