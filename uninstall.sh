@@ -29,39 +29,25 @@ if command -v brew >/dev/null 2>&1; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)" -- --force
 fi
 
-# Remove nvim packages
-if [[ -d $HOME/.local/share/nvim ]]; then
-  echo -e "${BLUE}==>${RESET} 💀 ${BOLD}Removing ~/.local/share/nvim ${RESET}"
-  rm -rf $HOME/.local/share/nvim
-else
-  echo -e "${BLUE}==>${RESET} 💀 Removing ~/.local/share/nvim ${BOLD}(skipped)${RESET}"
-fi
-
-# Remove dotfiles
-if [[ -d $HOME/dotfiles ]]; then
-  echo -e "${BLUE}==>${RESET} 💀 ${BOLD}Removing dotfiles ${RESET}"
-  rm -rf $HOME/dotfiles
-else
-  echo -e "${BLUE}==>${RESET} 💀 Removing dotfiles ${BOLD}(skipped)${RESET}"
-fi
-
-directories=(
-  ".cache"
-  ".copilot"
-  ".gnupg"
-  ".mail"
-  ".node-gyp"
-  ".npm"
-  ".oh-my-zsh"
-  ".suitecloud-sdk"
-  ".w3m"
+paths=(
+  "$HOME/dotfiles"
+  "$HOME/.local/share/nvim"
+  "$HOME/.cache"
+  "$HOME/.copilot"
+  "$HOME/.gnupg"
+  "$HOME/.mail"
+  "$HOME/.node-gyp"
+  "$HOME/.npm"
+  "$HOME/.oh-my-zsh"
+  "$HOME/.suitecloud-sdk"
+  "$HOME/.w3m"
 )
 
-for dir in "${directories[@]}"; do
-  if [[ -d $HOME/$dir ]]; then
-    echo -e "${BLUE}==>${RESET} 💀 ${BOLD}Removing $dir directory${RESET}"
-    rm -rf $HOME/$dir
+for path in "${paths[@]}"; do
+  if [[ -d "$path" ]]; then
+    echo -e "${BLUE}==>${RESET} 💀 ${BOLD}Removing $path${RESET}"
+    rm -rf $HOME/$path
   else
-    echo -e "${BLUE}==>${RESET} 💀 Removing $dir directory ${BOLD}(skipped)${RESET}"
+    echo -e "${BLUE}==>${RESET} 💀 Removing $path ${BOLD}(skipped)${RESET}"
   fi
 done

@@ -34,6 +34,9 @@ else
   source $HOME/dotfiles/dotfiles_brew.sh
 fi
 
+# -- Cleanup Homebrew
+brew cleanup
+
 # -- Update Homebrew ---
 brew update
 
