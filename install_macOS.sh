@@ -1,7 +1,7 @@
 # macOS-only packages
 macOS_packages=(
-  "koekeishiya/formulae/skhd"
-  "koekeishiya/formulae/yabai"
+  "asmvik/formulae/skhd"
+  "asmvik/formulae/yabai"
 )
 
 # macOS-only casks
