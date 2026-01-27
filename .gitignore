@@ -17,3 +17,5 @@ Brewfile.lock.json
 .config/offlineimap/__pycache__
 # aerc
 .config/aerc/accounts.conf
+# imapfilter
+.config/imapfilter/*
