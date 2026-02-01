@@ -52,7 +52,7 @@ return {
 		},
 		build = "make tiktoken", -- Only on MacOS or Linux
 		opts = {
-			-- model = "gpt-5.1-codex",
+			model = "claude-sonnet-4.5",
 			highlight_headers = false,
 			error_header = "> [!ERROR] Error",
 			mappings = {
