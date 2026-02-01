@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(./.config/aerc/accounts.conf)",
+      "Read(./.config/gh/config.yml)",
+      "Read(./.config/gh/hosts.yml)",
+      "Read(./.config/github-copilot/apps.json)",
+      "Read(./.config/github-copilot/versions.json)",
+      "Read(./.config/imapfilter/config.lua)"
+    ]
+  }
+}
