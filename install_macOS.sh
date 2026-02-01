@@ -17,7 +17,7 @@ for package in "${macOS_packages[@]}"; do
   brew install "$package"
 done
 
-for cask in "${macOS_packages[@]}"; do
+for cask in "${macOS_casks[@]}"; do
   brew install --cask "$cask"
 done
 
