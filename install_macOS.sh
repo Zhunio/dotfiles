@@ -6,11 +6,11 @@ macOS_packages=(
 
 # macOS-only casks
 macOS_casks=(
-  "xquartz"
   "ghostty"
   "visual-studio-code"
   "raycast"
   "shottr"
+  "claude-code"
 )
 
 for package in "${macOS_packages[@]}"; do
