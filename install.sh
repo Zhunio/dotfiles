@@ -24,8 +24,6 @@ else
 fi
 
 # --- Install Homebrew ---
-export NONINTERACTIVE=1
-
 if command -v brew >/dev/null 2>&1; then
   echo -e "${BLUE}==>${RESET} Installing Homebrew ${BOLD}(skipped)${RESET}"
 else
