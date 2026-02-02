@@ -5,7 +5,6 @@
 ## Prerequisites
 
 - Install [git](https://git-scm.com/downloads)
-- [Connect to GitHub over SSH](https://github.com/Zhunio/notes/blob/main/git/connect-to-github-over-ssh.md)
 
 ## Install
 
