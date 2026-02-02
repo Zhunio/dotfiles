@@ -13,6 +13,14 @@ else
   git clone https://github.com/Zhunio/dotfiles.git $HOME/dotfiles
 fi
 
+# --- Clone dotfiles-private repository ---
+if [[ -d $HOME/dotfiles-private ]]; then
+  echo -e "${BLUE}==>${RESET} Cloning https://github.com/Zhunio/dotfiles-private.git ${BOLD}(skipped)${RESET}"
+else
+  echo -e "${BLUE}==>${RESET} ${BOLD}Cloning https://github.com/Zhunio/dotfiles-private.git${RESET}"
+  git clone https://github.com/Zhunio/dotfiles-private.git $HOME/dotfiles-private
+fi
+
 # --- Install Oh My Zsh ---
 export KEEP_ZSHRC=yes
 
