@@ -12,19 +12,20 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/refs/heads/main/install.sh)"
 ```
 
+## Setup GitHub CLI
+
+```bash
+gh auth login
+```
+
+## Setup Claude
+
+```bash
+claude
+```
+
 ## Uninstall
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/refs/heads/main/uninstall.sh)"
-```
-
-# FAQ
-
-## How to enable GitHub Copilot and GitHub Copilot Chat?
-
-Authenticate using the GitHub CLI
-
-```bash
-gh auth login
-
 ```
