@@ -5,19 +5,23 @@ BLUE='\033[0;34m'
 BOLD='\033[1m'
 RESET='\033[0m'
 
+print_run() {
+  echo -e "${BLUE}==>${RESET} ${BOLD}$1${RESET}"
+}
+
 # --- Clone dotfiles repository ---
 if [[ -d $HOME/dotfiles ]]; then
-  echo -e "${BLUE}==>${RESET} Cloning https://github.com/Zhunio/dotfiles.git ${BOLD}(skipped)${RESET}"
+  print_run "Cloning https://github.com/Zhunio/dotfiles.git (skipped)"
 else
-  echo -e "${BLUE}==>${RESET} ${BOLD}Cloning https://github.com/Zhunio/dotfiles.git${RESET}"
+  print_run "Cloning https://github.com/Zhunio/dotfiles.git"
   git clone https://github.com/Zhunio/dotfiles.git $HOME/dotfiles
 fi
 
 # --- Clone dotfiles-private repository ---
 if [[ -d $HOME/dotfiles-private ]]; then
-  echo -e "${BLUE}==>${RESET} Cloning https://github.com/Zhunio/dotfiles-private.git ${BOLD}(skipped)${RESET}"
+  print_run "Cloning https://github.com/Zhunio/dotfiles-private.git (skipped)"
 else
-  echo -e "${BLUE}==>${RESET} ${BOLD}Cloning https://github.com/Zhunio/dotfiles-private.git${RESET}"
+  print_run "Cloning https://github.com/Zhunio/dotfiles-private.git"
   git clone https://github.com/Zhunio/dotfiles-private.git $HOME/dotfiles-private
 fi
 
@@ -25,23 +29,20 @@ fi
 export KEEP_ZSHRC=yes
 
 if [[ -d $ZSH ]]; then
-  echo -e "${BLUE}==>${RESET} Installing Oh My Zsh ${BOLD}(skipped)${RESET}"
+  print_run "Installing Oh My Zsh (skipped)"
 else
-  echo -e "${BLUE}==>${RESET} ${BOLD}Installing Oh My Zsh${RESET}"
+  print_run "Installing Oh My Zsh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
 # --- Install Homebrew ---
 if command -v brew >/dev/null 2>&1; then
-  echo -e "${BLUE}==>${RESET} Installing Homebrew ${BOLD}(skipped)${RESET}"
+  print_run "Installing Homebrew (skipped)"
 else
-  echo -e "${BLUE}==>${RESET} ${BOLD}Installing Homebrew${RESET}"
+  print_run "Installing Homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   source $HOME/dotfiles/dotfiles_brew.sh
 fi
-
-# -- Cleanup Homebrew
-brew cleanup
 
 # -- Update Homebrew ---
 brew update
@@ -92,34 +93,30 @@ done
 # --- Source dotfiles in .zshrc ---
 echo ""
 if grep -q "source \$HOME/dotfiles/dotfiles\.sh" $HOME/.zshrc; then
-  echo -e "${BLUE}==>${RESET} Sourcing dotfiles in \$HOME/.zshrc file. ${BOLD}(skipped)${RESET}"
+  print_run "Sourcing dotfiles in \$HOME/.zshrc file (skipped)"
 else
-  echo -e "${BLUE}==>${RESET} ${BOLD}Sourcing dotfiles in \$HOME/.zshrc file...${RESET}"
+  print_run "Sourcing dotfiles in \$HOME/.zshrc file"
   echo 'source $HOME/dotfiles/dotfiles.sh' >>$HOME/.zshrc
 fi
 
 # --- Create symlinks using GNU Stow ---
-if [[ -d $HOME/.config ]]; then
-  echo -e "${BLUE}==>${RESET} Creating symlinks using GNU Stow ${BOLD}(skipped)${RESET}"
-else
-  # save current working directory
-  cwd=$(pwd)
+# save current working directory
+cwd=$(pwd)
 
-  # Changing to $HOME/dotfiles directory
-  cd $HOME/dotfiles
+# Changing to $HOME/dotfiles directory
+cd $HOME/dotfiles
 
-  echo -e "${BLUE}==>${RESET} ${BOLD}Creating symlinks using GNU Stow${RESET}"
-  stow .
+print_run "Creating symlinks using GNU Stow"
+stow .
 
-  # go back to current working directory
-  cd $cwd
-fi
+# go back to current working directory
+cd $cwd
 
 # -- Install Node v22
 if fnm list | grep -q v22; then
-  echo -e "${BLUE}==>${RESET} Installing Node v22 ${BOLD}(skipped)${RESET}"
+  print_run "Installing Node v22 (skipped)"
 else
-  echo -e "${BLUE}==>${RESET} ${BOLD}Installing Node v22${RESET}"
+  print_run "Installing Node v22"
   fnm install 22
   fnm default 22
 fi
