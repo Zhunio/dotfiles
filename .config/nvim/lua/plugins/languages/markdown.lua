@@ -15,14 +15,8 @@ return {
 				render_modes = true,
 				sign = { enabled = false },
 				checkbox = {
-					unchecked = { icon = "󰄯 ",  },
+					unchecked = { icon = "󰄯",  },
 					checked = { icon = "󰄳 " },
-					custom = {
-            todo = {
-              raw = "[-]",
-              rendered = "󰄯 ",
-            }
-					},
 				},
 			})
 		end,
