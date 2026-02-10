@@ -1,7 +1,7 @@
 return {
 	"github/copilot.vim",
-	-- cmd = { "Copilot" },
-	-- ft = { "python", "lua", "typescript", "markdown", "terraform" },
+	cmd = { "Copilot" },
+	event = "InsertEnter",
 	cond = function()
 		return vim.fn.executable("gh") == 1
 	end,

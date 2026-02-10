@@ -1,6 +1,6 @@
 return {
 	"CopilotC-Nvim/CopilotChat.nvim",
-	-- cmd = { "CopilotChat" },
+	cmd = { "CopilotChat" },
 	cond = function()
 		return vim.fn.executable("gh") == 1
 	end,
