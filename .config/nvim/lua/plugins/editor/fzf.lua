@@ -33,6 +33,13 @@ return {
 		},
 		config = function()
 			require("fzf-lua").setup({
+				git = {
+					branches = {
+						winopts = {
+							preview = { layout = "vertical" },
+						},
+					},
+				},
 				lsp = {
 					symbols = {
 						symbol_style = 2,
