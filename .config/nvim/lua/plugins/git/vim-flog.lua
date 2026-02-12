@@ -31,7 +31,7 @@ return {
 
 			local function cherrypick_commit_under_cursor()
 				local commit = commit_under_cursor()
-        require('flog').exec('Git cherry-pick ' .. commit)
+				require("flog").exec("Git cherry-pick " .. commit)
 			end
 
 			local function set_flog_keymaps()
@@ -40,6 +40,18 @@ return {
 				vim.keymap.set("n", "q", ":quit<CR>", keymapOptions)
 				vim.keymap.set("n", "<CR>", diff_commit_under_cursor, keymapOptions)
 				vim.keymap.set("n", "cp", cherrypick_commit_under_cursor, keymapOptions)
+				vim.keymap.set("n", "ff", function()
+					require("flog").exec("Git fetch --prune")
+				end, keymapOptions)
+				vim.keymap.set("n", "pp", function()
+					require("flog").exec("Git pull")
+				end, keymapOptions)
+				vim.keymap.set("n", "Pp", function()
+					require("flog").exec("Git push")
+				end, keymapOptions)
+				vim.keymap.set("n", "Pu", function()
+					require("flog").exec("Git push -u origin HEAD")
+				end, keymapOptions)
 			end
 
 			vim.api.nvim_create_autocmd("FileType", {
