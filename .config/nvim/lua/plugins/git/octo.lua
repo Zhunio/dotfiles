@@ -5,7 +5,7 @@ return {
     --stylua: ignore
     keys = {
       { "<leader>oi", ":Octo issue list<CR>", desc = "Octo Issue List" },
-      { "<leader>op", ":Octo pr list<CR>", desc = "Octo PR List" },
+      { "<leader>oo", ":Octo pr list<CR>", desc = "Octo PR List" },
     },
 		-- commit = "da764ce",
 		dependencies = {
