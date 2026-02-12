@@ -7,6 +7,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
+vim.opt.autoread = true
 
 if vim.g.vscode then
 -- no special options for now
