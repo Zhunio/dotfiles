@@ -52,6 +52,14 @@ return {
 				vim.keymap.set("n", "Pu", function()
 					require("flog").exec("Git push -u origin HEAD")
 				end, keymapOptions)
+				vim.keymap.set("n", "bb", function()
+					local commit = commit_under_cursor()
+					vim.ui.input({ prompt = "Branch name: " }, function(name)
+						if name and name ~= "" then
+							require("flog").exec("Git checkout -b " .. name .. " " .. commit)
+						end
+					end)
+				end, keymapOptions)
 			end
 
 			vim.api.nvim_create_autocmd("FileType", {
