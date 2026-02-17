@@ -34,12 +34,49 @@ return {
 				require("flog").exec("Git cherry-pick " .. commit)
 			end
 
+			local function delete_branch_on_commit_under_cursor()
+				local commit = commit_under_cursor()
+				local branches = vim.fn.systemlist(
+					"git branch --format='%(refname:short)' --points-at " .. vim.fn.shellescape(commit)
+				)
+
+				if vim.v.shell_error ~= 0 then
+					vim.notify("Failed to list branches for commit " .. commit, vim.log.levels.ERROR)
+					return
+				end
+
+				branches = vim.tbl_filter(function(branch)
+					return branch and branch ~= ""
+				end, branches)
+
+				if #branches == 0 then
+					vim.notify("No local branches point at commit " .. commit, vim.log.levels.INFO)
+					return
+				end
+
+				vim.ui.select(branches, { prompt = "Delete branch at " .. commit .. ":" }, function(branch)
+					if not branch then
+						return
+					end
+
+					vim.ui.input({ prompt = "Type branch name to confirm delete: " }, function(input)
+						if input ~= branch then
+							vim.notify("Branch deletion cancelled", vim.log.levels.WARN)
+							return
+						end
+
+						require("flog").exec("Git branch -d " .. branch)
+					end)
+				end)
+			end
+
 			local function set_flog_keymaps()
 				local keymapOptions = { noremap = true, silent = true, buffer = true }
 
 				vim.keymap.set("n", "q", ":quit<CR>", keymapOptions)
 				vim.keymap.set("n", "<CR>", diff_commit_under_cursor, keymapOptions)
 				vim.keymap.set("n", "cp", cherrypick_commit_under_cursor, keymapOptions)
+				vim.keymap.set("n", "bd", delete_branch_on_commit_under_cursor, keymapOptions)
 				vim.keymap.set("n", "ff", function()
 					require("flog").exec("Git fetch --prune")
 				end, keymapOptions)
