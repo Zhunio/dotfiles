@@ -6,9 +6,14 @@ return {
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		event = { "BufReadPre", "BufNewFile" },
+		cmd = "Ibl",
 		main = "ibl",
-		config = function()
+		init = function()
+			vim.api.nvim_create_user_command("Ibl", function()
+				require("lazy").load({ plugins = { "indent-blankline.nvim" } })
+			end, { desc = "Load indent-blankline.nvim" })
+		end,
+		opts = function()
 			local highlight = {
 				"RainbowRed",
 				"RainbowOrange",
@@ -36,8 +41,7 @@ return {
 				end
 			end)
 
-			local indent = require("ibl")
-			indent.setup({
+			return {
 				indent = {
 					char = "▏",
 					highlight = highlight,
@@ -46,7 +50,10 @@ return {
 					char = "▎",
 					highlight = highlight,
 				},
-			})
+			}
+		end,
+		config = function(_, opts)
+			require("ibl").setup(opts)
 		end,
 	},
 }
