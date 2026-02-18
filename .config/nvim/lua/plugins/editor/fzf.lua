@@ -26,7 +26,8 @@ return {
 			{ "<leader>fd", function() require("fzf-lua").diagnostics_document() end, desc = "Fzf: Show diagnostics for current document" },
 
       -- Miscellaneous
-			{ "<leader>fp", function() require("fzf-lua").commands() end, desc = "Fzf: List available commands" },
+			{ "<leader>fp", function() require("fzf-lua").commands({ actions = { ["enter"] = require("fzf-lua.actions").ex_run_cr } }) end, desc = "Fzf: List available commands",
+			},
 			{ "<leader>f:", function() require("fzf-lua").command_history() end, desc = "Fzf: Show command history" },
 			{ "<leader>fk", function() require("fzf-lua").keymaps() end, desc = "Fzf: List keymaps" },
 			{ "<leader>fr", function() require("fzf-lua").registers() end, desc = "Fzf: Show registers" },
