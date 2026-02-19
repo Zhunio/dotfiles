@@ -77,7 +77,7 @@ return {
 				vim.keymap.set("n", "<CR>", diff_commit_under_cursor, keymapOptions)
 				vim.keymap.set("n", "cp", cherrypick_commit_under_cursor, keymapOptions)
 				vim.keymap.set("n", "bd", delete_branch_on_commit_under_cursor, keymapOptions)
-				vim.keymap.set("n", "ff", function()
+				vim.keymap.set("n", "fa", function()
 					require("flog").exec("Git fetch --prune")
 				end, keymapOptions)
 				vim.keymap.set("n", "pp", function()
