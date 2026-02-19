@@ -36,7 +36,7 @@ return {
 			require("fzf-lua").setup({
 				git = {
 					branches = {
-						cmd = [[git branch --all --color --format="%(HEAD) %(refname:short)"]],
+						cmd = [[git branch --all --color --sort=-HEAD --format="%(HEAD) %(refname:short)"]],
 						preview = [[git log --graph --color --date=short --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(green)%cr%Creset %C(blue)%an%Creset" {1}]],
 						winopts = {
 							preview = { layout = "vertical" },
