@@ -17,6 +17,7 @@ return {
 				-- "sqlls",
 				"terraformls",
 				"ts_ls",
+				"vue_ls",
 			}
 
 			for _, server in ipairs(servers) do

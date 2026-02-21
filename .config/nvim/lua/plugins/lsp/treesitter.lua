@@ -53,6 +53,7 @@ return {
 					"terraform",
 					"tmux",
 					"typescript",
+					"vue",
 					"vim",
 					"vimdoc",
 					"yaml",
