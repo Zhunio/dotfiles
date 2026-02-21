@@ -22,6 +22,7 @@ return {
 
 				-- typescript
 				"ts_ls",
+				"vue_ls",
 				"js-debug-adapter",
 
 				-- sass
