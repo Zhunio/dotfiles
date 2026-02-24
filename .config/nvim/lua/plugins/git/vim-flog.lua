@@ -34,6 +34,44 @@ return {
 				require("flog").exec("Git cherry-pick " .. commit)
 			end
 
+			local function branch_from_selection(selected)
+				if not (selected and selected[1]) then
+					return nil
+				end
+				local _, branch = selected[1]:match("%s-([%+%*]?)%s+([^ ]+)")
+				return branch
+			end
+
+			local function diff_select_compare_branch(base_branch)
+				require("fzf-lua").git_branches({
+					winopts = { title = "Comparing Changes: Compare" },
+					actions = {
+						["default"] = function(selected)
+							local compare_branch = branch_from_selection(selected)
+							if not compare_branch then
+								return
+							end
+							vim.cmd("DiffviewOpen " .. base_branch .. "..." .. compare_branch)
+						end,
+					},
+				})
+			end
+
+			local function diff_select_base_branch()
+				require("fzf-lua").git_branches({
+					winopts = { title = "Comparing Changes: Base" },
+					actions = {
+						["default"] = function(selected)
+							local base_branch = branch_from_selection(selected)
+							if not base_branch then
+								return
+							end
+							diff_select_compare_branch(base_branch)
+						end,
+					},
+				})
+			end
+
 			local function delete_branch_on_commit_under_cursor()
 				local commit = commit_under_cursor()
 				local branches = vim.fn.systemlist(
@@ -77,18 +115,11 @@ return {
 				vim.keymap.set("n", "<CR>", diff_commit_under_cursor, keymapOptions)
 				vim.keymap.set("n", "cp", cherrypick_commit_under_cursor, keymapOptions)
 				vim.keymap.set("n", "bd", delete_branch_on_commit_under_cursor, keymapOptions)
-				vim.keymap.set("n", "fa", function()
-					require("flog").exec("Git fetch --prune")
-				end, keymapOptions)
-				vim.keymap.set("n", "pp", function()
-					require("flog").exec("Git pull")
-				end, keymapOptions)
-				vim.keymap.set("n", "Pp", function()
-					require("flog").exec("Git push")
-				end, keymapOptions)
-				vim.keymap.set("n", "Pu", function()
-					require("flog").exec("Git push -u origin HEAD")
-				end, keymapOptions)
+				vim.keymap.set("n", "dr", diff_select_base_branch, keymapOptions)
+				vim.keymap.set("n", "fa", function() require("flog").exec("Git fetch --prune") end, keymapOptions)
+				vim.keymap.set("n", "pp", function() require("flog").exec("Git pull") end, keymapOptions)
+				vim.keymap.set("n", "Pp", function() require("flog").exec("Git push") end, keymapOptions)
+				vim.keymap.set("n", "Pu", function() require("flog").exec("Git push -u origin HEAD") end, keymapOptions)
 				vim.keymap.set("n", "bb", function()
 					local commit = commit_under_cursor()
 					vim.ui.input({ prompt = "Branch name: " }, function(name)
