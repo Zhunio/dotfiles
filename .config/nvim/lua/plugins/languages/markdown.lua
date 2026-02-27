@@ -15,8 +15,16 @@ return {
 				render_modes = true,
 				sign = { enabled = false },
 				checkbox = {
-					unchecked = { icon = "󰄯",  },
+					unchecked = { icon = " ", highlight = "RenderMarkdownInfo" },
 					checked = { icon = "󰄳 " },
+					custom = {
+						in_progress = {
+							raw = "[~]",
+							rendered = "",
+							highlight = "RenderMarkdownWarn",
+							scope_highlight = nil,
+						},
+					},
 				},
 			})
 		end,
