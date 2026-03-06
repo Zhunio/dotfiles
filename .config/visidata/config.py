@@ -25,8 +25,8 @@ options.color_highlight_status = 'bold'
 
 # Highlighted column and row
 options.color_current_row = 'reverse'
-options.color_current_col = 'bold'
-options.color_current_cell = 'bold'
+options.color_current_col = 'bold 16 on 231'
+options.color_current_cell = 'bold 16 on 153'
 
 # Header menu: File/Edit/View/Column/Row/Data/Plot
 options.color_menu = ''
