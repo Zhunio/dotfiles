@@ -4,6 +4,7 @@ vim.keymap.set("i", "jk", "<Esc>")
 
 -- file
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save file" })
+vim.keymap.set("n", "<leader>R", ":checktime<CR>", { desc = "Reload file changed outside Neovim" })
 
 -- indentation
 vim.keymap.set("v", "<", "<gv")
