@@ -13,3 +13,6 @@ options.color_active_status = ''
 options.color_inactive_status = ''
 options.color_highlight_status = 'bold'
 options.color_keystrokes = 'bold'
+
+# tmux uses Ctrl+S as prefix; use zS in VisiData to save current sheet
+BaseSheet.bindkey('zS', 'save-sheet')
