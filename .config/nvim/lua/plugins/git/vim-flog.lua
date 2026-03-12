@@ -42,69 +42,43 @@ return {
 				return branch
 			end
 
-			local function diff_select_compare_branch(base_branch)
+			local function select_branch(title, on_select)
 				require("fzf-lua").git_branches({
-					winopts = { title = "Comparing Changes: Compare" },
+					winopts = { title = title },
 					actions = {
 						["default"] = function(selected)
-							local compare_branch = branch_from_selection(selected)
-							if not compare_branch then
+							local branch = branch_from_selection(selected)
+							if not branch then
 								return
 							end
-							vim.cmd("DiffviewOpen " .. base_branch .. "..." .. compare_branch)
+							on_select(branch)
 						end,
 					},
 				})
+			end
+
+			local function diff_select_compare_branch(base_branch)
+				select_branch("Comparing Changes: Compare", function(compare_branch)
+					vim.cmd("DiffviewOpen " .. base_branch .. "..." .. compare_branch)
+				end)
 			end
 
 			local function diff_select_base_branch()
-				require("fzf-lua").git_branches({
-					winopts = { title = "Comparing Changes: Base" },
-					actions = {
-						["default"] = function(selected)
-							local base_branch = branch_from_selection(selected)
-							if not base_branch then
-								return
-							end
-							diff_select_compare_branch(base_branch)
-						end,
-					},
-				})
+				select_branch("Comparing Changes: Base", function(base_branch)
+					diff_select_compare_branch(base_branch)
+				end)
 			end
 
-			local function delete_branch_on_commit_under_cursor()
-				local commit = commit_under_cursor()
-				local branches = vim.fn.systemlist(
-					"git branch --format='%(refname:short)' --points-at " .. vim.fn.shellescape(commit)
-				)
+			local function delete_branch()
+				select_branch("Delete Branch", function(branch)
+					local remote_branch = branch:match("^origin/(.+)$")
 
-				if vim.v.shell_error ~= 0 then
-					vim.notify("Failed to list branches for commit " .. commit, vim.log.levels.ERROR)
-					return
-				end
-
-				branches = vim.tbl_filter(function(branch)
-					return branch and branch ~= ""
-				end, branches)
-
-				if #branches == 0 then
-					vim.notify("No local branches point at commit " .. commit, vim.log.levels.INFO)
-					return
-				end
-
-				vim.ui.select(branches, { prompt = "Delete branch at " .. commit .. ":" }, function(branch)
-					if not branch then
+					if remote_branch then
+						require("flog").exec("Git push origin --delete " .. vim.fn.shellescape(remote_branch))
 						return
 					end
 
-					vim.ui.input({ prompt = "Type branch name to confirm delete: " }, function(input)
-						if input ~= branch then
-							vim.notify("Branch deletion cancelled", vim.log.levels.WARN)
-							return
-						end
-
-						require("flog").exec("Git branch -d " .. branch)
-					end)
+					require("flog").exec("Git branch -d " .. vim.fn.shellescape(branch))
 				end)
 			end
 
@@ -114,7 +88,7 @@ return {
 				vim.keymap.set("n", "q", ":quit<CR>", keymapOptions)
 				vim.keymap.set("n", "<CR>", diff_commit_under_cursor, keymapOptions)
 				vim.keymap.set("n", "cp", cherrypick_commit_under_cursor, keymapOptions)
-				vim.keymap.set("n", "bd", delete_branch_on_commit_under_cursor, keymapOptions)
+				vim.keymap.set("n", "bd", delete_branch, keymapOptions)
 				vim.keymap.set("n", "dr", diff_select_base_branch, keymapOptions)
 				vim.keymap.set("n", "fa", function() require("flog").exec("Git fetch --prune") end, keymapOptions)
 				vim.keymap.set("n", "pp", function() require("flog").exec("Git pull") end, keymapOptions)
