@@ -68,6 +68,7 @@ packages=(
   "stow"
   "tmux"
   "terraform"
+  "tree"
   "zoxide"
   "zsh-autocomplete"
   "starship"
