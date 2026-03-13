@@ -63,6 +63,7 @@ packages=(
   "jq"
   "neovim"
   "oauth2l"
+  "poppler"
   "ripgrep"
   "stow"
   "tmux"
