@@ -5,7 +5,7 @@ return {
     -- stylua: ignore
 		keys = {
 			-- File operations
-			{ "<leader>ff", function() require('fzf-lua').files({ formatter = "path.filename_first" }) end, desc = "Fzf: Search and open files" },
+			{ "<leader>ff", function() require('fzf-lua').files() end, desc = "Fzf: Search and open files" },
 			{ "<leader>fh", function() require("fzf-lua").helptags() end, desc = "Fzf: Search Neovim help tags" },
 			{ "<leader>fq", function() require("fzf-lua").quickfix() end, desc = "Fzf: Show quickfix list" },
 
@@ -34,6 +34,12 @@ return {
 		},
 		config = function()
 			require("fzf-lua").setup({
+				files = {
+					formatter = "path.filename_first",
+					winopts = {
+						preview = { layout = "vertical" },
+					},
+				},
 				git = {
 					branches = {
 						cmd = [[git branch --all --color --sort=-HEAD --format="%(HEAD) %(refname:short)"]],
