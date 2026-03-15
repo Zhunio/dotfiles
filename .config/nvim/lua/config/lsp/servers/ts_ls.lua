@@ -21,7 +21,7 @@ return {
 				command = "_typescript.organizeImports",
 				arguments = { vim.api.nvim_buf_get_name(bufnr) },
 			})
-		end, { desc = "LSP: Organize Imports" })
+		end, { buffer = bufnr, desc = "LSP: Organize Imports" })
 	end,
 	filetypes = {
 		"javascript",
