@@ -13,7 +13,7 @@ return {
 				"html",
 				"jdtls",
 				"lua_ls",
-				"pylsp",
+				"pyright",
 				-- "sqlls",
 				"terraformls",
 				"ts_ls",
