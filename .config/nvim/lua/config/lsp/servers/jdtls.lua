@@ -11,7 +11,7 @@ local data_path = vim.fn.stdpath("cache") .. "/jdtls-data/" .. vim.fn.fnamemodif
 local cmd = {
 	-- 💀
 	"java", -- or '/path/to/java21_or_newer/bin/java'
-	"-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044",
+	-- "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044",
 	"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 	"-Dosgi.bundles.defaultStartLevel=4",
 	"-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -36,18 +36,6 @@ local cmd = {
 -- https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
 local settings = {
 	java = {
-		configuration = {
-			runtimes = {
-				{
-					name = "JavaSE-17",
-					path = vim.fn.glob(vim.fn.expand("~/.sdkman/candidates/java/17*")),
-				},
-				{
-					name = "JavaSE-21",
-					path = vim.fn.glob(vim.fn.expand("~/.sdkman/candidates/java/21*")),
-				},
-			},
-		},
 	},
 }
 
