@@ -41,11 +41,10 @@ return {
 				"angularls",
 
 				-- java
-				-- "java-test",
-				-- "java-debug-adapter",
-				-- "lombok-nightly",
-				-- "jdtls",
-				-- "google-java-format",
+				"java-test",
+				"java-debug-adapter",
+				"jdtls",
+				"google-java-format",
 
 				-- python
 				"pyright",
