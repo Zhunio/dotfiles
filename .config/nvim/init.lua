@@ -40,7 +40,6 @@ local spec = {
 
 if profile == "work" then
 	vim.list_extend(spec, {
-		{ import = "plugins.work" },
 		{ import = "plugins.work.editor" },
 		{ import = "plugins.work.git" },
 		{ import = "plugins.work.lsp" },
