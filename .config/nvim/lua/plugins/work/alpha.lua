@@ -26,7 +26,6 @@ return {
 					{ type = "text", val = "Quick links", opts = { hl = "AlphaGroupTitle", position = "center" } },
 					{ type = "padding", val = 1 },
 					dashboard.button("l", "󰒲  lazy", ":Lazy<CR>"),
-					dashboard.button("m", "󱥒  mason", ":Mason<CR>"),
 					dashboard.button("u", "  update", ":Lazy sync<CR>"),
 					dashboard.button("a", "󰀫  toggle", ":Alpha<CR>"),
 					dashboard.button("q", "  quit", ":qa<CR>"),
