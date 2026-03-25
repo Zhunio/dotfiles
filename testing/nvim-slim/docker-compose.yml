@@ -1,0 +1,18 @@
+services:
+  nvim-slim:
+    image: ubuntu:24.04
+    container_name: nvim-slim
+    stdin_open: true
+    tty: true
+    environment:
+      NVIM_PROFILE: slim
+      DEBIAN_FRONTEND: noninteractive
+    volumes:
+      - /Users/zhunio/dotfiles/.config/nvim:/root/.config/nvim:ro
+      - /Users/zhunio/dotfiles/.config:/root/test:ro
+    command: >
+      bash -lc "
+      apt-get update &&
+      apt-get install -y neovim git curl &&
+      tail -f /dev/null
+      "

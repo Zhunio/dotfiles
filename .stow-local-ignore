@@ -15,6 +15,6 @@ install_linux.sh
 install_macOS.sh
 
 themes
+testing
 
 uninstall.sh
-
