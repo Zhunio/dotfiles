@@ -9,7 +9,7 @@ services:
       DEBIAN_FRONTEND: noninteractive
     volumes:
       - /Users/zhunio/dotfiles/.config/nvim:/root/.config/nvim:ro
-      - /Users/zhunio/dotfiles/.config:/root/test:ro
+      - /Users/zhunio/dotfiles:/root/dotfiles:ro
     command: >
       bash -lc "
       apt-get update &&
