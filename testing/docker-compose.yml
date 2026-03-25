@@ -13,6 +13,6 @@ services:
     command: >
       bash -lc "
       apt-get update &&
-      apt-get install -y neovim git curl &&
+      apt-get install -y neovim git curl fzf &&
       tail -f /dev/null
       "
