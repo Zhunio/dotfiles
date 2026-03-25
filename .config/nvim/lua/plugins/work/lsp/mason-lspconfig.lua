@@ -21,7 +21,7 @@ return {
 			}
 
 			for _, server in ipairs(servers) do
-				local server_config = require("plugins.lsp.servers." .. server)
+				local server_config = require("plugins.work.lsp.servers." .. server)
 				vim.lsp.config(server, server_config)
 			end
 

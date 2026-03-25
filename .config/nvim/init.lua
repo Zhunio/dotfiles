@@ -1,4 +1,6 @@
 -- Options
+local profile = vim.env.NVIM_PROFILE or "work"
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.opt.clipboard = "unnamedplus"
@@ -31,17 +33,27 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+-- Plugin Profile
+local spec = {
+	{ import = "plugins.slim" },
+}
+
+if profile == "work" then
+	vim.list_extend(spec, {
+		{ import = "plugins.work" },
+		{ import = "plugins.work.editor" },
+		{ import = "plugins.work.git" },
+		{ import = "plugins.work.lsp" },
+	})
+end
+
 require("lazy").setup({
+	lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
 	change_detection = {
 		enabled = true,
 		notify = false,
 	},
-	spec = {
-		{ import = "plugins" },
-		{ import = "plugins.editor" },
-		{ import = "plugins.git" },
-		{ import = "plugins.lsp" },
-	},
+	spec = spec,
 })
 
 -- Keymaps
