@@ -1,4 +1,4 @@
-local on_attach = require("plugins.lsp.servers.on_attach")
+local on_attach = require("plugins.work.lsp.servers.on_attach")
 
 return {
 	on_attach = on_attach,
