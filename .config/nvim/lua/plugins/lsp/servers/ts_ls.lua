@@ -1,4 +1,4 @@
-local on_attach = require("config.lsp.on_attach")
+local on_attach = require("plugins.lsp.servers.on_attach")
 
 local function get_vue_ts_plugin_location()
 	local vue_language_server_path = vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "packages", "vue-language-server")
