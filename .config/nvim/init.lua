@@ -31,24 +31,22 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-if not vim.g.vscode then
-	require("lazy").setup({
-		change_detection = {
-			enabled = true,
-			notify = false,
-		},
-		spec = {
-			{ import = "plugins" },
-			{ import = "plugins.debugging" },
-			{ import = "plugins.editor" },
-			{ import = "plugins.git" },
-			{ import = "plugins.languages" },
-			{ import = "plugins.lsp" },
-			{ import = "plugins.testing" },
-			{ import = "plugins.theming" },
-		},
-	})
-end
+require("lazy").setup({
+	change_detection = {
+		enabled = true,
+		notify = false,
+	},
+	spec = {
+		{ import = "plugins" },
+		{ import = "plugins.debugging" },
+		{ import = "plugins.editor" },
+		{ import = "plugins.git" },
+		{ import = "plugins.languages" },
+		{ import = "plugins.lsp" },
+		{ import = "plugins.testing" },
+		{ import = "plugins.theming" },
+	},
+})
 
 -- Keymaps
 vim.keymap.set("i", "jj", "<Esc>")
@@ -84,4 +82,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
-
