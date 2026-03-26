@@ -24,8 +24,6 @@ return {
 			"ibhagwan/fzf-lua",
 		},
 		config = function()
-			require("fzf-lua").register_ui_select()
-
 			local dap = require("dap")
 			local dapui = require("dapui")
 			local dap_virtual_text = require("nvim-dap-virtual-text")
