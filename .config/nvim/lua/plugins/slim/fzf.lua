@@ -2,6 +2,7 @@ return {
 	{
 		"ibhagwan/fzf-lua",
 		cmd = { "FzfLua" },
+		event = "VeryLazy",
     -- stylua: ignore
 		keys = {
 			-- File operations
@@ -86,7 +87,7 @@ return {
 				},
 			})
 
-			vim.cmd([[FzfLua register_ui_select]])
+			require("fzf-lua").register_ui_select()
 		end,
 	},
 }
