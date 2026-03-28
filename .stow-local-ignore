@@ -5,9 +5,7 @@ README.md
 
 dotfiles.sh
 dotfiles_brew.sh
-dotfiles_fzf.sh
 dotfiles_oh-my-zsh.sh
-dotfiles_op-completion.sh
 dotfiles_sesh.sh
 
 install.sh

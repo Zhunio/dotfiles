@@ -11,7 +11,5 @@
 Brewfile.lock.json
 # btop
 .config/btop/*.log
-# 1password
-.config/op/*
 # offlineimap
 .config/offlineimap/__pycache__

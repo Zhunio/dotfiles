@@ -46,7 +46,7 @@ alt - n : yabai -m space --create
 
 # create space and move current window to it
 shift + alt - n : yabai -m space --create && \
-  index="$(yabai -m query --spaces --display | jq '.[-1]'.index)" && \
+  index="$(yabai -m query --spaces --display | sed -nE 's/.*"index":[[:space:]]*([0-9]+).*/\1/p' | tail -n 1)" && \
   yabai -m window --space "${index}" && \
   yabai -m space --focus "${index}"
 
