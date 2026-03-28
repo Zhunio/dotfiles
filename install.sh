@@ -50,31 +50,22 @@ brew update
 # --- Homebrew packages ---
 packages=(
   "aerc"
-  "aichat"
-  "awscli"
-  "bat"
   "btop"
-  "fd"
   "fzf"
   "fnm"
   "eza"
   "git"
   "gh"
-  "jq"
   "neovim"
   "oauth2l"
-  "poppler"
   "ripgrep"
   "stow"
   "tmux"
-  "terraform"
-  "tree"
   "zoxide"
   "zsh-autocomplete"
   "starship"
   "sesh"
   "yazi"
-  "1password-cli"
 )
 
 # --- Homebrew casks ---
