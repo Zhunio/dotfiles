@@ -1,6 +1,4 @@
 -- Options
-local profile = vim.env.NVIM_PROFILE or "work"
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.opt.clipboard = "unnamedplus"
@@ -33,17 +31,9 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
--- Plugin Profile
-local spec = {
-	{ import = "plugins.slim" },
-}
+local spec = { { import = "plugins.core" } }
 
-if profile == "work" then
-	vim.list_extend(spec, {
-		{ import = "plugins.work" },
-		{ import = "plugins.work.lsp" },
-	})
-end
+vim.list_extend(spec, require("config.profiles").get_plugin_spec())
 
 require("lazy").setup({
 	lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
