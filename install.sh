@@ -85,6 +85,7 @@ macos_casks=(
   "raycast"
   "shottr"
   "claude-code"
+  "codex"
 )
 
 install_homebrew_packages() {

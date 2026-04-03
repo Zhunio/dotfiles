@@ -1,6 +1,7 @@
 return {
 	require("plugins.shared.nvim-cmp"),
 	require("plugins.shared.treesitter"),
+	require("plugins.shared.octo"),
 	vim.tbl_deep_extend("force", require("plugins.shared.conform"), {
 		opts = {
 			formatters_by_ft = {
