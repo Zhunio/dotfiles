@@ -33,7 +33,7 @@ local profile_file_markers = {
 	{ name = "angular", markers = { "angular.json" } },
 	{ name = "java", markers = { "pom.xml", "build.gradle" } },
 	{ name = "python", markers = { "pyproject.toml", "requirements.txt", "setup.py" } },
-	{ name = "typescript", markers = { "tsconfig.json" } },
+	{ name = "typescript", markers = { "tsconfig.json", "package.json" } },
 }
 
 local function detect_profile_from_cwd(cwd)
