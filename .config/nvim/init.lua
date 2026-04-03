@@ -33,7 +33,7 @@ vim.opt.rtp:prepend(lazypath)
 
 local spec = { { import = "plugins.core" } }
 
-vim.list_extend(spec, require("config.profiles").get_plugin_spec())
+vim.list_extend(spec, require("config.profile").get_plugin_spec())
 
 require("lazy").setup({
 	lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
