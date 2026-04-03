@@ -35,6 +35,14 @@ local spec = { { import = "plugins.core" } }
 
 require("config.profile").extend_core_plugins(spec, vim.fn.getcwd())
 
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
+vim.diagnostic.config({ virtual_text = true })
+
 require("lazy").setup({
 	lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
 	change_detection = {
