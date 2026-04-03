@@ -1,3 +1,5 @@
+local with_plugin = require("config.with-plugin")
+
 local function get_vue_ts_plugin_location()
 	local vue_language_server_path = vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "packages", "vue-language-server")
 	if not vim.uv.fs_stat(vue_language_server_path) then
@@ -13,7 +15,7 @@ return {
 	require("plugins.shared.nvim-cmp"),
 	require("plugins.shared.treesitter"),
 	require("plugins.shared.octo"),
-	vim.tbl_deep_extend("force", require("plugins.shared.conform"), {
+	with_plugin("plugins.shared.conform", {
 		opts = {
 			formatters_by_ft = {
 				javascript = { "prettier" },
@@ -24,12 +26,12 @@ return {
 			},
 		},
 	}),
-	vim.tbl_deep_extend("force", require("plugins.shared.mason-tool-installer"), {
+	with_plugin("plugins.shared.mason-tool-installer", {
 		opts = {
 			ensure_installed = { "ts_ls", "js-debug-adapter", "prettier" },
 		},
 	}),
-	vim.tbl_deep_extend("force", require("plugins.shared.mason-lspconfig"), {
+	with_plugin("plugins.shared.mason-lspconfig", {
 		config = function()
 			local on_attach = require("plugins.shared.on-attach")
 			vim.lsp.config("ts_ls", vim.tbl_deep_extend("force", { on_attach = on_attach }, {
