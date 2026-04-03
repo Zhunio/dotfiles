@@ -2,10 +2,10 @@ local M = {}
 
 local profile_file_markers = {
 	{ name = "angular", markers = { "angular.json" } },
+	{ name = "typescript", markers = { "tsconfig.json", "package.json" } },
 	{ name = "java", markers = { "pom.xml", "build.gradle" } },
 	{ name = "lua", markers = { ".luarc.json", ".luarc.jsonc", "stylua.toml", ".stylua.toml", ".config/nvim/init.lua" } },
 	{ name = "python", markers = { "pyproject.toml", "requirements.txt", "setup.py" } },
-	{ name = "typescript", markers = { "tsconfig.json", "package.json" } },
 }
 
 local function get_profile(cwd)
@@ -31,6 +31,7 @@ end
 function M.extend_core_plugins(spec, cwd)
 	local profile = get_profile(cwd)
 	if profile then
+    print("Profile: " .. profile)
 		vim.list_extend(spec, { { import = "profiles." .. profile } })
 	end
 
