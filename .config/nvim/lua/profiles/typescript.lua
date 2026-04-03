@@ -1,16 +1,5 @@
 local with_plugin = require("config.with-plugin")
 
-local function get_vue_ts_plugin_location()
-	local vue_language_server_path = vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "packages", "vue-language-server")
-	if not vim.uv.fs_stat(vue_language_server_path) then
-		return nil
-	end
-
-	return vim.fs.joinpath(vue_language_server_path, "node_modules", "@vue", "language-server")
-end
-
-local vue_ts_plugin_location = get_vue_ts_plugin_location()
-
 return {
 	require("plugins.shared.nvim-cmp"),
 	require("plugins.shared.treesitter"),
@@ -52,16 +41,6 @@ return {
 					"typescript",
 					"typescriptreact",
 					"typescript.tsx",
-					"vue",
-				},
-				init_options = {
-					plugins = vue_ts_plugin_location and {
-						{
-							name = "@vue/typescript-plugin",
-							location = vue_ts_plugin_location,
-							languages = { "vue" },
-						},
-					} or {},
 				},
 			}))
 
