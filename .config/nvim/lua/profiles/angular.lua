@@ -20,7 +20,7 @@ return {
 	}),
 	with_plugin("plugins.shared.mason-lspconfig", {
 		config = function()
-			local on_attach = require("plugins.shared.on-attach")
+			local on_attach = require("config.on_attach")
 			vim.lsp.config("angularls", vim.tbl_deep_extend("force", { on_attach = on_attach }, {
 				root_dir = function(fname)
 					local lspconfig = require("lspconfig")
@@ -33,13 +33,6 @@ return {
 				filetypes = { "html" },
 			}))
 
-			local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-			for type, icon in pairs(signs) do
-				local hl = "DiagnosticSign" .. type
-				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-			end
-
-			vim.diagnostic.config({ virtual_text = true })
 			require("mason-lspconfig").setup({})
 		end,
 	}),
