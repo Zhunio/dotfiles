@@ -4,15 +4,5 @@
 README.md
 
 dotfiles.sh
-dotfiles_brew.sh
-dotfiles_oh-my-zsh.sh
-dotfiles_sesh.sh
-
 install.sh
-install_linux.sh
-install_macOS.sh
-
-themes
-testing
-
 uninstall.sh
