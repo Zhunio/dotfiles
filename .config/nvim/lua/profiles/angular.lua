@@ -1,8 +1,10 @@
+local with_plugin = require("config.with-plugin")
+
 return {
 	require("plugins.shared.nvim-cmp"),
 	require("plugins.shared.treesitter"),
 	require("plugins.shared.octo"),
-	vim.tbl_deep_extend("force", require("plugins.shared.conform"), {
+	with_plugin("plugins.shared.conform", {
 		opts = {
 			formatters_by_ft = {
 				html = { "prettier" },
@@ -11,12 +13,12 @@ return {
 			},
 		},
 	}),
-	vim.tbl_deep_extend("force", require("plugins.shared.mason-tool-installer"), {
+	with_plugin("plugins.shared.mason-tool-installer", {
 		opts = {
 			ensure_installed = { "angularls", "emmet_language_server", "html", "cssls", "prettier" },
 		},
 	}),
-	vim.tbl_deep_extend("force", require("plugins.shared.mason-lspconfig"), {
+	with_plugin("plugins.shared.mason-lspconfig", {
 		config = function()
 			local on_attach = require("plugins.shared.on-attach")
 			vim.lsp.config("angularls", vim.tbl_deep_extend("force", { on_attach = on_attach }, {
