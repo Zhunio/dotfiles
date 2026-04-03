@@ -1,7 +1,6 @@
 return {
 	{
 		"mfussenegger/nvim-dap",
-    --stylua: ignore
 		keys = {
 			{ "<leader>dd", function() require("dap").continue() end, desc = "DAP: Continue" },
 			{ "<leader>dx", function() require("dap").terminate() end, desc = "DAP: Terminate" },
@@ -15,8 +14,8 @@ return {
 			{ "<leader>dj", function() require("dap").down() end, desc = "DAP: Down" },
 			{ "<leader>dh", function() require("dap.ui.widgets").hover() end, desc = "DAP: Hover" },
 			{ "<leader>dp", function() require("dap.ui.widgets").preview() end, desc = "DAP: Preview" },
-			{ "<leader>df", function() require("dap.ui.widgets").centered_float(require('dap.ui.widgets').frames) end, desc = "DAP: Frames" },
-			{ "<leader>ds", function() require("dap.ui.widgets").centered_float(require('dap.ui.widgets').scopes) end, desc = "DAP: Scopes" },
+			{ "<leader>df", function() require("dap.ui.widgets").centered_float(require("dap.ui.widgets").frames) end, desc = "DAP: Frames" },
+			{ "<leader>ds", function() require("dap.ui.widgets").centered_float(require("dap.ui.widgets").scopes) end, desc = "DAP: Scopes" },
 		},
 		dependencies = {
 			"rcarriga/nvim-dap-ui",
@@ -31,18 +30,10 @@ return {
 			dapui.setup()
 			dap_virtual_text.setup()
 
-			dap.listeners.before.attach.dapui_config = function()
-				dapui.open()
-			end
-			dap.listeners.before.launch.dapui_config = function()
-				dapui.open()
-			end
-			dap.listeners.before.event_terminated.dapui_config = function()
-				dapui.close()
-			end
-			dap.listeners.before.event_exited.dapui_config = function()
-				dapui.close()
-			end
+			dap.listeners.before.attach.dapui_config = function() dapui.open() end
+			dap.listeners.before.launch.dapui_config = function() dapui.open() end
+			dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
+			dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
 
 			local icons = {
 				Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
@@ -56,10 +47,12 @@ return {
 
 			for name, sign in pairs(icons) do
 				sign = type(sign) == "table" and sign or { sign }
-				vim.fn.sign_define(
-					"Dap" .. name,
-					{ text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] }
-				)
+				vim.fn.sign_define("Dap" .. name, {
+					text = sign[1],
+					texthl = sign[2] or "DiagnosticInfo",
+					linehl = sign[3],
+					numhl = sign[3],
+				})
 			end
 
 			for _, adapter in ipairs({ "pwa-node", "pwa-chrome" }) do
@@ -70,9 +63,7 @@ return {
 					executable = {
 						command = "node",
 						args = {
-							vim.fn.expand(
-								"~/.local/share/nvim/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js"
-							),
+							vim.fn.expand("~/.local/share/nvim/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js"),
 							"${port}",
 						},
 					},
@@ -96,13 +87,8 @@ return {
 						url = function()
 							local co = coroutine.running()
 							return coroutine.create(function()
-								vim.ui.input({
-									prompt = "Enter URL: ",
-									default = "http://localhost:3000",
-								}, function(url)
-									if url == nil or url == "" then
-										return
-									else
+								vim.ui.input({ prompt = "Enter URL: ", default = "http://localhost:3000" }, function(url)
+									if url ~= nil and url ~= "" then
 										coroutine.resume(co, url)
 									end
 								end)

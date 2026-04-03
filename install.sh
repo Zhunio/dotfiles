@@ -5,118 +5,157 @@ BLUE='\033[0;34m'
 BOLD='\033[1m'
 RESET='\033[0m'
 
+DOTFILES_REPO="https://github.com/Zhunio/dotfiles.git"
+DOTFILES_DIR="$HOME/dotfiles"
+DOTFILES_PRIVATE_REPO="https://github.com/Zhunio/dotfiles-private.git"
+DOTFILES_PRIVATE_DIR="$HOME/dotfiles-private"
+
 print_run() {
   echo -e "${BLUE}==>${RESET} ${BOLD}$1${RESET}"
 }
 
-# --- Clone dotfiles repository ---
-if [[ -d $HOME/dotfiles ]]; then
-  print_run "Cloning https://github.com/Zhunio/dotfiles.git (skipped)"
-else
-  print_run "Cloning https://github.com/Zhunio/dotfiles.git"
-  git clone https://github.com/Zhunio/dotfiles.git $HOME/dotfiles
-fi
+clone_repo_if_missing() {
+  local repo_url=$1
+  local target_dir=$2
 
-# --- Clone dotfiles-private repository ---
-if [[ -d $HOME/dotfiles-private ]]; then
-  print_run "Cloning https://github.com/Zhunio/dotfiles-private.git (skipped)"
-else
-  print_run "Cloning https://github.com/Zhunio/dotfiles-private.git"
-  git clone https://github.com/Zhunio/dotfiles-private.git $HOME/dotfiles-private
-fi
+  if [[ -d "$target_dir" ]]; then
+    print_run "Cloning ${repo_url} (skipped)"
+    return
+  fi
 
-# --- Install Oh My Zsh ---
-export KEEP_ZSHRC=yes
+  print_run "Cloning ${repo_url}"
+  git clone "$repo_url" "$target_dir"
+}
 
-if [[ -d $ZSH ]]; then
-  print_run "Installing Oh My Zsh (skipped)"
-else
+install_oh_my_zsh() {
+  export KEEP_ZSHRC=yes
+
+  if [[ -d "$ZSH" ]]; then
+    print_run "Installing Oh My Zsh (skipped)"
+    return
+  fi
+
   print_run "Installing Oh My Zsh"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-fi
+}
 
-# --- Install Homebrew ---
-if command -v brew >/dev/null 2>&1; then
-  print_run "Installing Homebrew (skipped)"
-else
+install_homebrew() {
+  if command -v brew >/dev/null 2>&1; then
+    print_run "Installing Homebrew (skipped)"
+    return
+  fi
+
   print_run "Installing Homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  source $HOME/dotfiles/dotfiles_brew.sh
-fi
+}
 
-# -- Update Homebrew ---
-brew update
+update_homebrew() {
+  print_run "Updating Homebrew"
+  brew update
+}
 
-# --- Homebrew packages ---
-packages=(
-  "aerc"
-  "btop"
-  "fzf"
-  "fnm"
-  "eza"
+core_packages=(
   "git"
   "gh"
   "neovim"
-  "oauth2l"
   "ripgrep"
   "stow"
+)
+
+macos_packages=(
+  "asmvik/formulae/skhd"
+  "asmvik/formulae/yabai"
+  "aerc"
+  "direnv"
+  "eza"
+  "fzf"
+  "mise"
+  "oauth2l"
+  "sesh"
+  "starship"
   "tmux"
   "zoxide"
   "zsh-autocomplete"
-  "starship"
-  "sesh"
-  "yazi"
 )
 
-# --- Homebrew casks ---
-casks=(
+macos_casks=(
   "font-meslo-lg-nerd-font"
+  "ghostty"
+  "visual-studio-code"
+  "raycast"
+  "shottr"
+  "claude-code"
 )
 
-# --- Install Homebrew packages ---
-for package in "${packages[@]}"; do
-  brew install "$package"
-done
+install_homebrew_packages() {
+  for package in "${core_packages[@]}"; do
+    brew install "$package"
+  done
+}
 
-# --- Install Homebrew casks ---
-for cask in "${casks[@]}"; do
-  brew install --cask "$cask"
-done
+ensure_dotfiles_are_sourced() {
+  local zshrc_file="$HOME/.zshrc"
 
-# --- Source dotfiles in .zshrc ---
-echo ""
-if grep -q "source \$HOME/dotfiles/dotfiles\.sh" $HOME/.zshrc; then
-  print_run "Sourcing dotfiles in \$HOME/.zshrc file (skipped)"
-else
+  echo ""
+  if grep -q "source \$HOME/dotfiles/dotfiles\.sh" "$zshrc_file"; then
+    print_run "Sourcing dotfiles in \$HOME/.zshrc file (skipped)"
+    return
+  fi
+
   print_run "Sourcing dotfiles in \$HOME/.zshrc file"
-  echo 'source $HOME/dotfiles/dotfiles.sh' >>$HOME/.zshrc
-fi
+  echo 'source $HOME/dotfiles/dotfiles.sh' >>"$zshrc_file"
+}
 
-# --- Create symlinks using GNU Stow ---
-# save current working directory
-cwd=$(pwd)
+stow_dotfiles() {
+  local cwd
+  cwd=$(pwd)
 
-# Changing to $HOME/dotfiles directory
-cd $HOME/dotfiles
+  cd "$DOTFILES_DIR"
+  print_run "Creating symlinks using GNU Stow"
+  stow .
+  cd "$cwd"
+}
 
-print_run "Creating symlinks using GNU Stow"
-stow .
+install_macos_extras() {
+  if [[ "$(uname -s)" != "Darwin" ]]; then
+    return
+  fi
 
-# go back to current working directory
-cd $cwd
+  for package in "${macos_packages[@]}"; do
+    brew install "$package"
+  done
 
-# -- Install Node v22
-if fnm list | grep -q v22; then
-  print_run "Installing Node v22 (skipped)"
-else
-  print_run "Installing Node v22"
-  fnm install 22
-  fnm default 22
-fi
+  for cask in "${macos_casks[@]}"; do
+    brew install --cask "$cask"
+  done
 
-# --- macOS specific installations ---
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  source $HOME/dotfiles/install_macOS.sh
-elif [[ "$(uname -s)" == "Linux" ]]; then
-  source $HOME/dotfiles/install_linux.sh
-fi
+  if pgrep -x yabai >/dev/null; then
+    print_run "Restarting yabai service"
+    yabai --restart-service
+  else
+    print_run "Starting yabai service"
+    yabai --start-service
+  fi
+
+  if pgrep -x skhd >/dev/null; then
+    print_run "Restarting skhd service"
+    skhd --restart-service
+  else
+    print_run "Starting skhd service"
+    skhd --start-service
+  fi
+}
+
+main() {
+  clone_repo_if_missing "$DOTFILES_REPO" "$DOTFILES_DIR"
+  clone_repo_if_missing "$DOTFILES_PRIVATE_REPO" "$DOTFILES_PRIVATE_DIR"
+  install_oh_my_zsh
+  install_homebrew
+  update_homebrew
+  install_homebrew_packages
+  ensure_dotfiles_are_sourced
+  stow_dotfiles
+  install_macos_extras
+}
+
+main "$@"
