@@ -8,8 +8,16 @@
 
 ## Install
 
+Core:
+
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/refs/heads/main/install.sh)"
+```
+
+Full:
+
+```bash
+PROFILE=full /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/refs/heads/main/install.sh)"
 ```
 
 ## Setup GitHub CLI
