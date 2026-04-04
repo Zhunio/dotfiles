@@ -34,8 +34,8 @@ vim.opt.rtp:prepend(lazypath)
 -- Profiles
 local spec = { { import = "plugins.core" } }
 
-local profile = vim.env.NVIM_PROFILE
-if profile then
+local profile = vim.env.DOTFILES_PROFILE or "core"
+if profile == "full" then
 	table.insert(spec, { import = "plugins.full" })
 end
 
