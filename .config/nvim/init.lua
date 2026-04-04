@@ -31,17 +31,15 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+-- Profiles
 local spec = { { import = "plugins.core" } }
+local profile = vim.env.NVIM_PROFILE
 
-require("config.profile").extend_core_plugins(spec, vim.fn.getcwd())
-
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+if profile then
+	table.insert(spec, { import = "plugins.work" })
 end
 
-vim.diagnostic.config({ virtual_text = true })
+-- Lazy
 
 require("lazy").setup({
 	lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
@@ -52,6 +50,15 @@ require("lazy").setup({
 	spec = spec,
 })
 
+-- Diagnostics
+
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
+vim.diagnostic.config({ virtual_text = true })
 -- Keymaps
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("i", "jk", "<Esc>")
