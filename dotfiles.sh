@@ -15,24 +15,45 @@ setup_homebrew() {
 }
 
 setup_zsh_autocomplete() {
-  source "$HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
+  local plugin_path="$HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
+
+  if [[ -f "$plugin_path" ]]; then
+    source "$plugin_path"
+  fi
 }
 
 setup_starship() {
+  if ! command -v starship >/dev/null 2>&1; then
+    return
+  fi
+
   export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
   eval "$(starship init zsh)"
 }
 
 setup_mise() {
+  if ! command -v mise >/dev/null 2>&1; then
+    return
+  fi
+
   eval "$(mise activate zsh)"
 }
 
 setup_zoxide() {
+  if ! command -v zoxide >/dev/null 2>&1; then
+    return
+  fi
+
   eval "$(zoxide init zsh)"
 }
 
 setup_git_path() {
   local git_bin
+
+  if ! command -v brew >/dev/null 2>&1; then
+    return
+  fi
+
   git_bin="$(brew --prefix git)/bin"
 
   if [[ -d "$git_bin" ]]; then
@@ -51,9 +72,16 @@ main() {
 
 main "$@"
 
-alias ls="eza --icons --time-style='+%D %r'"
+if command -v eza >/dev/null 2>&1; then
+  alias ls="eza --icons --time-style='+%D %r'"
+fi
 
 o() {
+  if ! command -v sesh >/dev/null 2>&1 || ! command -v fzf >/dev/null 2>&1 || ! command -v tmux >/dev/null 2>&1; then
+    echo "o requires sesh, fzf, and tmux"
+    return 1
+  fi
+
   sesh connect "$(
     sesh list --icons --hide-duplicates | fzf --no-border \
       --ansi \
