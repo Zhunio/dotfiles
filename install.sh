@@ -4,6 +4,7 @@ DOTFILES_REPO="https://github.com/Zhunio/dotfiles.git"
 DOTFILES_DIR="$HOME/dotfiles"
 DOTFILES_PRIVATE_REPO="https://github.com/Zhunio/dotfiles-private.git"
 DOTFILES_PRIVATE_DIR="$HOME/dotfiles-private"
+DOTFILES_PROFILE="${DOTFILES_PROFILE:-core}"
 
 print_run() {
   local blue='\033[0;34m'
@@ -36,7 +37,6 @@ install_homebrew() {
 }
 
 install_homebrew_packages() {
-  local profile=${PROFILE:-core}
   local core_packages=(
     "git"
     "gh"
@@ -72,7 +72,7 @@ install_homebrew_packages() {
     brew install "$package"
   done
 
-  if [[ "$profile" == "full" ]]; then
+  if [[ "$DOTFILES_PROFILE" == "full" ]]; then
     for package in "${full_packages[@]}"; do
       brew install "$package"
     done
@@ -85,8 +85,17 @@ install_homebrew_packages() {
 
 source_dotfiles() {
   local zshrc_file="$HOME/.zshrc"
+  local profile_line="export DOTFILES_PROFILE=${DOTFILES_PROFILE}"
 
   echo ""
+  if [[ -f "$zshrc_file" ]]; then
+    awk '
+      $0 != "export DOTFILES_PROFILE=core" && $0 != "export DOTFILES_PROFILE=full" { print }
+    ' "$zshrc_file" >"$zshrc_file.tmp" && mv "$zshrc_file.tmp" "$zshrc_file"
+  fi
+
+  echo "$profile_line" >>"$zshrc_file"
+
   if grep -q "source \$HOME/dotfiles/dotfiles\.sh" "$zshrc_file"; then
     print_run "Sourcing dotfiles in \$HOME/.zshrc file (skipped)"
     return
