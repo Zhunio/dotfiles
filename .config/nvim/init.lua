@@ -33,10 +33,10 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Profiles
 local spec = { { import = "plugins.core" } }
-local profile = vim.env.NVIM_PROFILE
 
+local profile = vim.env.NVIM_PROFILE
 if profile then
-	table.insert(spec, { import = "plugins.work" })
+	table.insert(spec, { import = "plugins.full" })
 end
 
 -- Lazy
