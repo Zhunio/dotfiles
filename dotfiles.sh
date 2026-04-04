@@ -27,10 +27,6 @@ setup_mise() {
   eval "$(mise activate zsh)"
 }
 
-setup_direnv() {
-  eval "$(direnv hook zsh)"
-}
-
 setup_zoxide() {
   eval "$(zoxide init zsh)"
 }
@@ -49,7 +45,6 @@ main() {
   setup_zsh_autocomplete
   setup_starship
   setup_mise
-  setup_direnv
   setup_zoxide
   setup_git_path
 }

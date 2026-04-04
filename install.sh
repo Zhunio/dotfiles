@@ -1,17 +1,15 @@
 #!/bin/bash
 
-# Colors for output
-BLUE='\033[0;34m'
-BOLD='\033[1m'
-RESET='\033[0m'
-
 DOTFILES_REPO="https://github.com/Zhunio/dotfiles.git"
 DOTFILES_DIR="$HOME/dotfiles"
 DOTFILES_PRIVATE_REPO="https://github.com/Zhunio/dotfiles-private.git"
 DOTFILES_PRIVATE_DIR="$HOME/dotfiles-private"
 
 print_run() {
-  echo -e "${BLUE}==>${RESET} ${BOLD}$1${RESET}"
+  local blue='\033[0;34m'
+  local bold='\033[1m'
+  local reset='\033[0m'
+  echo -e "${blue}==>${reset} ${bold}$1${reset}"
 }
 
 clone_repo_if_missing() {
@@ -27,18 +25,6 @@ clone_repo_if_missing() {
   git clone "$repo_url" "$target_dir"
 }
 
-install_oh_my_zsh() {
-  export KEEP_ZSHRC=yes
-
-  if [[ -d "$ZSH" ]]; then
-    print_run "Installing Oh My Zsh (skipped)"
-    return
-  fi
-
-  print_run "Installing Oh My Zsh"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-}
-
 install_homebrew() {
   if command -v brew >/dev/null 2>&1; then
     print_run "Installing Homebrew (skipped)"
@@ -49,52 +35,55 @@ install_homebrew() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
-update_homebrew() {
-  print_run "Updating Homebrew"
-  brew update
-}
-
-core_packages=(
-  "git"
-  "gh"
-  "neovim"
-  "ripgrep"
-  "stow"
-)
-
-macos_packages=(
-  "asmvik/formulae/skhd"
-  "asmvik/formulae/yabai"
-  "aerc"
-  "direnv"
-  "eza"
-  "fzf"
-  "mise"
-  "oauth2l"
-  "sesh"
-  "starship"
-  "tmux"
-  "zoxide"
-  "zsh-autocomplete"
-)
-
-macos_casks=(
-  "font-meslo-lg-nerd-font"
-  "ghostty"
-  "visual-studio-code"
-  "raycast"
-  "shottr"
-  "claude-code"
-  "codex"
-)
-
 install_homebrew_packages() {
+  local profile=${PROFILE:-core}
+  local core_packages=(
+    "git"
+    "gh"
+    "neovim"
+    "ripgrep"
+    "stow"
+  )
+  local full_packages=(
+    "asmvik/formulae/skhd"
+    "asmvik/formulae/yabai"
+    "aerc"
+    "eza"
+    "fzf"
+    "mise"
+    "oauth2l"
+    "sesh"
+    "starship"
+    "tmux"
+    "zoxide"
+    "zsh-autocomplete"
+  )
+  local full_casks=(
+    "font-meslo-lg-nerd-font"
+    "ghostty"
+    "visual-studio-code"
+    "raycast"
+    "shottr"
+    "claude-code"
+    "codex"
+  )
+
   for package in "${core_packages[@]}"; do
     brew install "$package"
   done
+
+  if [[ "$profile" == "full" ]]; then
+    for package in "${full_packages[@]}"; do
+      brew install "$package"
+    done
+
+    for cask in "${full_casks[@]}"; do
+      brew install --cask "$cask"
+    done
+  fi
 }
 
-ensure_dotfiles_are_sourced() {
+source_dotfiles() {
   local zshrc_file="$HOME/.zshrc"
 
   echo ""
@@ -122,14 +111,6 @@ install_macos_extras() {
     return
   fi
 
-  for package in "${macos_packages[@]}"; do
-    brew install "$package"
-  done
-
-  for cask in "${macos_casks[@]}"; do
-    brew install --cask "$cask"
-  done
-
   if pgrep -x yabai >/dev/null; then
     print_run "Restarting yabai service"
     yabai --restart-service
@@ -150,11 +131,9 @@ install_macos_extras() {
 main() {
   clone_repo_if_missing "$DOTFILES_REPO" "$DOTFILES_DIR"
   clone_repo_if_missing "$DOTFILES_PRIVATE_REPO" "$DOTFILES_PRIVATE_DIR"
-  install_oh_my_zsh
   install_homebrew
-  update_homebrew
   install_homebrew_packages
-  ensure_dotfiles_are_sourced
+  source_dotfiles
   stow_dotfiles
   install_macos_extras
 }
