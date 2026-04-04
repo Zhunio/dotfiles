@@ -1,3 +1,5 @@
+local lsp = require("lsp")
+
 local function get_jdtls_config_path()
 	local system = vim.loop.os_uname().sysname
 	local config_dir = ({
@@ -72,52 +74,7 @@ return {
 
 		vim.diagnostic.config({ virtual_text = true })
 
-		vim.lsp.config("angularls", vim.tbl_deep_extend("force", { on_attach = on_attach }, {
-			root_dir = function(fname)
-				local lspconfig = require("lspconfig")
-				local root = lspconfig.util.root_pattern("angular.json", "workspace.json", "project.json")(fname)
-				return root or nil
-			end,
-		}))
-		vim.lsp.config("emmet_language_server", vim.tbl_deep_extend("force", { on_attach = on_attach }, {}))
-		vim.lsp.config("html", vim.tbl_deep_extend("force", { on_attach = on_attach }, {
-			filetypes = { "html" },
-		}))
-		vim.lsp.config("jdtls", vim.tbl_deep_extend("force", { on_attach = on_attach }, get_jdtls_config()))
-		vim.lsp.config("lua_ls", vim.tbl_deep_extend("force", { on_attach = on_attach }, {
-			settings = {
-				Lua = {
-					diagnostics = {
-						globals = { "vim" },
-					},
-					workspace = {
-						checkThirdParty = false,
-						library = vim.api.nvim_get_runtime_file("", true),
-					},
-				},
-			},
-		}))
-		vim.lsp.config("pyright", vim.tbl_deep_extend("force", { on_attach = on_attach }, {}))
-		vim.lsp.config("ts_ls", vim.tbl_deep_extend("force", { on_attach = on_attach }, {
-			cmd = { "typescript-language-server", "--stdio" },
-			on_attach = function(_, bufnr)
-				on_attach(_, bufnr)
-				vim.keymap.set("n", "gO", function()
-					vim.lsp.buf.execute_command({
-						command = "_typescript.organizeImports",
-						arguments = { vim.api.nvim_buf_get_name(bufnr) },
-					})
-				end, { buffer = bufnr, desc = "LSP: Organize Imports" })
-			end,
-			filetypes = {
-				"javascript",
-				"javascriptreact",
-				"javascript.jsx",
-				"typescript",
-				"typescriptreact",
-				"typescript.tsx",
-			},
-		}))
+		lsp.setup(on_attach)
 
 		require("mason-lspconfig").setup({})
 	end,
