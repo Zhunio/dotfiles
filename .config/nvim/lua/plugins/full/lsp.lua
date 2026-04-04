@@ -1,4 +1,3 @@
-local lsp = require("lsp")
 
 local function on_attach(_, bufnr)
   local opts = { buffer = bufnr }
@@ -26,7 +25,7 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     dependencies = { "neovim/nvim-lspconfig" },
     config = function()
-      lsp.setup(on_attach)
+      require("lsp").setup(on_attach)
       require("mason-lspconfig").setup({})
     end,
   },
