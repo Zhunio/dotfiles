@@ -1,4 +1,6 @@
 
+local lsp = require("lsp.core")
+
 local function on_attach(_, bufnr)
   local opts = { buffer = bufnr }
   vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "LSP: Rename symbol" }))
@@ -25,7 +27,7 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     dependencies = { "neovim/nvim-lspconfig" },
     config = function()
-      require("lsp").setup(on_attach)
+      lsp.setup(on_attach)
       require("mason-lspconfig").setup({})
     end,
   },

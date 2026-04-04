@@ -51,11 +51,11 @@ end
 
 function M.setup(on_attach)
   local modules = {
-    { cond = function() return true end, setup = require("lsp.lua").setup },
-    { cond = has_python, setup = require("lsp.python").setup },
-    { cond = has_node, setup = require("lsp.angular").setup },
-    { cond = has_node, setup = require("lsp.typescript").setup },
-    { cond = has_java, setup = require("lsp.java").setup },
+    { cond = function() return true end, setup = require("lsp.lang.lua").setup },
+    { cond = has_python, setup = require("lsp.lang.python").setup },
+    { cond = has_node, setup = require("lsp.lang.angular").setup },
+    { cond = has_node, setup = require("lsp.lang.typescript").setup },
+    { cond = has_java, setup = require("lsp.lang.java").setup },
   }
 
   for _, mod in ipairs(modules) do
