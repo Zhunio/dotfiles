@@ -20,6 +20,19 @@ stow -D .
 # go back to current working directory
 cd $cwd
 
+# Removing dotfiles sourcing from ~/.zshrc
+zshrc_file="$HOME/.zshrc"
+if [[ -f "$zshrc_file" ]]; then
+  echo -e "${BLUE}==>${RESET} 💀 ${BOLD}Removing dotfiles config from \$HOME/.zshrc${RESET}"
+  awk '
+    $0 != "source $HOME/dotfiles/dotfiles.sh" &&
+    $0 != "export DOTFILES_PROFILE=core" &&
+    $0 != "export DOTFILES_PROFILE=full" { print }
+  ' "$zshrc_file" >"$zshrc_file.tmp" && mv "$zshrc_file.tmp" "$zshrc_file"
+else
+  echo -e "${BLUE}==>${RESET} 💀 Removing \$HOME/.zshrc ${BOLD}(skipped)${RESET}"
+fi
+
 # Removing Brew packages
 if command -v brew >/dev/null 2>&1; then
   echo -e "${BLUE}==>${RESET} 💀 ${BOLD}Uninstalling Homebrew packages${RESET}"
