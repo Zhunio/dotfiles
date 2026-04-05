@@ -72,11 +72,7 @@ local function get_jdtls_config_path()
   return vim.fn.glob("$MASON/packages/jdtls/" .. config_dir)
 end
 
-local function get_jdtls_config()
-  local lombok_path = vim.fn.glob("$MASON/packages/jdtls/lombok.jar")
-  local equinox_path = vim.fn.glob("$MASON/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar")
-  local config_path = get_jdtls_config_path()
-  local data_path = vim.fn.stdpath("cache") .. "/jdtls-data/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+local function get_jdtls_bundles()
   local bundles = vim.tbl_flatten({
     vim.fn.glob("$MASON/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar", nil, true),
     vim.fn.glob("$MASON/packages/java-test/extension/server/*.jar", nil, true),
@@ -93,6 +89,19 @@ local function get_jdtls_config()
     end
   end
 
+  return bundles
+end
+
+local function get_jdtls_workspace(root_dir)
+  local project_name = vim.fn.fnamemodify(root_dir, ":p:t")
+  return vim.fn.stdpath("cache") .. "/jdtls-data/" .. project_name
+end
+
+local function get_jdtls_config(root_dir)
+  local lombok_path = vim.fn.glob("$MASON/packages/jdtls/lombok.jar")
+  local equinox_path = vim.fn.glob("$MASON/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar")
+  local config_path = get_jdtls_config_path()
+
   return {
     cmd = {
       "java",
@@ -108,51 +117,68 @@ local function get_jdtls_config()
       "--add-opens", "java.base/java.lang=ALL-UNNAMED",
       "-jar", equinox_path,
       "-configuration", config_path,
-      "-data", data_path,
+      "-data", get_jdtls_workspace(root_dir),
     },
-    root_dir = vim.fs.root(0, { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }),
+    on_attach = on_attach,
+    root_dir = root_dir,
     settings = { java = {} },
-    init_options = { bundles = bundles },
+    init_options = { bundles = get_jdtls_bundles() },
   }
 end
 
 return {
-  "williamboman/mason-lspconfig.nvim",
-  event = { "BufReadPost", "BufNewFile" },
-  dependencies = { "neovim/nvim-lspconfig" },
-  config = function()
-    local has_python = executable("python3") == 1 or executable("python") == 1
-    local has_node = executable("node") == 1
-    local has_java = executable("java") == 1
+  {
+    "mfussenegger/nvim-jdtls",
+    ft = { "java" },
+    dependencies = { "mfussenegger/nvim-dap" },
+    config = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "java",
+        callback = function(args)
+          local root_dir = vim.fs.root(args.buf, { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
+          if not root_dir then
+            return
+          end
 
-    setup_lua()
-    vim.lsp.enable("lua_ls")
+          local client = require("jdtls")
+          client.start_or_attach(get_jdtls_config(root_dir))
+          client.setup_dap({ hotcodereplace = "auto" })
+        end,
+      })
+    end,
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = { "neovim/nvim-lspconfig" },
+    config = function()
+      local has_python = executable("python3") == 1 or executable("python") == 1
+      local has_node = executable("node") == 1
 
-    if has_python then
-      vim.lsp.config("pyright", extend())
-      vim.lsp.enable("pyright")
-    end
+      setup_lua()
+      vim.lsp.enable("lua_ls")
 
-    if has_node then
-      setup_angular()
-      vim.lsp.config("cssls", extend())
-      vim.lsp.config("emmet_language_server", extend())
-      vim.lsp.config("html", extend({
-        filetypes = { "html" },
-      }))
-      setup_typescript()
-      vim.lsp.enable("angularls")
-      vim.lsp.enable("cssls")
-      vim.lsp.enable("emmet_language_server")
-      vim.lsp.enable("html")
-      vim.lsp.enable("ts_ls")
-    end
+      if has_python then
+        vim.lsp.config("pyright", extend())
+        vim.lsp.enable("pyright")
+      end
 
-    if has_java then
-      vim.lsp.config("jdtls", extend(get_jdtls_config()))
-      vim.lsp.enable("jdtls")
-    end
+      if has_node then
+        setup_angular()
+        vim.lsp.config("cssls", extend())
+        vim.lsp.config("emmet_language_server", extend())
+        vim.lsp.config("html", extend({
+          filetypes = { "html" },
+        }))
+        setup_typescript()
+        vim.lsp.enable("angularls")
+        vim.lsp.enable("cssls")
+        vim.lsp.enable("emmet_language_server")
+        vim.lsp.enable("html")
+        vim.lsp.enable("ts_ls")
+      end
 
-    require("mason-lspconfig").setup({})
-  end,
+      require("mason-lspconfig").setup({})
+    end,
+  },
 }
