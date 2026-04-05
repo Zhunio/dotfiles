@@ -44,10 +44,14 @@ local function setup_typescript()
     on_attach = function(_, bufnr)
       on_attach(_, bufnr)
       vim.keymap.set("n", "gO", function()
-        vim.lsp.buf.execute_command({
+        local clients = vim.lsp.get_clients({ bufnr = bufnr, name = "ts_ls" })
+        for _, client in ipairs(clients) do
+          client:exec_cmd({
+          title = "Organize Imports",
           command = "_typescript.organizeImports",
           arguments = { vim.api.nvim_buf_get_name(bufnr) },
-        })
+          }, { bufnr = bufnr })
+        end
       end, { buffer = bufnr, desc = "LSP: Organize Imports" })
     end,
     filetypes = {
@@ -73,14 +77,19 @@ local function get_jdtls_config_path()
 end
 
 local function get_jdtls_bundles()
-  local bundles = vim.tbl_flatten({
+  local bundles = {}
+  local sources = {
     vim.fn.glob("$MASON/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar", nil, true),
     vim.fn.glob("$MASON/packages/java-test/extension/server/*.jar", nil, true),
-  })
+  }
   local excluded_bundles = {
     "com.microsoft.java.test.runner-jar-with-dependencies.jar",
     "jacocoagent.jar",
   }
+
+  for _, source in ipairs(sources) do
+    vim.list_extend(bundles, source)
+  end
 
   for i = #bundles, 1, -1 do
     local filename = vim.fn.fnamemodify(bundles[i], ":t")
