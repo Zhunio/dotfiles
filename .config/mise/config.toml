@@ -2,3 +2,4 @@
 java = "temurin-21"
 maven = "3.9"
 node = "lts"
+tree-sitter = "latest"
