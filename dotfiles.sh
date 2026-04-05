@@ -47,6 +47,19 @@ setup_zoxide() {
   eval "$(zoxide init zsh)"
 }
 
+cleanup_direnv_hook() {
+  if command -v direnv >/dev/null 2>&1; then
+    return
+  fi
+
+  precmd_functions=(${precmd_functions:#_direnv_hook})
+  chpwd_functions=(${chpwd_functions:#_direnv_hook})
+
+  if typeset -f _direnv_hook >/dev/null 2>&1; then
+    unfunction _direnv_hook
+  fi
+}
+
 setup_git_path() {
   local git_bin
 
@@ -63,6 +76,7 @@ setup_git_path() {
 
 main() {
   setup_homebrew
+  cleanup_direnv_hook
   setup_zsh_autocomplete
   setup_starship
   setup_mise
