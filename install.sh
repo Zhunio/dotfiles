@@ -1,9 +1,5 @@
 #!/bin/bash
 
-DOTFILES_REPO="https://github.com/Zhunio/dotfiles.git"
-DOTFILES_DIR="$HOME/dotfiles"
-DOTFILES_PRIVATE_REPO="https://github.com/Zhunio/dotfiles-private.git"
-DOTFILES_PRIVATE_DIR="$HOME/dotfiles-private"
 DOTFILES_PROFILE="${DOTFILES_PROFILE:-core}"
 
 print_run() {
@@ -106,10 +102,11 @@ source_dotfiles() {
 }
 
 stow_dotfiles() {
+  local dotfiles_dir=$1
   local cwd
   cwd=$(pwd)
 
-  cd "$DOTFILES_DIR"
+  cd "$dotfiles_dir"
   print_run "Creating symlinks using GNU Stow"
   stow .
   cd "$cwd"
@@ -138,12 +135,13 @@ install_macos_extras() {
 }
 
 main() {
-  clone_repo_if_missing "$DOTFILES_REPO" "$DOTFILES_DIR"
-  clone_repo_if_missing "$DOTFILES_PRIVATE_REPO" "$DOTFILES_PRIVATE_DIR"
+  clone_repo_if_missing "https://github.com/Zhunio/dotfiles.git" "$HOME/dotfiles"
+  clone_repo_if_missing "https://github.com/Zhunio/dotfiles-private.git" "$HOME/dotfiles-private"
+
   install_homebrew
   install_homebrew_packages
   source_dotfiles
-  stow_dotfiles
+  stow_dotfiles "$HOME/dotfiles"
   install_macos_extras
 }
 
