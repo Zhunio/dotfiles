@@ -3,7 +3,10 @@ return {
   require("plugins.full.copilot"),
   require("plugins.full.database"),
   require("plugins.full.flash"),
+  require("plugins.full.mason"),
+  require("plugins.full.mason-lspconfig"),
   require("plugins.full.markdown"),
+  require("plugins.full.mason-tool-installer"),
   require("plugins.full.neotest"),
   require("plugins.full.nvim-cmp"),
   require("plugins.full.nvim-dap"),
@@ -11,5 +14,4 @@ return {
   require("plugins.full.persisted"),
   require("plugins.full.treesitter"),
   require("plugins.full.wilder"),
-  require("plugins.full.lsp"),
 }
