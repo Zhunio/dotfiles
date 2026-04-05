@@ -126,9 +126,11 @@ return {
     local has_java = executable("java") == 1
 
     setup_lua()
+    vim.lsp.enable("lua_ls")
 
     if has_python then
       vim.lsp.config("pyright", extend())
+      vim.lsp.enable("pyright")
     end
 
     if has_node then
@@ -139,10 +141,16 @@ return {
         filetypes = { "html" },
       }))
       setup_typescript()
+      vim.lsp.enable("angularls")
+      vim.lsp.enable("cssls")
+      vim.lsp.enable("emmet_language_server")
+      vim.lsp.enable("html")
+      vim.lsp.enable("ts_ls")
     end
 
     if has_java then
       vim.lsp.config("jdtls", extend(get_jdtls_config()))
+      vim.lsp.enable("jdtls")
     end
 
     require("mason-lspconfig").setup({})
