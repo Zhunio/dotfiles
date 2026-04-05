@@ -1,57 +1,58 @@
+local function executable(bin)
+	return vim.fn.executable(bin) == 1
+end
+
 return {
 	"nvim-treesitter/nvim-treesitter",
-	branch = "master",
+	lazy = false,
 	build = ":TSUpdate",
-	ft = { "octo" },
-	event = { "BufReadPre", "BufNewFile" },
+	enabled = function()
+		return executable("tree-sitter")
+	end,
 	config = function()
-		require("nvim-treesitter.configs").setup({
-			auto_install = true,
-			highlight = { enable = true, disable = { "json" }, additional_vim_regex_highlighting = false },
-			indent = { enable = true },
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<C-Space>",
-					node_incremental = "<C-Space>",
-					scope_incremental = false,
-					node_decremental = "<bs>",
-				},
-			},
-			ensure_installed = {
-				"bash",
-				"css",
-				"diff",
-				"go",
-				"gitcommit",
-				"gitignore",
-				"html",
-				"java",
-				"javascript",
-				"json",
-				"lua",
-				"luadoc",
-				"markdown",
-				"markdown_inline",
-				"python",
-				"query",
-				"regex",
-				"sql",
-				"terraform",
-				"tmux",
-				"typescript",
-				"vim",
-				"vimdoc",
-				"vue",
-				"xml",
-				"yaml",
-			},
+		local ensure_installed = {
+			"bash",
+			"css",
+			"diff",
+			"go",
+			"gitcommit",
+			"gitignore",
+			"html",
+			"java",
+			"javascript",
+			"json",
+			"lua",
+			"luadoc",
+			"markdown",
+			"markdown_inline",
+			"python",
+			"query",
+			"regex",
+			"sql",
+			"terraform",
+			"tmux",
+			"typescript",
+			"vim",
+			"vimdoc",
+			"vue",
+			"xml",
+			"yaml",
+		}
+
+		require("nvim-treesitter").setup({
+			install_dir = vim.fn.stdpath("data") .. "/nvim-treesitter",
 		})
+
+		require("nvim-treesitter").install(ensure_installed)
+
 		vim.treesitter.language.register("markdown", { "octo", "copilot-chat" })
 		vim.treesitter.language.register("terraform", "hcl")
+
 		vim.api.nvim_create_autocmd("FileType", {
-			pattern = { "octo", "copilot-chat", "markdown" },
-			command = "TSBufEnable highlight",
+			pattern = ensure_installed,
+			callback = function()
+				vim.treesitter.start()
+			end,
 		})
 	end,
 }
