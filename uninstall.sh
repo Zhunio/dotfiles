@@ -29,7 +29,7 @@ if command -v brew >/dev/null 2>&1; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)" -- --force
 fi
 
-paths=(
+paths_to_delete=(
   "$HOME/dotfiles"
   "$HOME/.local/share/nvim"
   "$HOME/.cache"
@@ -43,11 +43,11 @@ paths=(
   "$HOME/.w3m"
 )
 
-for path in "${paths[@]}"; do
-  if [[ -d "$path" ]]; then
-    echo -e "${BLUE}==>${RESET} 💀 ${BOLD}Removing $path${RESET}"
-    rm -rf $HOME/$path
+for path_to_delete in "${paths_to_delete[@]}"; do
+  if [[ -d "$path_to_delete" ]]; then
+    echo -e "${BLUE}==>${RESET} 💀 ${BOLD}Removing $path_to_delete${RESET}"
+    rm -rf "$path_to_delete"
   else
-    echo -e "${BLUE}==>${RESET} 💀 Removing $path ${BOLD}(skipped)${RESET}"
+    echo -e "${BLUE}==>${RESET} 💀 Removing $path_to_delete ${BOLD}(skipped)${RESET}"
   fi
 done
