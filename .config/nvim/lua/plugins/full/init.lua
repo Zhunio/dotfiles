@@ -13,5 +13,4 @@ return {
   require("plugins.full.octo"),
   require("plugins.full.persisted"),
   require("plugins.full.treesitter"),
-  require("plugins.full.wilder"),
 }
