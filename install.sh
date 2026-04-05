@@ -41,6 +41,8 @@ install_homebrew_packages() {
     "git"
     "gh"
     "neovim"
+    "fzf"
+    "ripgrep"
     "stow"
   )
   local full_packages=(
