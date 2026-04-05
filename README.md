@@ -11,13 +11,13 @@
 Linux/macOS `core` profile:
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/refs/heads/main/install.sh)"
+curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/refs/heads/main/install.sh | /bin/bash -s -- --profile core
 ```
 
 macOS `full` profile:
 
 ```bash
-DOTFILES_PROFILE=full /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/refs/heads/main/install.sh)"
+curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/refs/heads/main/install.sh | /bin/bash -s -- --profile full
 ```
 
 ## Setup GitHub CLI

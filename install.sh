@@ -1,12 +1,48 @@
 #!/bin/bash
 
-DOTFILES_PROFILE="${DOTFILES_PROFILE:-core}"
+DOTFILES_PROFILE="core"
 
 print_run() {
   local blue='\033[0;34m'
   local bold='\033[1m'
   local reset='\033[0m'
   echo -e "${blue}==>${reset} ${bold}$1${reset}"
+}
+
+usage() {
+  cat <<EOF
+Usage: install.sh [--profile core|full]
+EOF
+}
+
+parse_args() {
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --profile)
+        shift
+        if [[ -z "$1" ]]; then
+          usage
+          exit 1
+        fi
+        DOTFILES_PROFILE="$1"
+        ;;
+      -h|--help)
+        usage
+        exit 0
+        ;;
+      *)
+        usage
+        exit 1
+        ;;
+    esac
+    shift
+  done
+
+  if [[ "$DOTFILES_PROFILE" != "core" && "$DOTFILES_PROFILE" != "full" ]]; then
+    echo "Invalid profile: $DOTFILES_PROFILE" >&2
+    usage
+    exit 1
+  fi
 }
 
 clone_repo_if_missing() {
@@ -135,6 +171,7 @@ install_macos_extras() {
 }
 
 main() {
+  parse_args "$@"
   clone_repo_if_missing "https://github.com/Zhunio/dotfiles.git" "$HOME/dotfiles"
   clone_repo_if_missing "https://github.com/Zhunio/dotfiles-private.git" "$HOME/dotfiles-private"
 
