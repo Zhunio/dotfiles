@@ -1,5 +1,21 @@
+# We use mise to avoid polluting the host with runtimes and CLI tools while
+# keeping them easy to install, upgrade, and uninstall.
+
 [tools]
+# language runtimes: node, python, java
+# Needed for LSP support in Neovim.
 java = "temurin-21"
+python = "3.14.3"
+node = "24.14.1"
+
+# build/toolchain CLIs: maven, tree-sitter
+# maven is for Java development in Neovim.
+# tree-sitter is required by nvim-treesitter.
 maven = "3.9"
-node = "lts"
 tree-sitter = "latest"
+
+# editor dependency CLIs: fzf, ripgrep
+# fzf is for fzf-lua.
+# ripgrep is for fzf-lua.
+fzf = "latest"
+ripgrep = "latest"

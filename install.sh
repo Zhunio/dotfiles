@@ -41,7 +41,6 @@ install_homebrew_packages() {
     "git"
     "gh"
     "neovim"
-    "ripgrep"
     "stow"
   )
   local full_packages=(
@@ -49,7 +48,6 @@ install_homebrew_packages() {
     "asmvik/formulae/yabai"
     "aerc"
     "eza"
-    "fzf"
     "mise"
     "oauth2l"
     "sesh"
