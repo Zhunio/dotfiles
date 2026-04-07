@@ -115,6 +115,7 @@ return {
 				flogRefHeadBranch = { link = "flogRefHead" },
 				-- FzfLua
 				FzfLuaNormal = { bg = backgroung },
+				FzfLuaBorder = { bg = background },
 			}
 
 			require("catppuccin").setup({
