@@ -35,6 +35,9 @@ return {
 		},
 		config = function()
 			require("fzf-lua").setup({
+				fzf_colors = {
+					[1] = true,
+				},
 				files = {
 					formatter = "path.filename_first",
 					winopts = {
