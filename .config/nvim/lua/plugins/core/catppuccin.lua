@@ -4,15 +4,14 @@ return {
 		name = "catppuccin",
 		priority = 1000,
 		config = function()
-			local border = "#5f7e97"
-			local focus_border = "#122d42"
 			local selection_background = "#1d3b53"
 			local C = require("catppuccin.palettes").get_palette("mocha")
 
 			local custom_highlights = {
 				-- Default
+				CursorLine = { bg = selection_background },
+				CursorColumn = { bg = selection_background },
 				CursorLineNr = { fg = C.text },
-				LineNr = { fg = border },
 				Visual = { bg = selection_background },
 				Search = { bg = selection_background },
 				IncSearch = { fg = C.base, bg = C.yellow },
@@ -33,11 +32,7 @@ return {
 				Structure = { fg = C.mauve },
 				Special = { fg = C.mauve },
 				PmenuSel = { bg = selection_background },
-				PmenuThumb = { bg = border },
-				FloatBorder = { fg = border },
 				FloatTitle = { fg = C.text },
-				WinSeparator = { fg = focus_border },
-				VertSplit = { fg = focus_border },
 				-- Treesitter
 				["@keyword"] = { fg = C.mauve },
 				["@keyword.return"] = { fg = C.mauve },
