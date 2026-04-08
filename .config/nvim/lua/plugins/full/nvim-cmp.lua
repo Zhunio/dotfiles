@@ -58,6 +58,5 @@ return {
 				end,
 			},
 		})
-		vim.cmd("highlight Pmenu guibg=NONE")
 	end,
 }

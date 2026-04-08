@@ -6,6 +6,10 @@ return {
 		config = function()
 			local background = "#011627"
 			local panel_background = "#0b253a"
+			local border = "#5f7e97"
+			local focus_border = "#122d42"
+			local selection_background = "#1d3b53"
+			local line_highlight = panel_background
 			local C = require("catppuccin.palettes").get_palette("mocha")
 
 			local custom_highlights = {
@@ -14,6 +18,13 @@ return {
 				NormalNC = { bg = background },
 				SignColumn = { bg = background },
 				EndOfBuffer = { bg = background },
+				CursorLine = { bg = line_highlight },
+				CursorColumn = { bg = line_highlight },
+				CursorLineNr = { fg = C.text },
+				LineNr = { fg = border },
+				Visual = { bg = selection_background },
+				Search = { bg = selection_background },
+				IncSearch = { fg = background, bg = C.yellow },
 				Constant = { fg = C.teal },
 				String = { fg = C.green },
 				Character = { fg = C.green },
@@ -31,10 +42,14 @@ return {
 				Structure = { fg = C.mauve },
 				Special = { fg = C.mauve },
 				NormalFloat = { bg = panel_background },
-				FloatBorder = { bg = panel_background },
+				FloatBorder = { fg = border, bg = panel_background },
+				FloatTitle = { fg = C.text, bg = panel_background },
 				Pmenu = { bg = panel_background },
-				PmenuSel = { bg = C.surface0 },
-				WinSeparator = { fg = C.surface1, bg = background },
+				PmenuSel = { bg = selection_background },
+				PmenuSbar = { bg = panel_background },
+				PmenuThumb = { bg = border },
+				WinSeparator = { fg = focus_border, bg = background },
+				VertSplit = { fg = focus_border, bg = background },
 				-- Treesitter
 				["@keyword"] = { fg = C.mauve },
 				["@keyword.return"] = { fg = C.mauve },
@@ -78,6 +93,12 @@ return {
 
 			require("catppuccin").setup({
 				transparent_background = false,
+				color_overrides = {
+					mocha = {
+						base = background,
+						mantle = panel_background,
+					},
+				},
 				integrations = {
 					diffview = true,
 				},
