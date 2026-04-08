@@ -4,6 +4,7 @@ return {
 		name = "catppuccin",
 		priority = 1000,
 		config = function()
+			local line_number = "#5f7e97"
 			local selection_background = "#1d3b53"
 			local C = require("catppuccin.palettes").get_palette("mocha")
 
@@ -11,6 +12,7 @@ return {
 				-- Default
 				CursorLine = { bg = selection_background },
 				CursorColumn = { bg = selection_background },
+				LineNr = { fg = line_number },
 				CursorLineNr = { fg = C.text },
 				Visual = { bg = selection_background },
 				Search = { bg = selection_background },
