@@ -33,6 +33,8 @@ return {
 				Special = { fg = C.mauve },
 				PmenuSel = { bg = selection_background },
 				FloatTitle = { fg = C.text },
+				FzfLuaNormal = { bg = "NONE" },
+				FzfLuaBorder = { bg = "NONE" },
 				-- Treesitter
 				["@keyword"] = { fg = C.mauve },
 				["@keyword.return"] = { fg = C.mauve },
