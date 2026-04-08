@@ -4,28 +4,27 @@ end
 
 return {
   "WhoIsSethDaniel/mason-tool-installer.nvim",
-  opts = function()
+  config = function()
     local ensure_installed = { "lua_ls", "stylua" }
 
-    local has_node = executable("node") == 1
-    local has_python = executable("python3") == 1 or executable("python") == 1
-    local has_java = executable("java") == 1
+    local has_node = executable("node")
+    local has_python = executable("python3") or executable("python")
+    local has_java = executable("java")
 
     if has_node then
       vim.list_extend(ensure_installed, {
-        "angularls",
-        "cssls",
-        "emmet_language_server",
-        "html",
+        "angular-language-server",
+        "css-lsp",
+        "emmet-language-server",
+        "html-lsp",
         "js-debug-adapter",
         "prettier",
-        "pyright",
-        "ts_ls",
+        "typescript-language-server",
       })
     end
 
     if has_python then
-      vim.list_extend(ensure_installed, { "black", "isort" })
+      vim.list_extend(ensure_installed, { "black", "isort", "pyright" })
     end
 
     if has_java then
@@ -38,6 +37,8 @@ return {
       })
     end
 
-    return { ensure_installed = ensure_installed }
+    require("mason-tool-installer").setup({
+      ensure_installed = ensure_installed,
+    })
   end,
 }
