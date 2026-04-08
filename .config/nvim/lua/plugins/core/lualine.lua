@@ -2,10 +2,12 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {
-			options = {
-				theme = require("catppuccin.utils.lualine")(),
-			},
-		},
+		opts = function()
+			return {
+				options = {
+					theme = require("catppuccin.utils.lualine")(),
+				},
+			}
+		end,
 	},
 }
