@@ -8,6 +8,8 @@ return {
 			local nightowl_panel = "#0b253a"
 			local nightowl_crust = "#013661"
 			local nightowl_line_highlight = nightowl_panel
+			local nightowl_line_number = "#4b6479"
+			local nightowl_active_line_number = "#C5E4FD"
 
 			require("catppuccin").setup({
 				color_overrides = {
@@ -57,6 +59,8 @@ return {
 				custom_highlights = {
 					CursorLine = { bg = nightowl_line_highlight },
 					CursorColumn = { bg = nightowl_line_highlight },
+					LineNr = { fg = nightowl_line_number },
+					CursorLineNr = { fg = nightowl_active_line_number },
 					FzfLuaBorder = { fg = nightowl_panel, bg = nightowl_panel },
 					FzfLuaNormal = { bg = nightowl_panel },
 					NeoTreeNormal = { bg = nightowl_bg },
