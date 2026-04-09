@@ -35,6 +35,9 @@ return {
 		},
 		config = function()
 			require("fzf-lua").setup({
+				winopts = {
+					backdrop = 100,
+				},
 				fzf_colors = {
 					[1] = true,
 				},
