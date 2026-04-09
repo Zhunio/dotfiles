@@ -7,7 +7,7 @@ return {
 			local nightowl_bg = "#011627"
 			local nightowl_panel = "#0b253a"
 			local nightowl_crust = "#013661"
-			local nightowl_line_highlight = "#021320"
+			local nightowl_line_highlight = nightowl_panel
 
 			require("catppuccin").setup({
 				color_overrides = {
