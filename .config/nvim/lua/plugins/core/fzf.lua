@@ -41,7 +41,7 @@ return {
 				files = {
 					formatter = "path.filename_first",
 					winopts = {
-						preview = { layout = "vertical" },
+						preview = { layout = "vertical", vertical = "down:70%" },
 					},
 				},
 				git = {
@@ -49,7 +49,7 @@ return {
 						cmd = [[git branch --all --color --sort=-HEAD --format="%(HEAD) %(refname:short)"]],
 						preview = [[git log --graph --color --date=short --pretty=format:"%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(green)%cr%Creset %C(blue)%an%Creset" {1}]],
 						winopts = {
-							preview = { layout = "vertical" },
+							preview = { layout = "vertical", vertical = "down:70%" },
 						},
 					},
 				},
