@@ -59,8 +59,10 @@ return {
 					CursorColumn = { bg = nightowl_line_highlight },
 					FzfLuaBorder = { fg = nightowl_panel, bg = nightowl_panel },
 					FzfLuaNormal = { bg = nightowl_panel },
+					NeoTreeNormal = { bg = nightowl_bg },
+					NeoTreeNormalNC = { bg = nightowl_bg },
 					NeoTreeFloatBorder = { fg = nightowl_panel, bg = nightowl_panel },
-					NeoTreeFloatNormal = { bg = nightowl_panel },
+					NeoTreeFloatNormal = { bg = nightowl_bg },
 				},
 			})
 
