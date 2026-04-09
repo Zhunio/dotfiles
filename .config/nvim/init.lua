@@ -2,6 +2,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.opt.clipboard = "unnamedplus"
+vim.opt.wrap = false
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.ignorecase = true
