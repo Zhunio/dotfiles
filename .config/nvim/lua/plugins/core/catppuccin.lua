@@ -6,7 +6,7 @@ return {
 		config = function()
 			local nightowl_bg = "#011627"
 			local nightowl_panel = "#0b253a"
-			local nightowl_crust = "#01111d"
+			local nightowl_crust = "#013661"
 			local nightowl_line_highlight = "#021320"
 
 			require("catppuccin").setup({
@@ -15,6 +15,43 @@ return {
 						base = nightowl_bg,
 						mantle = nightowl_panel,
 						crust = nightowl_crust,
+					},
+				},
+				integrations = {
+					lualine = {
+						all = function(colors)
+							return {
+								normal = {
+									b = { bg = colors.crust, fg = colors.blue },
+									c = { bg = colors.base, fg = colors.text },
+								},
+								insert = {
+									b = { bg = colors.crust, fg = colors.green },
+									c = { bg = colors.base, fg = colors.text },
+								},
+								terminal = {
+									b = { bg = colors.crust, fg = colors.green },
+									c = { bg = colors.base, fg = colors.text },
+								},
+								command = {
+									b = { bg = colors.crust, fg = colors.peach },
+									c = { bg = colors.base, fg = colors.text },
+								},
+								visual = {
+									b = { bg = colors.crust, fg = colors.mauve },
+									c = { bg = colors.base, fg = colors.text },
+								},
+								replace = {
+									b = { bg = colors.crust, fg = colors.red },
+									c = { bg = colors.base, fg = colors.text },
+								},
+								inactive = {
+									a = { bg = colors.base, fg = colors.blue },
+									b = { bg = colors.crust, fg = colors.surface1, gui = "bold" },
+									c = { bg = colors.base, fg = colors.overlay0 },
+								},
+							}
+						end,
 					},
 				},
 				custom_highlights = {
