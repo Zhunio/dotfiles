@@ -65,8 +65,10 @@ return {
 					FzfLuaNormal = { bg = nightowl_panel },
 					NeoTreeNormal = { bg = nightowl_bg },
 					NeoTreeNormalNC = { bg = nightowl_bg },
-					NeoTreeFloatBorder = { fg = nightowl_panel, bg = nightowl_panel },
+					NeoTreeEndOfBuffer = { bg = nightowl_bg },
+					NeoTreeWinSeparator = { fg = nightowl_bg, bg = nightowl_bg },
 					NeoTreeFloatNormal = { bg = nightowl_bg },
+					NeoTreeFloatBorder = { fg = nightowl_panel, bg = nightowl_bg },
 				},
 			})
 
