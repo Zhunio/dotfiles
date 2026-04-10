@@ -6,6 +6,7 @@
     "bg_dark1": "#0C0E14",
     "bg_float": "#16161e",
     "bg_highlight": "#292e42",
+    "bg_panel": "#010d18",
     "bg_popup": "#16161e",
     "bg_search": "#3d59a1",
     "bg_sidebar": "#16161e",
@@ -121,8 +122,8 @@
       "light": "bg"
     },
     "backgroundPanel": {
-      "dark": "bg_dark",
-      "light": "bg_dark"
+      "dark": "bg_panel",
+      "light": "bg_panel"
     },
     "backgroundElement": {
       "dark": "bg_highlight",
@@ -282,4 +283,3 @@
     }
   }
 }
-
