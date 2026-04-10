@@ -22,6 +22,7 @@ return {
 				--- function will be called with a ColorScheme table
 				---@param colors ColorScheme
 				on_colors = function(colors)
+					colors.bg = "#011627"
 					colors.bg_statusline = "NONE"
 				end,
 
