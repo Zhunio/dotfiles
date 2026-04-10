@@ -91,7 +91,7 @@ install_homebrew_packages() {
     "zsh-autocomplete"
   )
   local full_casks=(
-    "font-meslo-lg-nerd-font"
+    "font-victor-mono-nerd-font"
     "ghostty"
     "visual-studio-code"
     "raycast"

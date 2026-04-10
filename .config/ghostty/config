@@ -1,6 +1,6 @@
 theme = tokyonight_night
-font-family = "MesloLGL Nerd Font"
+font-family = "VictorMono Nerd Font"
+font-size = 14
 font-thicken = true
 window-padding-x = 10
-
 
