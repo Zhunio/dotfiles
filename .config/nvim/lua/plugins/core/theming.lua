@@ -13,6 +13,11 @@ return {
 		opts = function()
 			require("tokyonight").setup({
 				transparent = true,
+				styles = {
+					sidebars = "transparent",
+					floats = "transparent",
+					comments = { italic = true },
+				},
 				--- You can override specific color groups to use other groups or a hex color
 				--- function will be called with a ColorScheme table
 				---@param colors ColorScheme
