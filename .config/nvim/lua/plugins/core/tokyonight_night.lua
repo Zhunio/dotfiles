@@ -10,7 +10,7 @@ return {
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
-		opts = function()
+		config = function()
 			require("tokyonight").setup({
 				transparent = true,
 				styles = {
@@ -22,7 +22,7 @@ return {
 				--- function will be called with a ColorScheme table
 				---@param colors ColorScheme
 				on_colors = function(colors)
-					colors.bg_dark = "#010d18"
+					colors.bg_statusline = "NONE"
 				end,
 
 				--- You can override specific highlights to use other groups or a hex color
