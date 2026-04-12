@@ -3,7 +3,9 @@ return {
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
-			theme = "tokyonight",
+			options = {
+				theme = "tokyonight",
+			},
 		},
 	},
 	{
@@ -11,31 +13,23 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			require("tokyonight").setup({
-				transparent = true,
-				styles = {
-					sidebars = "transparent",
-					floats = "transparent",
-					comments = { italic = true },
-				},
-				--- You can override specific color groups to use other groups or a hex color
-				--- function will be called with a ColorScheme table
-				---@param colors ColorScheme
-				on_colors = function(colors)
-					colors.bg = "#011627"
-					colors.bg_statusline = "NONE"
-				end,
+			local colors = require("tokyonight.colors")
+			local util = require("tokyonight.util")
 
-				--- You can override specific highlights to use other groups or a hex color
-				--- function will be called with a Highlights and ColorScheme table
-				---@param highlights tokyonight.Highlights
-				---@param colors ColorScheme
-				on_highlights = function(highlights, colors)
-					highlights.Pmenu = { fg = colors.fg, bg = "NONE" }
-				end,
-			})
+			colors.styles.nightowl = function()
+				---@type Palette
+				local storm = vim.deepcopy(util.mod("tokyonight.colors.storm"))
 
-			vim.cmd([[colorscheme tokyonight-night]])
+				storm.bg = "#011627"
+				storm.bg_dark = "#011627"
+				storm.bg_highlight = "#021320"
+
+				return storm
+			end
+
+			require("tokyonight").setup({ style = "nightowl" })
+			vim.cmd.colorscheme("tokyonight")
 		end,
 	},
 }
+
