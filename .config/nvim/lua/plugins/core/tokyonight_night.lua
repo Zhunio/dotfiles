@@ -21,7 +21,8 @@ return {
 				local storm = vim.deepcopy(util.mod("tokyonight.colors.storm"))
 
 				storm.bg = "#011627"
-				storm.bg_dark = "#011627"
+				storm.bg_dark = storm.bg
+
 				storm.bg_highlight = "#021320"
 
 				return storm
@@ -32,4 +33,3 @@ return {
 		end,
 	},
 }
-
