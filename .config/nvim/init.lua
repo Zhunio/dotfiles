@@ -49,6 +49,9 @@ require("lazy").setup({
 		notify = false,
 	},
 	spec = spec,
+	ui = {
+		backdrop = 100,
+	},
 })
 
 -- Diagnostics
