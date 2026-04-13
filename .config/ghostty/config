@@ -1,6 +1,11 @@
 theme = tokyonight_night
+
+window-padding-x = 10
+
 font-family = "VictorMono Nerd Font"
 font-size = 14
 font-thicken = true
-window-padding-x = 10
+
+adjust-underline-position = 4
+adjust-underline-thickness = 3
 
