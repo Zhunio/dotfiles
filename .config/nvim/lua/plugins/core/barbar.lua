@@ -3,7 +3,7 @@ return {
 		"romgrk/barbar.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		keys = {
-			{ "<leader>x", ":BufferClose<CR>", desc = "Buffer: Close" },
+			{ "<leader>q", ":BufferClose<CR>", desc = "Buffer: Close" },
 			{ "<leader>h", ":BufferPrevious<CR>", desc = "Buffer: Previous" },
 			{ "<leader>l", ":BufferNext<CR>", desc = "Buffer: Next" },
 			{ "<leader><left>", ":BufferMovePrevious<CR>", desc = "Buffer: Move to Previous" },

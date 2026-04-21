@@ -4,10 +4,9 @@ return {
 		event = "BufReadPre",
     --stylua: ignore
 		keys = {
-      { "<leader>qs", mode = { "n" }, function() require("persistence").load() end },
-      { "<leader>qS", mode = { "n" }, function() require("persistence").select() end },
-      { "<leader>ql", mode = { "n" }, function() require("persistence").load({ last = true }) end },
-      { "<leader>qd", mode = { "n" }, function() require("persistence").stop() end }
+			{ "<leader>zf", mode = { "n" }, function() require("persistence").select() end },
+			{ "<leader>zl", mode = { "n" }, function() require("persistence").load({ last = true }) end },
+			{ "<leader>zx", mode = { "n" }, function() require("persistence").stop() end }
 		},
 		config = function()
 			vim.opt.sessionoptions = {
