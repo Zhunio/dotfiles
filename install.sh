@@ -93,10 +93,8 @@ install_homebrew_packages() {
   local full_casks=(
     "font-victor-mono-nerd-font"
     "ghostty"
-    "visual-studio-code"
     "raycast"
     "shottr"
-    "claude-code"
     "codex"
   )
 
