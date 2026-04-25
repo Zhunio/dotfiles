@@ -23,21 +23,21 @@ return {
 				"RainbowViolet",
 			}
 
-			local C = require("catppuccin.palettes").get_palette("mocha")
-			local hightlight_colors = {
-				RainbowRed = C.red,
-				RainbowOrange = C.peach,
-				RainbowYellow = C.yellow,
-				RainbowGreen = C.green,
-				RainbowBlue = C.blue,
-				RainbowViolet = C.mauve,
+			local colors = require("tokyonight.colors").setup({ style = "nightowl" })
+			local highlight_colors = {
+				RainbowRed = colors.red,
+				RainbowOrange = colors.orange,
+				RainbowYellow = colors.yellow,
+				RainbowGreen = colors.green,
+				RainbowBlue = colors.blue,
+				RainbowViolet = colors.purple,
 			}
 
 			local hooks = require("ibl.hooks")
 			hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
 				for _, highlight_name in pairs(highlight) do
-					local hightlight_color = hightlight_colors[highlight_name]
-					vim.api.nvim_set_hl(0, highlight_name, { fg = hightlight_color })
+					local highlight_color = highlight_colors[highlight_name]
+					vim.api.nvim_set_hl(0, highlight_name, { fg = highlight_color })
 				end
 			end)
 
