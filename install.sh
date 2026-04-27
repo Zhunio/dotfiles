@@ -85,7 +85,6 @@ install_homebrew_packages() {
     "mise"
     "oauth2l"
     "sesh"
-    "starship"
     "tmux"
     "zoxide"
     "zsh-autocomplete"
