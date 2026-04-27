@@ -17,6 +17,8 @@ setup_homebrew() {
 setup_zsh_autocomplete() {
   local plugin_path="$HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
 
+  bindkey -e
+
   if [[ -f "$plugin_path" ]]; then
     source "$plugin_path"
   fi
