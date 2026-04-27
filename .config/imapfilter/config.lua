@@ -1,1 +1,0 @@
-/Users/zhunio/dotfiles-private/.config/imapfilter/config.lua
