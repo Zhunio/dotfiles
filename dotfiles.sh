@@ -22,15 +22,6 @@ setup_zsh_autocomplete() {
   fi
 }
 
-setup_starship() {
-  if ! command -v starship >/dev/null 2>&1; then
-    return
-  fi
-
-  export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
-  eval "$(starship init zsh)"
-}
-
 setup_mise() {
   if ! command -v mise >/dev/null 2>&1; then
     return
@@ -64,7 +55,6 @@ setup_git_path() {
 main() {
   setup_homebrew
   setup_zsh_autocomplete
-  setup_starship
   setup_mise
   setup_zoxide
   setup_git_path
