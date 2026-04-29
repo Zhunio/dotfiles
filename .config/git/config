@@ -15,3 +15,5 @@
 [merge]
   conflictstyle = zdiff3
 
+[alias]
+  diff-inline = -c delta.side-by-side=false diff
