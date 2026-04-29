@@ -1,0 +1,92 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+format = """
+[](color_os)\
+$os\
+[](fg:color_os)[](fg:color_bg bg:color_directory)\
+$directory\
+[](fg:color_directory)\
+$git_branch\
+[](bg:color_status fg:color_bg)\
+$status\
+[ ](fg:color_status)\
+$cmd_duration\
+$character\
+"""
+
+add_newline = false
+
+palette = "zhunio"
+
+[palettes.zhunio]
+color_os = "#546E7A"
+color_directory = "#db8f1f"
+color_git = "#FF5722"
+color_status = "#4289e6"
+color_node = "#40a02b"
+color_angular = "#d20f39"
+color_fg0 = "#ffffff"
+color_bg = "#011627"
+
+[os]
+disabled = false
+style = "bg:color_os fg:color_fg0"
+format = "[$symbol ]($style)"
+
+[os.symbols]
+Windows = ""
+Ubuntu = ""
+SUSE = ""
+Raspbian = ""
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = "󱘊"
+Linux = ""
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+AOSC = ""
+Arch = ""
+Artix = ""
+EndeavourOS = ""
+CentOS = ""
+Debian = "󰣚"
+Redhat = ""
+RedHatEnterprise = "󱄛"
+Pop = ""
+
+[directory]
+format = "[  $path ](bg:color_directory)"
+
+[git_branch]
+symbol = " "
+style = "bg:color_git"
+format = """
+[](bg:color_git fg:color_bg)\
+[[ $symbol $branch ](fg:color_fg0 bg:color_git)]($style)\
+[](fg:color_git)\
+"""
+[nodejs]
+symbol = ""
+version_format = "v${major}"
+format = """
+[](bg:color_node fg:color_bg)\
+[ $symbol ($version) ](bg:color_node fg:color_fg0)\
+[](fg:color_node)\
+"""
+
+[status]
+disabled = false
+symbol = ""
+success_symbol = ""
+style = "bg:color_status"
+failure_style = "bg:color_status"
+format = "[ $symbol ]($style)"
+
+[cmd_duration]
+min_time = 1
+show_milliseconds = true
+format = "[⏱ $duration](bold blue) "
+
