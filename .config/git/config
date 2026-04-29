@@ -1,0 +1,20 @@
+[core]
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  light = false
+  side-by-side = true
+  line-numbers = true
+  syntax-theme = Dracula
+  minus-style = syntax "#3f0001"
+  plus-style = syntax "#002800"
+  zero-style = syntax
+  hunk-header-style = file line-number syntax
+
+[merge]
+  conflictstyle = zdiff3
+
