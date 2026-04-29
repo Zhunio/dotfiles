@@ -32,10 +32,10 @@ return {
 				style = "nightowl",
 				---@param c ColorScheme
 				on_colors = function(c)
-					c.diff.add = util.blend_bg(c.green, 0.10) -- diffview: added line bg
-					c.diff.delete = util.blend_bg(c.red1, 0.10) -- diffview: deleted line bg
-					c.diff.change = util.blend_bg(c.green, 0.10) -- diffview: changed line bg
-					c.diff.text = util.blend_bg(c.green, 0.35) -- diffview: changed portion of changed line bg
+					c.diff.add = "#002800" -- delta plus-style
+					c.diff.delete = "#3f0001" -- delta minus-style
+					c.diff.change = "#002800" -- delta changed/new side matches plus-style
+					c.diff.text = "#006000" -- delta plus-emph-style
 
 					c.git.add = c.green -- gitsigns|diffview: added fg
 					c.git.delete = c.red1 -- gitsigns|diffview: deleted fg
