@@ -62,11 +62,29 @@ return {
 				restore = "X", -- Discard changes (restore file)
 				toggle_changes = "gu", -- Toggle Changes (unstaged) group visibility
 				toggle_staged = "gs", -- Toggle Staged Changes group visibility
+				-- Fold keymaps (Vim-style)
+				fold_open = "zo", -- Open fold (expand current node)
+				fold_open_recursive = "zO", -- Open fold recursively (expand all descendants)
+				fold_close = "zc", -- Close fold (collapse current node)
+				fold_close_recursive = "zC", -- Close fold recursively (collapse all descendants)
+				fold_toggle = "za", -- Toggle fold (expand/collapse current node)
+				fold_toggle_recursive = "zA", -- Toggle fold recursively
+				fold_open_all = "zR", -- Open all folds in tree
+				fold_close_all = "zM", -- Close all folds in tree
 			},
 			history = {
 				select = "<CR>", -- Select commit/file or toggle expand
 				toggle_view_mode = "i", -- Toggle between 'list' and 'tree' views
 				refresh = "R", -- Refresh history (re-fetch commits)
+				-- Fold keymaps (Vim-style, apply to directory nodes only)
+				fold_open = "zo", -- Open fold (expand current node)
+				fold_open_recursive = "zO", -- Open fold recursively (expand all descendants)
+				fold_close = "zc", -- Close fold (collapse current node)
+				fold_close_recursive = "zC", -- Close fold recursively (collapse all descendants)
+				fold_toggle = "za", -- Toggle fold (expand/collapse current node)
+				fold_toggle_recursive = "zA", -- Toggle fold recursively
+				fold_open_all = "zR", -- Open all folds in tree
+				fold_close_all = "zM", -- Close all folds in tree
 			},
 			conflict = {
 				accept_incoming = "<leader>ct", -- Accept incoming (theirs/left) change
