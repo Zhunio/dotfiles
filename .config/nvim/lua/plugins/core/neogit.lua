@@ -5,7 +5,7 @@ return {
 		cmd = { "Neogit" },
     --stylua: ignore
 		keys = {
-			{ "gn", function() require("neogit").open({ kind = vim.bo.filetype == "alpha" and "tab" or "auto" }) end },
+			{ "gn", function() require("neogit").open({ kind = "auto" }) end },
 		},
 		config = function()
 			local neogit = require("neogit")
