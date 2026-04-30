@@ -1,5 +1,4 @@
 return {
-	{ "sindrets/diffview.nvim", lazy = true },
 	{
 		"NeogitOrg/neogit",
 		cmd = { "Neogit" },
