@@ -32,7 +32,7 @@ local function setup_angular()
   vim.lsp.config("angularls", extend({
     root_dir = function(fname)
       local lspconfig = require("lspconfig")
-      local root = lspconfig.util.root_pattern("angular.json", "workspace.json", "project.json")(fname)
+      local root = lspconfig.util.root_pattern("angular.json", "workspace.json")(fname)
       return root or nil
     end,
   }))
@@ -161,8 +161,8 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     dependencies = { "neovim/nvim-lspconfig" },
     config = function()
-      local has_python = executable("python3") == 1 or executable("python") == 1
-      local has_node = executable("node") == 1
+      local has_python = executable("python3") or executable("python")
+      local has_node = executable("node")
 
       setup_lua()
       vim.lsp.enable("lua_ls")
