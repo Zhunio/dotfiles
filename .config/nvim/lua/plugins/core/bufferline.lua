@@ -11,7 +11,13 @@ return {
 		},
 		config = function()
 			vim.opt.termguicolors = true
-			require("bufferline").setup({})
+			require("bufferline").setup({
+				options = {
+					max_name_length = 40, -- default ~18
+					max_prefix_length = 30, -- path before filename
+					tab_size = 30, -- overall tab width
+				},
+			})
 		end,
 	},
 }
