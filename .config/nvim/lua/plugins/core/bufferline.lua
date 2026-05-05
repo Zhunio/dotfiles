@@ -16,6 +16,15 @@ return {
 					max_name_length = 40, -- default ~18
 					max_prefix_length = 30, -- path before filename
 					tab_size = 30, -- overall tab width
+					offsets = {
+						{
+							filetype = "neo-tree",
+							text = "File Explorer",
+							highlight = "Directory",
+							text_align = "left",
+							separator = true,
+						},
+					},
 				},
 			})
 		end,
