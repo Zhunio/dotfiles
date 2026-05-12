@@ -4,3 +4,5 @@
 .config/tmux/plugins
 # nvim
 .config/nvim/lua/.luarc.json
+# dadbod-grip
+.config/.grip/*
