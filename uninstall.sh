@@ -34,9 +34,7 @@ remove_zshrc_dotfiles_config() {
 
   print_run "Removing dotfiles config from \$HOME/.zshrc"
   awk '
-    $0 != "source $HOME/dotfiles/dotfiles.sh" &&
-    $0 != "export DOTFILES_PROFILE=core" &&
-    $0 != "export DOTFILES_PROFILE=full" { print }
+    $0 != "source $HOME/dotfiles/dotfiles.sh" { print }
   ' "$zshrc_file" >"$zshrc_file.tmp" && mv "$zshrc_file.tmp" "$zshrc_file"
 }
 

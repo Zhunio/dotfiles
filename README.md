@@ -8,16 +8,10 @@
 
 ## Install
 
-Linux/macOS `core` profile:
+macOS:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/refs/heads/main/install.sh | /bin/bash -s -- --profile core
-```
-
-macOS `full` profile:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/refs/heads/main/install.sh | /bin/bash -s -- --profile full
+curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/refs/heads/main/install.sh | /bin/bash
 ```
 
 ## Setup GitHub CLI

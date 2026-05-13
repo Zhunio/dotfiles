@@ -1,48 +1,10 @@
 #!/bin/bash
 
-DOTFILES_PROFILE="core"
-
 print_run() {
   local blue='\033[0;34m'
   local bold='\033[1m'
   local reset='\033[0m'
   echo -e "${blue}==>${reset} ${bold}$1${reset}"
-}
-
-usage() {
-  cat <<EOF
-Usage: install.sh [--profile core|full]
-EOF
-}
-
-parse_args() {
-  while [[ $# -gt 0 ]]; do
-    case "$1" in
-      --profile)
-        shift
-        if [[ -z "$1" ]]; then
-          usage
-          exit 1
-        fi
-        DOTFILES_PROFILE="$1"
-        ;;
-      -h|--help)
-        usage
-        exit 0
-        ;;
-      *)
-        usage
-        exit 1
-        ;;
-    esac
-    shift
-  done
-
-  if [[ "$DOTFILES_PROFILE" != "core" && "$DOTFILES_PROFILE" != "full" ]]; then
-    echo "Invalid profile: $DOTFILES_PROFILE" >&2
-    usage
-    exit 1
-  fi
 }
 
 clone_repo_if_missing() {
@@ -69,15 +31,13 @@ install_homebrew() {
 }
 
 install_homebrew_packages() {
-  local core_packages=(
+  local packages=(
     "git"
     "gh"
     "neovim"
     "fzf"
     "ripgrep"
     "stow"
-  )
-  local full_packages=(
     "asmvik/formulae/skhd"
     "asmvik/formulae/yabai"
     "aerc"
@@ -90,7 +50,7 @@ install_homebrew_packages() {
     "zoxide"
     "zsh-autocomplete"
   )
-  local full_casks=(
+  local casks=(
     "font-victor-mono-nerd-font"
     "ghostty"
     "raycast"
@@ -98,35 +58,20 @@ install_homebrew_packages() {
     "codex"
   )
 
-  for package in "${core_packages[@]}"; do
+  for package in "${packages[@]}"; do
     brew install "$package"
   done
 
-  if [[ "$DOTFILES_PROFILE" == "full" ]]; then
-    for package in "${full_packages[@]}"; do
-      brew install "$package"
-    done
-
-    for cask in "${full_casks[@]}"; do
-      brew install --cask "$cask"
-    done
-  fi
+  for cask in "${casks[@]}"; do
+    brew install --cask "$cask"
+  done
 }
 
 source_dotfiles() {
   local zshrc_file="$HOME/.zshrc"
-  local profile_line="export DOTFILES_PROFILE=${DOTFILES_PROFILE}"
 
   echo ""
-  if [[ -f "$zshrc_file" ]]; then
-    awk '
-      $0 != "export DOTFILES_PROFILE=core" && $0 != "export DOTFILES_PROFILE=full" { print }
-    ' "$zshrc_file" >"$zshrc_file.tmp" && mv "$zshrc_file.tmp" "$zshrc_file"
-  fi
-
-  echo "$profile_line" >>"$zshrc_file"
-
-  if grep -q "source \$HOME/dotfiles/dotfiles\.sh" "$zshrc_file"; then
+  if [[ -f "$zshrc_file" ]] && grep -q "source \$HOME/dotfiles/dotfiles\.sh" "$zshrc_file"; then
     print_run "Sourcing dotfiles in \$HOME/.zshrc file (skipped)"
     return
   fi
@@ -147,10 +92,6 @@ stow_dotfiles() {
 }
 
 install_macos_extras() {
-  if [[ "$(uname -s)" != "Darwin" ]]; then
-    return
-  fi
-
   if pgrep -x yabai >/dev/null; then
     print_run "Restarting yabai service"
     yabai --restart-service
@@ -169,7 +110,6 @@ install_macos_extras() {
 }
 
 main() {
-  parse_args "$@"
   clone_repo_if_missing "https://github.com/Zhunio/dotfiles.git" "$HOME/dotfiles"
   clone_repo_if_missing "https://github.com/Zhunio/dotfiles-private.git" "$HOME/dotfiles-private"
 
