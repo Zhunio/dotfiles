@@ -1,3 +1,3 @@
 return {
-	{ "joryeugene/dadbod-grip.nvim", version = "v2.8.0" },
+	{ "joryeugene/dadbod-grip.nvim" },
 }
