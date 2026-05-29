@@ -28,6 +28,33 @@ local function setup_lua()
   }))
 end
 
+local function setup_vue()
+	local vue_language_server_path = vim.fn.stdpath("data")
+		.. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
+
+	local vue_plugin = {
+		name = "@vue/typescript-plugin",
+		location = vue_language_server_path,
+		languages = { "vue" },
+		configNamespace = "typescript",
+	}
+
+	vim.lsp.config(
+		"vtsls",
+		extend({
+			settings = {
+				vtsls = {
+					tsserver = {
+						globalPlugins = { vue_plugin },
+					},
+				},
+			},
+			filetypes = { "vue" },
+		})
+	)
+	vim.lsp.config("vue_ls", extend())
+end
+
 local function setup_angular()
   vim.lsp.config("angularls", extend({
     root_dir = function(fname)
@@ -180,11 +207,15 @@ return {
           filetypes = { "html" },
         }))
         setup_typescript()
+        setup_vue()
+
         vim.lsp.enable("angularls")
         vim.lsp.enable("cssls")
         vim.lsp.enable("emmet_language_server")
         vim.lsp.enable("html")
         vim.lsp.enable("ts_ls")
+        vim.lsp.enable("vtsls")
+        vim.lsp.enable("vue_ls")
       end
 
       require("mason-lspconfig").setup({})
