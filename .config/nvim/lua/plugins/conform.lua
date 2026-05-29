@@ -17,6 +17,7 @@ return {
 			typescript = { "prettier" },
 			xml = { "xmlformatter" },
 			yaml = { "prettier" },
+			vue = { "prettier" },
 		},
 	},
 }
