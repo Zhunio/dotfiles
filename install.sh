@@ -111,7 +111,7 @@ install_macos_extras() {
 
 main() {
   clone_repo_if_missing "https://github.com/Zhunio/dotfiles.git" "$HOME/dotfiles"
-  clone_repo_if_missing "https://github.com/Zhunio/dotfiles-private.git" "$HOME/dotfiles-private"
+  # clone_repo_if_missing "https://github.com/Zhunio/dotfiles-private.git" "$HOME/dotfiles-private"
 
   install_homebrew
   install_homebrew_packages
