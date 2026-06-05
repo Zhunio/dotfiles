@@ -38,6 +38,10 @@ return {
 			"xml",
 			"yaml",
 		}
+		local treesitter_filetypes = vim.list_extend(vim.deepcopy(ensure_installed), {
+			"copilot-chat",
+			"octo",
+		})
 
 		require("nvim-treesitter").setup({
 			install_dir = vim.fn.stdpath("data") .. "/nvim-treesitter",
@@ -49,7 +53,7 @@ return {
 		vim.treesitter.language.register("terraform", "hcl")
 
 		vim.api.nvim_create_autocmd("FileType", {
-			pattern = ensure_installed,
+			pattern = treesitter_filetypes,
 			callback = function()
 				vim.treesitter.start()
 			end,
