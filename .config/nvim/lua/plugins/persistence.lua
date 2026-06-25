@@ -1,7 +1,7 @@
 return {
 	{
 		"folke/persistence.nvim",
-		event = "BufReadPre",
+		lazy = false,
     --stylua: ignore
 		keys = {
 			{ "<leader>zl", mode = { "n" }, function() require("persistence").load() end },
@@ -20,6 +20,15 @@ return {
 			require("persistence").setup({
 				need = 0, -- Set to 0 to always save
 				branch = true, -- use git branch to save session
+			})
+
+			vim.api.nvim_create_autocmd("VimEnter", {
+				nested = true,
+				callback = function()
+					if vim.fn.argc() == 0 then
+						require("persistence").load()
+					end
+				end,
 			})
 		end,
 	},
