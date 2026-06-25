@@ -4,8 +4,8 @@ return {
 		event = "BufReadPre",
     --stylua: ignore
 		keys = {
+			{ "<leader>zl", mode = { "n" }, function() require("persistence").load() end },
 			{ "<leader>zf", mode = { "n" }, function() require("persistence").select() end },
-			{ "<leader>zl", mode = { "n" }, function() require("persistence").load({ last = true }) end },
 			{ "<leader>zx", mode = { "n" }, function() require("persistence").stop() end }
 		},
 		config = function()
