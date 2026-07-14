@@ -52,7 +52,15 @@ local function setup_vue()
 			filetypes = { "vue" },
 		})
 	)
-	vim.lsp.config("vue_ls", extend())
+	vim.lsp.config("vue_ls", extend({
+    settings = {
+        css = {
+          lint = {
+            unknownAtRules = 'ignore'
+          }
+        }
+    }
+  }))
 end
 
 local function setup_angular()
