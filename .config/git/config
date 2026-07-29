@@ -1,0 +1,18 @@
+[user]
+	name = Richard Zhunio
+	email = 967968+Zhunio@users.noreply.github.com
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    side-by-side = true
+    line-numbers = true
+    syntax-theme = ansi
+
+[merge]
+    conflictStyle = zdiff3
