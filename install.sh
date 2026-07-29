@@ -43,6 +43,7 @@ install_homebrew_packages() {
     "aerc"
     "eza"
     "mise"
+    "lazygit"
     "oauth2l"
     "sesh"
     "starship"
