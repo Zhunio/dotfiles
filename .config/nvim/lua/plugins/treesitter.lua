@@ -30,7 +30,6 @@ return {
 			"regex",
 			"sql",
 			"terraform",
-			"tmux",
 			"typescript",
 			"vim",
 			"vimdoc",
