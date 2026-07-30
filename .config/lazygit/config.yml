@@ -7,3 +7,7 @@ gui:
   theme:
     selectedLineBgColor:
       - "#283457"
+
+keybinding:
+  universal:
+    filteringMenu: <a-f>
