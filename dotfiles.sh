@@ -99,7 +99,7 @@ o() {
       --bind 'ctrl-t:change-prompt(  )+reload(sesh list --icons --tmux)' \
       --bind 'ctrl-f:change-prompt(  )+reload(sesh list --icons --zoxide)' \
       --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡ )+reload(sesh list --tmux --icons)' \
-      --preview-window 'right:55%' \
+      --preview-window 'right:75%' \
       --preview 'sesh preview {}'
   )"
 }
