@@ -42,6 +42,7 @@ install_homebrew_packages() {
     "asmvik/formulae/yabai"
     "aerc"
     "eza"
+    "direnv"
     "mise"
     "lazygit"
     "oauth2l"
