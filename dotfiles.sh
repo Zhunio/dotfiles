@@ -43,14 +43,6 @@ setup_mise() {
   eval "$(mise activate zsh)"
 }
 
-setup_direnv() {
-  if ! command -v direnv >/dev/null 2>&1; then
-    return
-  fi
-
-  eval "$(direnv hook zsh)"
-}
-
 setup_zoxide() {
   if ! command -v zoxide >/dev/null 2>&1; then
     return
