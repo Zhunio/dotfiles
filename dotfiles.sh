@@ -70,7 +70,6 @@ main() {
   setup_zsh_autocomplete
   setup_starship
   setup_mise
-  setup_direnv
   setup_zoxide
   setup_git_path
 }
