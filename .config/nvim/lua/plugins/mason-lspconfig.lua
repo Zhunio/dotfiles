@@ -214,6 +214,7 @@ return {
         vim.lsp.config("html", extend({
           filetypes = { "html" },
         }))
+        vim.lsp.config("tailwindcss", extend())
         setup_typescript()
         setup_vue()
 
@@ -221,6 +222,7 @@ return {
         vim.lsp.enable("cssls")
         vim.lsp.enable("emmet_language_server")
         vim.lsp.enable("html")
+        vim.lsp.enable("tailwindcss")
         vim.lsp.enable("ts_ls")
         vim.lsp.enable("vtsls")
         vim.lsp.enable("vue_ls")

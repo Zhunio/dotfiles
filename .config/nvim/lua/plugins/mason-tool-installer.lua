@@ -19,6 +19,7 @@ return {
         "html-lsp",
         "js-debug-adapter",
         "prettier",
+        "tailwindcss-language-server",
         "typescript-language-server",
         "vue-language-server",
         "vtsls"
