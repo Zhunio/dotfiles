@@ -12,6 +12,7 @@ return {
 		},
 
 		diff = {
+			layout = "inline",
 			compute_moves = true, -- Detect moved code blocks (opt-in, matches VSCode experimental.showMoves)
 		},
 
@@ -19,7 +20,8 @@ return {
 			position = "left", -- "left" or "bottom"
 			width = 60,
 			height = 15,
-			initial_focus = "explorer", -- Initial focus: "explorer", "original", or "modified"
+			initial_focus = "modified", -- Initial focus: "explorer", "original", or "modified"
+			view_mode = "tree",
 			focus_on_select = true, -- Jump to modified pane after selecting a file (default: stay in explorer)
 		},
 
@@ -27,8 +29,8 @@ return {
 			position = "left", -- "left" or "bottom" (default: bottom)
 			width = 100, -- Width when position is "left" (columns)
 			height = 15, -- Height when position is "bottom" (lines)
-			initial_focus = "history", -- Initial focus: "history", "original", or "modified"
-			view_mode = "list", -- "list" or "tree" for files under commits
+			initial_focus = "modified", -- Initial focus: "history", "original", or "modified"
+			view_mode = "tree", -- "list" or "tree" for files under commits
 		},
 
 		keymaps = {
