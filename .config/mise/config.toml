@@ -6,6 +6,7 @@
 # Needed for LSP support in Neovim.
 java = "temurin-21"
 python = "3.14.3"
+uv = "0.12.23"
 node = "24.14.1"
 
 # build/toolchain CLIs: maven, tree-sitter
