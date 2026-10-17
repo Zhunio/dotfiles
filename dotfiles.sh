@@ -1,4 +1,10 @@
+# Home directory paths
 export XDG_CONFIG_HOME="$HOME/.config"
+export NPM_CONFIG_CACHE="$HOME/.cache/npm"
+export GNUPGHOME="$HOME/.local/share/gnupg"
+
+# Options
+export EDITOR=nvim
 
 setup_homebrew() {
   local os arch
