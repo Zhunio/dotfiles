@@ -1,5 +1,19 @@
 #!/bin/bash
 
+set -euo pipefail
+
+detect_platform() {
+  local os
+  os="$(uname -s)"
+
+  case "$os" in
+    Darwin) platform=macos; return ;;
+    Linux) platform=fedora; return ;;
+  esac
+  echo "Unsupported OS: $os" >&2
+  return 1
+}
+
 print_run() {
   local blue='\033[0;34m'
   local bold='\033[1m'
@@ -20,7 +34,22 @@ clone_repo_if_missing() {
   git clone "$repo_url" "$target_dir"
 }
 
-install_homebrew() {
+install_macos_prereq() {
+  if xcode-select -p >/dev/null 2>&1 && xcrun --find git >/dev/null 2>&1; then
+    return
+  fi
+
+  print_run "Installing Xcode Command Line Tools"
+  xcode-select --install
+  echo "Finish the Command Line Tools installation, then rerun this installer."
+  exit 1
+}
+
+install_fedora_prereq() {
+  sudo dnf install -y git curl
+}
+
+install_homebrew_if_missing() {
   if command -v brew >/dev/null 2>&1; then
     print_run "Installing Homebrew (skipped)"
     return
@@ -30,30 +59,11 @@ install_homebrew() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
-install_homebrew_packages() {
-  local packages=(
-    "git"
-    "gh"
-    "neovim"
-    "fzf"
-    "ripgrep"
-    "stow"
+install_macos_packages() {
+  local macos_packages=(
+    "opencode"
     "asmvik/formulae/skhd"
     "asmvik/formulae/yabai"
-    "aerc"
-    "eza"
-    "mise"
-    "lazygit"
-    "oauth2l"
-    "opencode"
-    "sesh"
-    "starship"
-    "tmux"
-    "visidata"
-    "wget"
-    "yazi"
-    "zoxide"
-    "zsh-autocomplete"
   )
   local casks=(
     "font-victor-mono-nerd-font"
@@ -61,16 +71,45 @@ install_homebrew_packages() {
     "google-chrome"
     "raycast"
     "shottr"
-    "codex"
   )
 
-  for package in "${packages[@]}"; do
-    brew install "$package"
-  done
+  install_homebrew_if_missing
 
-  for cask in "${casks[@]}"; do
-    brew install --cask "$cask"
-  done
+  if [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  else
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
+
+  brew install "${packages[@]}" "${macos_packages[@]}"
+  brew install --cask "${casks[@]}"
+}
+
+install_fedora_repos() {
+  if ! rpm -q terra-release terra-gpg-keys >/dev/null 2>&1; then
+    sudo dnf install -y --nogpgcheck \
+      --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' \
+      terra-release terra-gpg-keys
+  fi
+}
+
+install_fedora_packages() {
+  local fedora_packages=(
+    ghostty opencode-cli zsh wl-clipboard
+    victormono-nerd-fonts
+  )
+
+  install_fedora_repos
+
+  sudo dnf install -y "${packages[@]}" "${fedora_packages[@]}"
+
+  if ! command -v google-chrome-stable >/dev/null 2>&1; then
+    sudo rpm --import https://dl.google.com/linux/linux_signing_key.pub
+    sudo dnf install -y --setopt=localpkg_gpgcheck=1 \
+      https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+  fi
+
+  print_run "Start zsh, or run chsh -s /usr/bin/zsh to make it your login shell"
 }
 
 source_dotfiles() {
@@ -88,16 +127,12 @@ source_dotfiles() {
 
 stow_dotfiles() {
   local dotfiles_dir=$1
-  local cwd
-  cwd=$(pwd)
-
-  cd "$dotfiles_dir"
   print_run "Creating symlinks using GNU Stow"
-  stow .
-  cd "$cwd"
+  stow --dir="$dotfiles_dir" --target="$HOME" --no-folding --simulate .
+  stow --dir="$dotfiles_dir" --target="$HOME" --no-folding .
 }
 
-install_macos_extras() {
+start_macos_services() {
   if pgrep -x yabai >/dev/null; then
     print_run "Restarting yabai service"
     yabai --restart-service
@@ -116,14 +151,36 @@ install_macos_extras() {
 }
 
 main() {
-  clone_repo_if_missing "https://github.com/Zhunio/dotfiles.git" "$HOME/dotfiles"
-  # clone_repo_if_missing "https://github.com/Zhunio/dotfiles-private.git" "$HOME/dotfiles-private"
+  local platform
+  detect_platform
 
-  install_homebrew
-  install_homebrew_packages
-  source_dotfiles
+  case "$platform" in
+    macos) install_macos_prereq ;;
+    fedora) install_fedora_prereq ;;
+  esac
+
+  clone_repo_if_missing "https://github.com/Zhunio/dotfiles.git" "$HOME/dotfiles"
+
+  local packages=(
+    git gh neovim fzf ripgrep stow tmux visidata wget
+    eza mise starship yazi zoxide zsh-autocomplete
+  )
+
+  case "$platform" in
+    macos) install_macos_packages ;;
+    fedora) install_fedora_packages ;;
+  esac
+
   stow_dotfiles "$HOME/dotfiles"
-  install_macos_extras
+
+  source_dotfiles
+
+  mise install
+
+  if [[ "$platform" == macos ]]; then
+    start_macos_services
+  fi
+
 }
 
 main "$@"

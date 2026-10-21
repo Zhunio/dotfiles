@@ -7,25 +7,27 @@ export GNUPGHOME="$HOME/.local/share/gnupg"
 export EDITOR=nvim
 
 setup_homebrew() {
-  local os arch
-  os="$(uname -s)"
-  arch="$(uname -m)"
+  [[ "$(uname -s)" == Darwin ]] || return 0
 
-  if [[ "$os" == "Darwin" && "$arch" == "arm64" ]]; then
+  if [[ -x /opt/homebrew/bin/brew ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
-  elif [[ "$os" == "Darwin" && "$arch" == "x86_64" ]]; then
+  elif [[ -x /usr/local/bin/brew ]]; then
     eval "$(/usr/local/bin/brew shellenv)"
-  elif [[ "$os" == "Linux" ]]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   fi
 }
 
 setup_zsh_autocomplete() {
-  local plugin_path="$HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
+  local plugin_path
 
   setopt interactive_comments
 
   bindkey -e
+
+  case "$(uname -s)" in
+    Darwin) plugin_path="$HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh" ;;
+    Linux) plugin_path="/usr/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh" ;;
+    *) return ;;
+  esac
 
   if [[ -f "$plugin_path" ]]; then
     source "$plugin_path"
@@ -73,9 +75,9 @@ setup_git_path() {
 
 main() {
   setup_homebrew
+  setup_mise
   setup_zsh_autocomplete
   setup_starship
-  setup_mise
   setup_zoxide
   setup_git_path
 }
