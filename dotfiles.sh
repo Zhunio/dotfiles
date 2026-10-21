@@ -25,7 +25,7 @@ setup_zsh_autocomplete() {
 
   case "$(uname -s)" in
     Darwin) plugin_path="$HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh" ;;
-    Linux) plugin_path="/usr/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh" ;;
+    Linux) plugin_path="$HOME/.local/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh" ;;
     *) return ;;
   esac
 

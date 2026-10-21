@@ -62,6 +62,7 @@ install_homebrew_if_missing() {
 install_macos_packages() {
   local macos_packages=(
     "opencode"
+    "zsh-autocomplete"
     "asmvik/formulae/skhd"
     "asmvik/formulae/yabai"
   )
@@ -102,6 +103,14 @@ install_fedora_packages() {
   install_fedora_repos
 
   sudo dnf install -y "${packages[@]}" "${fedora_packages[@]}"
+
+  # The Fedora package omits the bundled z-async dependency.
+  local autocomplete_dir="$HOME/.local/share/zsh-autocomplete"
+  if [[ ! -d "$autocomplete_dir" ]]; then
+    print_run "Installing zsh-autocomplete with its bundled dependencies"
+    git clone --depth 1 --branch 26.08.04 \
+      https://github.com/marlonrichert/zsh-autocomplete.git "$autocomplete_dir"
+  fi
 
   if ! command -v google-chrome-stable >/dev/null 2>&1; then
     sudo rpm --import https://dl.google.com/linux/linux_signing_key.pub
@@ -163,7 +172,7 @@ main() {
 
   local packages=(
     git gh neovim fzf ripgrep stow tmux visidata wget
-    eza mise starship yazi zoxide zsh-autocomplete
+    eza mise starship yazi zoxide
   )
 
   case "$platform" in
