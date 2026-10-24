@@ -25,7 +25,6 @@ gh auth login
 macOS:
 
 - [Raycast](https://www.raycast.com/) — install separately
-- [Victor Mono Nerd Font](https://www.nerdfonts.com/font-downloads) — installed automatically
 
 ## Uninstall
 
