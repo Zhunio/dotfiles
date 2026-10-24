@@ -14,12 +14,6 @@ macOS:
 curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/refs/heads/main/install.sh | /bin/bash
 ```
 
-## Applications and font
-
-macOS:
-
-- [Raycast](https://www.raycast.com/) — install separately
-
 ## Uninstall
 
 ```bash

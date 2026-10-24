@@ -97,6 +97,10 @@ install_macos_packages() {
   install_dmg "Google Chrome" "https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg"
   install_dmg "Ghostty" "https://release.files.ghostty.org/1.3.1/Ghostty.dmg"
   install_dmg "Shottr" "https://shottr.cc/dl/Shottr-1.9.3b.dmg"
+  case "$(uname -m)" in
+    arm64) install_dmg "Raycast" "https://www.raycast.com/download" ;;
+    x86_64) install_dmg "Raycast" "https://releases.raycast.com/download" ;;
+  esac
   install_victor_mono_font
 }
 
