@@ -193,7 +193,7 @@ main() {
 
   local packages=(
     git gh neovim stow tmux
-    eza mise starship yazi zoxide
+    eza starship yazi zoxide mise
   )
 
   case "$platform" in
