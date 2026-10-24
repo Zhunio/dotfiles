@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
-- Install [git](https://git-scm.com/downloads)
+- macOS: install [MacPorts](https://www.macports.org/install.php)
 
 ## Install
 
@@ -19,6 +19,13 @@ curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/refs/heads/main/ins
 ```bash
 gh auth login
 ```
+
+## Applications and font
+
+Install separately on macOS; the installer leaves these unmanaged:
+
+- [Raycast](https://www.raycast.com/)
+- [Victor Mono Nerd Font](https://www.nerdfonts.com/font-downloads)
 
 ## Uninstall
 

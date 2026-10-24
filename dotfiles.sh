@@ -6,31 +6,15 @@ export GNUPGHOME="$HOME/.local/share/gnupg"
 # Options
 export EDITOR=nvim
 
-setup_homebrew() {
-  [[ "$(uname -s)" == Darwin ]] || return 0
-
-  if [[ -x /opt/homebrew/bin/brew ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  elif [[ -x /usr/local/bin/brew ]]; then
-    eval "$(/usr/local/bin/brew shellenv)"
-  fi
-}
-
 setup_zsh_autocomplete() {
-  local plugin_path
+  local autocomplete_dir="$HOME/.local/share/zsh-autocomplete"
 
   setopt interactive_comments
 
   bindkey -e
 
-  case "$(uname -s)" in
-    Darwin) plugin_path="$HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh" ;;
-    Linux) plugin_path="$HOME/.local/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh" ;;
-    *) return ;;
-  esac
-
-  if [[ -f "$plugin_path" ]]; then
-    source "$plugin_path"
+  if [[ -f "$autocomplete_dir/zsh-autocomplete.plugin.zsh" ]]; then
+    source "$autocomplete_dir/zsh-autocomplete.plugin.zsh"
   fi
 }
 
@@ -59,27 +43,11 @@ setup_zoxide() {
   eval "$(zoxide init zsh)"
 }
 
-setup_git_path() {
-  local git_bin
-
-  if ! command -v brew >/dev/null 2>&1; then
-    return
-  fi
-
-  git_bin="$(brew --prefix git)/bin"
-
-  if [[ -d "$git_bin" ]]; then
-    export PATH="$git_bin:$PATH"
-  fi
-}
-
 main() {
-  setup_homebrew
   setup_mise
   setup_zsh_autocomplete
   setup_starship
   setup_zoxide
-  setup_git_path
 }
 
 main "$@"

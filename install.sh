@@ -35,59 +35,57 @@ clone_repo_if_missing() {
 }
 
 install_macos_prereq() {
-  if xcode-select -p >/dev/null 2>&1 && xcrun --find git >/dev/null 2>&1; then
-    return
+  if ! command -v port >/dev/null 2>&1; then
+    echo "Install MacPorts from https://www.macports.org/install.php, then rerun this installer." >&2
+    return 1
   fi
 
-  print_run "Installing Xcode Command Line Tools"
-  xcode-select --install
-  echo "Finish the Command Line Tools installation, then rerun this installer."
-  exit 1
+  if ! xcode-select -p >/dev/null 2>&1; then
+    print_run "Installing Xcode Command Line Tools"
+    xcode-select --install
+    echo "Finish the Command Line Tools installation, then rerun this installer."
+    return 1
+  fi
+
+  if ! command -v git >/dev/null 2>&1; then
+    print_run "Installing Git"
+    sudo port install git
+  fi
 }
 
 install_fedora_prereq() {
   sudo dnf install -y git curl
 }
 
-install_homebrew_if_missing() {
-  if command -v brew >/dev/null 2>&1; then
-    print_run "Installing Homebrew (skipped)"
+install_dmg() (
+  app=$1
+  url=$2
+
+  if [[ -d "/Applications/$app.app" ]]; then
+    print_run "Installing $app (skipped)"
     return
   fi
 
-  print_run "Installing Homebrew"
-  if [[ "$(uname -m)" == arm64 ]]; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </dev/tty
-  else
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/df3c2556141c012eaba0453ede7a1bd4f05b824c/install.sh)" </dev/tty
-  fi
-}
+  print_run "Installing $app"
+  curl -fL "$url" -o "$HOME/Downloads/$app.dmg"
+  hdiutil attach "$HOME/Downloads/$app.dmg" -nobrowse -quiet
+  sudo ditto "/Volumes/$app/$app.app" "/Applications/$app.app"
+  hdiutil detach "/Volumes/$app" -quiet
+)
 
 install_macos_packages() {
   local macos_packages=(
     "opencode"
-    "zsh-autocomplete"
-    "asmvik/formulae/skhd"
-    "asmvik/formulae/yabai"
-  )
-  local casks=(
-    "font-victor-mono-nerd-font"
-    "ghostty"
-    "google-chrome"
-    "raycast"
-    "shottr"
+    "skhd"
+    "yabai"
   )
 
-  install_homebrew_if_missing
+  sudo port selfupdate
+  sudo port install "${packages[@]}" "${macos_packages[@]}"
 
-  if [[ -x /opt/homebrew/bin/brew ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  else
-    eval "$(/usr/local/bin/brew shellenv)"
-  fi
-
-  brew install "${packages[@]}" "${macos_packages[@]}"
-  brew install --cask "${casks[@]}"
+  install_dmg "Google Chrome" "https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg"
+  install_dmg "Ghostty" "https://release.files.ghostty.org/1.3.1/Ghostty.dmg"
+  install_dmg "Shottr" "https://shottr.cc/dl/Shottr-1.9.3b.dmg"
 }
 
 install_fedora_repos() {
@@ -100,21 +98,13 @@ install_fedora_repos() {
 
 install_fedora_packages() {
   local fedora_packages=(
-    ghostty opencode-cli zsh wl-clipboard
+    ghostty opencode-cli zsh wl-clipboard spectacle
     victormono-nerd-fonts
   )
 
   install_fedora_repos
 
   sudo dnf install -y "${packages[@]}" "${fedora_packages[@]}"
-
-  # The Fedora package omits the bundled z-async dependency.
-  local autocomplete_dir="$HOME/.local/share/zsh-autocomplete"
-  if [[ ! -d "$autocomplete_dir" ]]; then
-    print_run "Installing zsh-autocomplete with its bundled dependencies"
-    git clone --depth 1 --branch 26.08.04 \
-      https://github.com/marlonrichert/zsh-autocomplete.git "$autocomplete_dir"
-  fi
 
   if ! command -v google-chrome-stable >/dev/null 2>&1; then
     sudo rpm --import https://dl.google.com/linux/linux_signing_key.pub
@@ -123,6 +113,17 @@ install_fedora_packages() {
   fi
 
   print_run "Start zsh, or run chsh -s /usr/bin/zsh to make it your login shell"
+}
+
+install_zsh_autocomplete() {
+  # Include the bundled z-async dependency on both platforms.
+  local autocomplete_dir="$HOME/.local/share/zsh-autocomplete"
+  if [[ ! -d "$autocomplete_dir" ]]; then
+    print_run "Installing zsh-autocomplete with its bundled dependencies"
+    mkdir -p "$(dirname "$autocomplete_dir")"
+    git clone --depth 1 --branch 26.08.04 \
+      https://github.com/marlonrichert/zsh-autocomplete.git "$autocomplete_dir"
+  fi
 }
 
 source_dotfiles() {
@@ -175,7 +176,7 @@ main() {
   clone_repo_if_missing "https://github.com/Zhunio/dotfiles.git" "$HOME/dotfiles"
 
   local packages=(
-    git gh neovim fzf ripgrep stow tmux visidata wget
+    git gh neovim stow tmux
     eza mise starship yazi zoxide
   )
 
@@ -183,6 +184,8 @@ main() {
     macos) install_macos_packages ;;
     fedora) install_fedora_packages ;;
   esac
+
+  install_zsh_autocomplete
 
   stow_dotfiles "$HOME/dotfiles"
 

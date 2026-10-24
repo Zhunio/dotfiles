@@ -2,18 +2,24 @@
 # keeping them easy to install, upgrade, and uninstall.
 
 [tools]
-# language runtimes: node, python, java
+# language runtimes: node, python, java, go
 # Needed for LSP support in Neovim.
 java = "temurin-21"
 python = "3.14.3"
 uv = "0.12.23"
 node = "24.14.1"
+go = "latest"
 
 # build/toolchain CLIs: maven, tree-sitter
 # maven is for Java development in Neovim.
 # tree-sitter is required by nvim-treesitter.
 maven = "3.9"
 tree-sitter = "latest"
+
+# VisiData runs in an isolated Python environment using uv.
+"pipx:visidata" = { version = "latest", uvx = true }
+# Build sesh from source using the mise-managed Go toolchain.
+"go:github.com/joshmedeski/sesh/v2" = "latest"
 
 # editor dependency CLIs: fzf, ripgrep
 # fzf is for fzf-lua.
