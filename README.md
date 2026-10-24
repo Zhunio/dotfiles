@@ -22,10 +22,10 @@ gh auth login
 
 ## Applications and font
 
-Install separately on macOS; the installer leaves these unmanaged:
+macOS:
 
-- [Raycast](https://www.raycast.com/)
-- [Victor Mono Nerd Font](https://www.nerdfonts.com/font-downloads)
+- [Raycast](https://www.raycast.com/) — install separately
+- [Victor Mono Nerd Font](https://www.nerdfonts.com/font-downloads) — installed automatically
 
 ## Uninstall
 

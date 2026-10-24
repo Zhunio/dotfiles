@@ -2,6 +2,8 @@
 # keeping them easy to install, upgrade, and uninstall.
 
 [tools]
+opencode = "2.1.0"
+
 # language runtimes: node, python, java, go
 # Needed for LSP support in Neovim.
 java = "temurin-21"

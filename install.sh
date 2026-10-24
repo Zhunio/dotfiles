@@ -73,9 +73,20 @@ install_dmg() (
   hdiutil detach "/Volumes/$app" -quiet
 )
 
+install_victor_mono_font() {
+  if [[ -f "$HOME/Library/Fonts/VictorMonoNerdFont-Regular.ttf" ]]; then
+    print_run "Installing Victor Mono Nerd Font (skipped)"
+    return
+  fi
+
+  print_run "Installing Victor Mono Nerd Font"
+  curl -fL "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/VictorMono.zip" \
+    -o "$HOME/Downloads/VictorMono.zip"
+  unzip -jo "$HOME/Downloads/VictorMono.zip" '*.ttf' -d "$HOME/Library/Fonts"
+}
+
 install_macos_packages() {
   local macos_packages=(
-    "opencode"
     "skhd"
     "yabai"
   )
@@ -86,6 +97,7 @@ install_macos_packages() {
   install_dmg "Google Chrome" "https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg"
   install_dmg "Ghostty" "https://release.files.ghostty.org/1.3.1/Ghostty.dmg"
   install_dmg "Shottr" "https://shottr.cc/dl/Shottr-1.9.3b.dmg"
+  install_victor_mono_font
 }
 
 install_fedora_repos() {
@@ -98,7 +110,7 @@ install_fedora_repos() {
 
 install_fedora_packages() {
   local fedora_packages=(
-    ghostty opencode-cli zsh wl-clipboard spectacle
+    ghostty zsh wl-clipboard spectacle
     victormono-nerd-fonts
   )
 
