@@ -14,12 +14,6 @@ macOS:
 curl -fsSL https://raw.githubusercontent.com/Zhunio/dotfiles/refs/heads/main/install.sh | /bin/bash
 ```
 
-## Setup GitHub CLI
-
-```bash
-gh auth login
-```
-
 ## Applications and font
 
 macOS:
