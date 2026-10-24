@@ -213,6 +213,8 @@ main() {
     start_macos_services
   fi
 
+  clone_repo_if_missing "https://github.com/zhunio/Wallpaper.git" "$HOME/Wallpaper"
+
 }
 
 main "$@"
