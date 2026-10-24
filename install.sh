@@ -36,7 +36,7 @@ clone_repo_if_missing() {
 
 install_macos_prereq() {
   if ! command -v port >/dev/null 2>&1; then
-    echo "Install MacPorts from https://www.macports.org/install.php, then rerun this installer." >&2
+    echo "Install MacPorts from https://github.com/macports/macports-base/releases/latest, then rerun this installer." >&2
     return 1
   fi
 

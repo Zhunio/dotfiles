@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
-- macOS: install [MacPorts](https://www.macports.org/install.php)
+- macOS: install [MacPorts](https://github.com/macports/macports-base/releases/latest)
 
 ## Install
 
