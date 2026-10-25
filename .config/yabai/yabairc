@@ -1,6 +1,9 @@
-# parse output from scrutil status
-yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-sudo yabai --load-sa
+# Load the scripting addition only when passwordless sudo and its prerequisites work.
+if sudo -n yabai --load-sa; then
+  yabai -m signal --add event=dock_did_restart action="sudo -n yabai --load-sa"
+else
+  echo "Scripting addition unavailable; basic tiling will still work." >&2
+fi
 
 # default layout (can be bsp, stack or float)
 yabai -m config layout bsp

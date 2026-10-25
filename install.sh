@@ -66,9 +66,14 @@ install_dmg() (
     return
   fi
 
+  if [[ -e "/Volumes/$app" ]]; then
+    echo "Eject /Volumes/$app before continuing." >&2
+    return 1
+  fi
+
   print_run "Installing $app"
   curl -fL "$url" -o "$HOME/Downloads/$app.dmg"
-  hdiutil attach "$HOME/Downloads/$app.dmg" -nobrowse -quiet
+  hdiutil attach "$HOME/Downloads/$app.dmg" -mountpoint "/Volumes/$app" -nobrowse -quiet
   sudo ditto "/Volumes/$app/$app.app" "/Applications/$app.app"
   hdiutil detach "/Volumes/$app" -quiet
 )
@@ -163,6 +168,19 @@ stow_dotfiles() {
 }
 
 start_macos_services() {
+  if ! codesign --verify --strict "$(command -v yabai)"; then
+    cat >&2 <<'EOF'
+yabai code signature is invalid. To repair, run:
+sudo codesign --force --sign - "$(command -v yabai)"
+
+After signing, re-add yabai in Accessibility, and run:
+echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa" | sudo tee /private/etc/sudoers.d/yabai
+
+Then rerun this installer.
+EOF
+    return 1
+  fi
+
   if pgrep -x yabai >/dev/null; then
     print_run "Restarting yabai service"
     yabai --restart-service
