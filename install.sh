@@ -120,6 +120,7 @@ install_fedora_repos() {
 install_fedora_packages() {
   local fedora_packages=(
     ghostty zsh wl-clipboard spectacle
+    gcc gcc-c++ make
     victormono-nerd-fonts
   )
 
