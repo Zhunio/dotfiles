@@ -58,7 +58,7 @@ class Weather:
             "latitude": latitude,
             "longitude": longitude,
             "current": "temperature_2m,weather_code,is_day",
-            "temperature_unit": "celsius",
+            "temperature_unit": "fahrenheit",
             "timezone": "auto",
         })
         url = f"https://api.open-meteo.com/v1/forecast?{query}"
@@ -100,7 +100,7 @@ def main():
     if sys.argv[1:] == ["icon"]:
         print(cache.icon or "☁️")
     elif cache.temperature is not None:
-        print(f"{cache.temperature:g}°C")
+        print(f"{cache.temperature:g}°F")
     else:
         print("⚠ ERROR")
 
