@@ -18,6 +18,10 @@ options.color_keystrokes = 'bold'
 BaseSheet.bindkey('zS', 'save-sheet')
 
 # Use the system clipboard for all copy commands and cell paste.
+# Remove the defaults before intentionally replacing these bindings.
+for key in ('y', 'gy', 'zy', 'gzy', 'zp', 'gzp'):
+    Sheet.unbindkey(key)
+
 Sheet.bindkey('y', 'syscopy-row')  # Copy current row.
 Sheet.bindkey('gy', 'syscopy-selected')  # Copy selected rows.
 Sheet.bindkey('zy', 'syscopy-cell')  # Copy current cell.

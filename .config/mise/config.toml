@@ -21,7 +21,7 @@ maven = "3.9"
 tree-sitter = "latest"
 
 # VisiData runs in an isolated Python environment using uv.
-"pipx:visidata" = { version = "latest", uvx = true }
+"pipx:visidata" = { version = "latest", uvx = true, with = ["openpyxl"] }
 # Build sesh from source using the mise-managed Go toolchain.
 "go:github.com/joshmedeski/sesh/v2" = "latest"
 
