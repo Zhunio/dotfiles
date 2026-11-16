@@ -1,4 +1,4 @@
 [[mgr.prepend_keymap]]
 on   = "T"
-run  = "toggle-pane max-preview"
+run  = "plugin toggle-pane max-preview"
 desc = "Maximize or restore preview"
