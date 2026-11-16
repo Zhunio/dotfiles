@@ -25,8 +25,10 @@ tree-sitter = "latest"
 # Build sesh from source using the mise-managed Go toolchain.
 "go:github.com/joshmedeski/sesh/v2" = "latest"
 
-# editor dependency CLIs: fzf, ripgrep
+# editor and file manager dependency CLIs: fd, fzf, ripgrep
+# fd is for filename searches in Yazi.
 # fzf is for fzf-lua.
 # ripgrep is for fzf-lua.
+fd = "latest"
 fzf = "latest"
 ripgrep = "latest"

@@ -88,7 +88,7 @@ def main():
     cache = WeatherCache()
 
     if cache.expired():
-        weather = Weather("Gualaquiza", "EC")
+        weather = Weather("Cuenca", "EC")
         try:
             latitude, longitude = weather.get_coordinates()
             temperature, weather_code, is_day = weather.get_current(latitude, longitude)
