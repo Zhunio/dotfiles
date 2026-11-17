@@ -6,6 +6,12 @@ export GNUPGHOME="$HOME/.local/share/gnupg"
 # Options
 export EDITOR=nvim
 
+setup_homebrew() {
+  if [[ "$(uname -m)" == arm64 && -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
+}
+
 setup_zsh_autocomplete() {
   local autocomplete_dir="$HOME/.local/share/zsh-autocomplete"
 
@@ -44,6 +50,7 @@ setup_zoxide() {
 }
 
 main() {
+  setup_homebrew
   setup_mise
   setup_zsh_autocomplete
   setup_starship

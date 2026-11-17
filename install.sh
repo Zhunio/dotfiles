@@ -34,11 +34,26 @@ clone_repo_if_missing() {
   git clone "$repo_url" "$target_dir"
 }
 
-install_macos_prereq() {
+install_homebrew() {
+  if ! command -v brew >/dev/null 2>&1; then
+    print_run "Installing Homebrew"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+}
+
+install_macports() {
   if ! command -v port >/dev/null 2>&1; then
     echo "Install MacPorts from https://github.com/macports/macports-base/releases/latest, then rerun this installer." >&2
     return 1
   fi
+}
+
+install_macos_prereq() {
+  case "$(uname -m)" in
+    arm64) install_homebrew ;;
+    x86_64) install_macports ;;
+  esac
 
   if ! xcode-select -p >/dev/null 2>&1; then
     print_run "Installing Xcode Command Line Tools"
@@ -49,7 +64,10 @@ install_macos_prereq() {
 
   if ! command -v git >/dev/null 2>&1; then
     print_run "Installing Git"
-    sudo port install git
+    case "$(uname -m)" in
+      arm64) brew install git ;;
+      x86_64) sudo port install git ;;
+    esac
   fi
 }
 
@@ -92,12 +110,14 @@ install_victor_mono_font() {
 
 install_macos_packages() {
   local macos_packages=(
-    "skhd"
-    "yabai"
+    "koekeishiya/formulae/skhd"
+    "koekeishiya/formulae/yabai"
   )
 
-  sudo port selfupdate
-  sudo port install "${packages[@]}" "${macos_packages[@]}"
+  case "$(uname -m)" in
+    arm64) brew install "${packages[@]}" "${macos_packages[@]}" ;;
+    x86_64) sudo port install "${packages[@]}" skhd yabai ;;
+  esac
 
   install_dmg "Google Chrome" "https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg"
   install_dmg "Ghostty" "https://release.files.ghostty.org/1.3.1/Ghostty.dmg"

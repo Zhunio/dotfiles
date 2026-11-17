@@ -2,10 +2,6 @@
 
 `dotfiles` stores a collection of configuration files for various programs.
 
-## Prerequisites
-
-- macOS: install [MacPorts](https://github.com/macports/macports-base/releases/latest)
-
 ## Install
 
 macOS:
